@@ -21,7 +21,7 @@ public class ChooseFighter {
   private Rectangle recPlayer2;
 
   private Rectangle[] photoFrame = new Rectangle[maxchampions];
-  
+
 
   public ChooseFighter() {
 
