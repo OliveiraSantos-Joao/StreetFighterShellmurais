@@ -3,11 +3,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Game game = new Game();
+       // Game game = new Game();
 
-        game.init();
+        //game.init();
+         //game.start();
 
-        game.start();
+
+        ChooseFighter fiter = new ChooseFighter();
+
+        fiter.createFighters();
 
     }
 }

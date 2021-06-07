@@ -9,11 +9,14 @@ public enum Fighters {
 
     private int damage;
     private int health;
+    private int x;
+    private int y;
 
 
     Fighters(int damage, int health){
         this.damage = damage;
         this.health = health;
+
 
     }
 
