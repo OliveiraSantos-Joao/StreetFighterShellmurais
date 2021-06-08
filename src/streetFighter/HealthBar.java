@@ -22,9 +22,16 @@ public class HealthBar {
     private int healthP2 = 90;
     private int barWidth = 500;
     private int barHeight = 40;
+    private int maxHealth = 100;
+
+    private int BORDER = 5;
 
 
-    public HealthBar() {
+    public HealthBar(int healthP1, int healthP2) {
+        this.healthP1 = healthP1;
+        this.healthP2 = healthP2;
+
+
         init();
     }
 
@@ -32,6 +39,8 @@ public class HealthBar {
 
         mainMenu = new Picture(Game.PADDING, Game.PADDING, "BlackBackground2.png");
         mainMenu.draw();
+
+
 
         rectangleP1 = new Rectangle(mainMenu.getX()+ 70, mainMenu.getY() +50, barWidth, barHeight);
         rectangleP1.setColor(Color.WHITE);
@@ -49,9 +58,11 @@ public class HealthBar {
         player2Name.setColor(Color.WHITE);
         player2Name.draw();
 
-        lifeP1 = new Rectangle(rectangleP1.getX()+5, rectangleP1.getY() + 5, (rectangleP1.getWidth()-10) * healthP1 /100, rectangleP1.getHeight()- 10 );
 
-        lifeP2 = new Rectangle(rectangleP2.getX() + (rectangleP2.getWidth() - healthP2*5) +5 , rectangleP2.getY() + 5, (rectangleP2.getWidth()-10) * healthP2 /100, rectangleP2.getHeight()- 10 );
+
+        lifeP1 = new Rectangle(rectangleP1.getX()+ BORDER, rectangleP1.getY() + BORDER, (rectangleP1.getWidth()-10) * healthP1 /100, rectangleP1.getHeight()- 10 );
+
+        lifeP2 = new Rectangle(rectangleP2.getX() + ((100 - healthP2)*4.9) + BORDER, rectangleP2.getY() + BORDER, (rectangleP2.getWidth()-10) * healthP2 /100, rectangleP2.getHeight()- 10 );
 
         if(healthP1 < 33) {
             lifeP1.setColor(Color.RED);

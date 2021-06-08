@@ -3,7 +3,7 @@ package streetFighter.fighters;
 public enum Fighters {
 
     SARA(35, 100),
-    PEDRO(50,200),
+    PEDRO(50,100),
     PAULO(35, 100);
 
 
