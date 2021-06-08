@@ -1,4 +1,4 @@
-package fighters;
+package streetFighter.fighters;
 
 public enum Fighters {
 
@@ -9,8 +9,7 @@ public enum Fighters {
 
     private int damage;
     private int health;
-    private int x;
-    private int y;
+
 
 
     Fighters(int damage, int health){

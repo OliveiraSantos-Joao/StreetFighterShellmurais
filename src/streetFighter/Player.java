@@ -1,5 +1,6 @@
-import fighters.Fighter;
-import fighters.Fighters;
+package streetFighter;
+
+import streetFighter.fighters.Fighter;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
@@ -11,7 +12,7 @@ public class Player implements KeyboardHandler {
 
     public Player(){
 
-        //chose fighter - -chamar menu fighters
+        //chose fighter - -chamar menu streetFighter.fighters
         //fighter = new fighter(menufighters)
     }
 

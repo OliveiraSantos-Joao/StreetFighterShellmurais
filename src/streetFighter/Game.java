@@ -1,4 +1,8 @@
+package streetFighter;
+
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import streetFighter.MainMenu;
+import streetFighter.Player;
 
 public class Game {
 
@@ -37,8 +41,8 @@ public class Game {
 
     public void start(){
         //choose fighter
-        //arena init
-        //arena start
+        //streetFighter.arena init
+        //streetFighter.arena start
 
     }
 

@@ -1,4 +1,4 @@
-package arena;
+package streetFighter.arena;
 
 public enum ArenaType {
 

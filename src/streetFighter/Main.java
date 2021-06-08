@@ -1,9 +1,12 @@
+package streetFighter;
+
+import streetFighter.ChooseFighter;
 
 public class Main {
 
     public static void main(String[] args) {
 
-       // Game game = new Game();
+       // streetFighter.Game game = new streetFighter.Game();
 
         //game.init();
          //game.start();

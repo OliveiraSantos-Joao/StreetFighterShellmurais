@@ -1,4 +1,4 @@
-package fighters;
+package streetFighter.fighters;
 
 public enum Movement {
 

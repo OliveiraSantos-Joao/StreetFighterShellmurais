@@ -1,3 +1,5 @@
+package streetFighter;
+
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -10,13 +12,11 @@ public class ChampionInputs implements KeyboardHandler {
     private int pressedCharacterP2;
     private ChooseFighter chooseFighter;
 
+    //*****Classe constructor*****
     public ChampionInputs(int pressedCharacterP1 , int pressedCharacterP2 , ChooseFighter chooseFighters){
         this.pressedCharacterP1 = pressedCharacterP1;
         this.pressedCharacterP2 = pressedCharacterP2;
         this.chooseFighter = chooseFighters;
-
-
-
     }
 
     public void menuChooseChampions(){

@@ -1,3 +1,5 @@
+package streetFighter;
+
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
@@ -173,7 +175,7 @@ public class MainMenu implements KeyboardHandler {
     public void drawMainMenu(){
 
         //First Text
-        text = new Text(mainMenu.getWidth() / 2, mainMenu.getHeight() * (0.6), "Start Game");
+        text = new Text(mainMenu.getWidth() / 2, mainMenu.getHeight() * (0.6), "Start streetFighter.Game");
         text.setColor(Color.WHITE);
         text.draw();
         //First Text Rectangle
