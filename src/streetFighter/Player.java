@@ -10,15 +10,19 @@ public class Player implements KeyboardHandler {
 
     private Fighter fighter;
 
-    public Player(){
+    public Player(int xInitial, int yInitial){
+
+        this.fighter =  new Fighter(xInitial, yInitial);
 
         //chose fighter - -chamar menu streetFighter.fighters
         //fighter = new fighter(menufighters)
     }
 
+    public Fighter getFighter() {
+        return fighter;
+    }
 
-
-//keyboard handler
+    //keyboard handler
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 

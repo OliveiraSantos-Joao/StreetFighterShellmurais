@@ -14,7 +14,10 @@ public class Fighter {
 
 
 
-    public Fighter(){
+    public Fighter(int xInitial, int yInitial){
+
+        this.posX = xInitial;
+        this.posY = yInitial;
 
         this.fighter = Fighters.values()[(int) (Math.random()* Fighters.values().length)];
         this.health = Fighters.getInitialHealth(fighter);
@@ -35,6 +38,9 @@ public class Fighter {
     public int getPosX() {
         return posX;
     }
+    public int getPosY() {
+        return posY;
+    }
 
     public void moveRight() {
         this.posX = posX + pixelMovement;
@@ -47,9 +53,7 @@ public class Fighter {
         return pixelMovement;
     }
 
-    public int getPosY() {
-        return posY;
-    }
+
 
     public void jump(){
         this.posY = posY + jump;

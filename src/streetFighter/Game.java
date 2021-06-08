@@ -33,8 +33,8 @@ public class Game {
 
 
         //players
-        player1 = new Player();
-        player2 = new Player();
+        player1 = new Player((Game.width/4),400);
+        player2 = new Player(Game.width/4 *3 , 400);
 
     }
 

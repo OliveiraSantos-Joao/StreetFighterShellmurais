@@ -37,25 +37,24 @@ public class HealthBar {
 
     public void init() {
 
-        mainMenu = new Picture(Game.PADDING, Game.PADDING, "BlackBackground2.png");
-        mainMenu.draw();
 
 
-
-        rectangleP1 = new Rectangle(mainMenu.getX()+ 70, mainMenu.getY() +50, barWidth, barHeight);
+        rectangleP1 = new Rectangle(Game.PADDING+ 70, Game.PADDING +50, barWidth, barHeight);
         rectangleP1.setColor(Color.WHITE);
         rectangleP1.draw();
 
-        player1Name = new Text(rectangleP1.getX(), rectangleP1.getY() - 20,"Player 1");
+        player1Name = new Text(rectangleP1.getX() + 25, rectangleP1.getY() - 20,"Player 1");
         player1Name.setColor(Color.WHITE);
+        player1Name.grow(25,10);
         player1Name.draw();
 
-        rectangleP2 = new Rectangle(mainMenu.getWidth() - 70 - barWidth, mainMenu.getY() +50, barWidth, barHeight);
+        rectangleP2 = new Rectangle(Game.width - 70 - barWidth, Game.PADDING +50, barWidth, barHeight);
         rectangleP2.setColor(Color.WHITE);
         rectangleP2.draw();
 
-        player2Name = new Text(rectangleP2.getX()+rectangleP2.getWidth()-50, rectangleP2.getY() - 20,"Player 2");
+        player2Name = new Text(rectangleP2.getX()+rectangleP2.getWidth()-50 - 25, rectangleP2.getY() - 20,"Player 2");
         player2Name.setColor(Color.WHITE);
+        player2Name.grow(25,10);
         player2Name.draw();
 
 

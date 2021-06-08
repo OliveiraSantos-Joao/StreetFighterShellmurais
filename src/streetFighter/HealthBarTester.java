@@ -1,4 +1,4 @@
-package streetFighter;
+/*package streetFighter;
 
 import streetFighter.fighters.Fighter;
 
@@ -10,4 +10,4 @@ public class HealthBarTester {
 //        HealthBar healthBar =  new HealthBar(p1.getHealth(),p2.getHealth());
         HealthBar healthBar =  new HealthBar(20 , 10 );
     }
-}
+}*/
