@@ -43,6 +43,9 @@ public class Fighter {
         this.posX = posX - pixelMovement;
     }
 
+    public int getPixelMovement() {
+        return pixelMovement;
+    }
 
     public int getPosY() {
         return posY;

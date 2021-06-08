@@ -56,27 +56,27 @@ public class InputsChampionFightingMovements implements KeyboardHandler {
         switch (keyboardEvent.getKey()){
 
             case KeyboardEvent.KEY_RIGHT:
-                if(champion.getPosX() >= Game.width){
+                if(champion.getPosX() + champion.getPixelMovement() >= Game.width){
                     break;
                 }
                 champion.moveRight();
                 break;
 
             case KeyboardEvent.KEY_LEFT:
-                if(champion.getPosX() <= 0){
+                if(champion.getPosX() - champion.getPixelMovement() <= 0){
                     break;
                 }
                 champion.moveLeft();
 
             case KeyboardEvent.KEY_A:
-                if(champion.getPosX() >= Game.width){
+                if(champion.getPosX() + champion.getPixelMovement() >= Game.width){
                     break;
                 }
                 champion.moveRight();
                 break;
 
             case KeyboardEvent.KEY_D:
-                if(champion.getPosX() <= 0){
+                if(champion.getPosX() - champion.getPixelMovement() <= 0){
                     break;
                 }
                 champion.moveLeft();
