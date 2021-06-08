@@ -28,7 +28,7 @@ public class ChampionInputs implements KeyboardHandler {
             rightPressedP1.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
             KeyboardEvent leftPressedP1 = new KeyboardEvent();
-            leftPressedP1.setKey(KeyboardEvent.KEY_DOWN);
+            leftPressedP1.setKey(KeyboardEvent.KEY_LEFT);
             leftPressedP1.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
             KeyboardEvent spacePressedP1 = new KeyboardEvent();
@@ -64,8 +64,8 @@ public class ChampionInputs implements KeyboardHandler {
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         switch (keyboardEvent.getKey()) {
-            case KeyboardEvent.KEY_RIGHT:
 
+            case KeyboardEvent.KEY_RIGHT:
                 switch (pressedCharacterP1) {
 
                     case 1:
@@ -77,7 +77,31 @@ public class ChampionInputs implements KeyboardHandler {
                         break;
 
                     case 3:
+                        pressedCharacterP1++;
+                        break;
+
+                    case 4:
                         pressedCharacterP1 = 1;
+                        break;
+                }
+                break;
+
+            case KeyboardEvent.KEY_LEFT:
+
+                switch  (pressedCharacterP1){
+
+                    case 1:
+                        pressedCharacterP1 = chooseFighter.getMaxchampions();//para voltar ao ultimo
+                        break;
+                    case 2:
+                        pressedCharacterP1--;
+                        break;
+                    case 3:
+                        pressedCharacterP1--;
+                        break;
+
+                    case 4:
+                        pressedCharacterP1--;
                         break;
                 }
                 break;
@@ -85,15 +109,39 @@ public class ChampionInputs implements KeyboardHandler {
             case KeyboardEvent.KEY_D:
                 switch (pressedCharacterP2) {
                     case 1:
-                        pressedCharacterP2++;
+                        pressedCharacterP2 ++;
                         break;
 
                     case 2:
-                        pressedCharacterP2++;
+                        pressedCharacterP2 ++;
                         break;
 
                     case 3:
-                        pressedCharacterP2=1; //pq da a volta !!
+                        pressedCharacterP2 ++;
+                        break;
+
+                    case 4:
+                        pressedCharacterP2 = 1; //pq da a volta !!
+                        break;
+                }
+                break;
+
+            case KeyboardEvent.KEY_A:
+                switch (pressedCharacterP2){
+                    case 1:
+                        pressedCharacterP2 = chooseFighter.getMaxchampions();
+                        break;
+
+                    case 2:
+                        pressedCharacterP2--;
+                        break;
+
+                    case 3:
+                        pressedCharacterP2--;
+                        break;
+
+                    case 4:
+                        pressedCharacterP2--;
                         break;
 
                 }
