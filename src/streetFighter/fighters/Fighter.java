@@ -7,14 +7,18 @@ public class Fighter {
     private int damage;
     private boolean dead;
 
+    private PlayerType playerType;
     private int posX;
     private int posY;
     private int pixelMovement = 10;
     private int jump = 20;
+    private int height = 250;
+    private int width = 100;
 
 
 
-    public Fighter(int xInitial, int yInitial){
+    public Fighter(int xInitial, int yInitial, PlayerType playerType){
+        this.playerType = playerType;
 
         this.posX = xInitial;
         this.posY = yInitial;
@@ -40,6 +44,18 @@ public class Fighter {
     }
     public int getPosY() {
         return posY;
+    }
+
+    public PlayerType getPlayerType() {
+        return playerType;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
     }
 
     public void moveRight() {

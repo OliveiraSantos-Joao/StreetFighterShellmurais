@@ -3,6 +3,7 @@ package streetFighter;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import streetFighter.MainMenu;
 import streetFighter.Player;
+import streetFighter.fighters.PlayerType;
 
 public class Game {
 
@@ -33,8 +34,8 @@ public class Game {
 
 
         //players
-        player1 = new Player((Game.width/4),400);
-        player2 = new Player(Game.width/4 *3 , 400);
+        player1 = new Player((Game.width/4),400, PlayerType.PLAYER1);
+        player2 = new Player(Game.width/4 *3 , 400,PlayerType.PLAYER2);
 
     }
 

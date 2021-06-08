@@ -9,11 +9,11 @@ import streetFighter.fighters.Fighter;
 
 public class Arena {
 
-    Picture arena;
-    Rectangle player1Rec;
-    Rectangle player2Rec;
-    Fighter player1;
-    Fighter player2;
+    private Picture arena;
+    private Rectangle player1Rec;
+    private Rectangle player2Rec;
+    private Fighter player1;
+    private Fighter player2;
 
 
     public Arena(Fighter player1, Fighter player2){
@@ -21,28 +21,29 @@ public class Arena {
         this.player2 = player2;
 
 
+        arenaInit();
+    }
+
+
+    public void arenaInit(){
         arena = new Picture(Game.PADDING,Game.PADDING,"arena2.png");
         arena.draw();
 
-        player1Rec = new Rectangle(player1.getPosX() , player1.getPosY(),100,250);
+        player1Rec = new Rectangle(player1.getPosX() , player1.getPosY(),player1.getWidth(),player1.getHeight());
         player1Rec.setColor(Color.GREEN);
         player1Rec.fill();
 
-        player2Rec = new Rectangle(player2.getPosX() , player2.getPosY(),100,250);
+        player2Rec = new Rectangle(player2.getPosX() , player2.getPosY(),player2.getWidth(), player2.getHeight());
         player2Rec.setColor(Color.CYAN);
         player2Rec.fill();
 
         HealthBar hb = new HealthBar(player1.getHealth(),player2.getHealth());
 
-
-
-
+        Punch punch = new Punch(player2);
+        Punch punch2 = new Punch(player1);
     }
 
-    public void arenaInit(){
 
-
-    }
 
 
 
