@@ -8,6 +8,10 @@ public class GameMech {
 
         while (mechRunning) {
             System.out.println("do the stuffs");
+
+
+
+
         }
 
     }

@@ -4,6 +4,7 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import streetFighter.Game;
+import streetFighter.GameMech;
 import streetFighter.HealthBar;
 import streetFighter.fighters.Fighter;
 
@@ -16,10 +17,10 @@ public class Arena {
     private Fighter player2;
 
 
-    public Arena(Fighter player1, Fighter player2){
+    public Arena(Fighter player1, Fighter player2, GameMech gMech) {
+
         this.player1 = player1;
         this.player2 = player2;
-
 
         arenaInit();
     }
