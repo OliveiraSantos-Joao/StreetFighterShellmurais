@@ -2,17 +2,20 @@ package streetFighter;
 
 public class GameMech {
 
-    boolean mechRunning = true;
+    private boolean flag = true;
 
     public void mechInit() {
 
-        while (mechRunning) {
+        while (flag) {
             System.out.println("do the stuffs");
 
-
-
-
         }
+
+    }
+
+    public void setMechRunning(boolean flag){
+
+        this.flag = flag;
 
     }
 

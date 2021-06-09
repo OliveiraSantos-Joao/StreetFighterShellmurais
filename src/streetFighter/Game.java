@@ -42,13 +42,12 @@ public class Game {
         player2 = new Player(Game.width/4 *3 , 400,PlayerType.PLAYER2);
 
     }
-
+    
 
     public void start(){
         //choose fighter
         //streetFighter.arena init
         //streetFighter.arena start
-
     }
 
     private void mainMenu(){

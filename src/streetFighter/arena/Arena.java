@@ -15,6 +15,7 @@ public class Arena {
     private Rectangle player2Rec;
     private Fighter player1;
     private Fighter player2;
+    private GameMech gMech;
 
 
     public Arena(Fighter player1, Fighter player2, GameMech gMech) {
@@ -22,11 +23,17 @@ public class Arena {
         this.player1 = player1;
         this.player2 = player2;
 
+        this.gMech = gMech;
+
         arenaInit();
     }
 
 
     public void arenaInit(){
+
+        gMech.mechInit();
+        gMech.setMechRunning(false);
+
         arena = new Picture(Game.PADDING,Game.PADDING,"arena2.png");
         arena.draw();
 
@@ -42,6 +49,7 @@ public class Arena {
 
         Punch punch = new Punch(player2);
         Punch punch2 = new Punch(player1);
+
     }
 
 
