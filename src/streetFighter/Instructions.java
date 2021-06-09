@@ -14,19 +14,17 @@ public class Instructions implements ToDo {
 
 
     public Instructions() {
+
         Inputs.setInputScreen(this);
 
-
-        System.out.println("inst");
-
         rectangleInst = new Rectangle(Game.PADDING + 35, Game.PADDING + 35, Game.width - 70, Game.height - 70);
-
         rectangleInst.setColor(Color.DARK_GRAY);
         rectangleInst.fill();
 
         this.textInst1 = new Text(Game.PADDING + 45, Game.PADDING + 45, "Teste");
         textInst1.setColor(Color.WHITE);
         textInst1.draw();
+
     }
 
     public Rectangle getRectangleInst() {
@@ -41,8 +39,6 @@ public class Instructions implements ToDo {
         rectangleInst.delete();
         textInst1.delete();
     }
-
-
 
     @Override
     public void action(int key) {
