@@ -22,8 +22,10 @@ public class MainMenu implements ToDo {
 
     private int currentlyPressedPosition = 1;
 
+
 //Contructor MainMenu
     public MainMenu() {
+
         Inputs.setInputScreen(this);
 
         mainMenuPic = new Picture(10, 10, "BlackBackground2.png");
@@ -31,6 +33,7 @@ public class MainMenu implements ToDo {
 
         currentlyPressedPosition = 1;
         drawMainMenu();
+
     }
 
 // Getters Setters
@@ -62,6 +65,7 @@ public class MainMenu implements ToDo {
 // methods
     public void startGame() {
 
+        ChooseFighter chooseFighter = new ChooseFighter();
         System.out.println("start");
 
     }
@@ -162,8 +166,8 @@ public class MainMenu implements ToDo {
 
                     case 1:
                         System.out.println("1");
+                        deleteAll();
                         startGame();
-
                         break;
 
                     case 2:

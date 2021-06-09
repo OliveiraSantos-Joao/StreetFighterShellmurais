@@ -166,8 +166,8 @@ public class ChooseFighter implements ToDo {
         }
         break;
     }
-    update();
 
+    update();
 
   }
 
