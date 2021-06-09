@@ -24,7 +24,7 @@ public class Instructions implements ToDo {
         rectangleInst.setColor(Color.DARK_GRAY);
         rectangleInst.fill();
 
-        Text textInst1 = new Text(Game.PADDING + 45, Game.PADDING + 45, "Teste");
+        this.textInst1 = new Text(Game.PADDING + 45, Game.PADDING + 45, "Teste");
         textInst1.setColor(Color.WHITE);
         textInst1.draw();
     }
@@ -49,7 +49,7 @@ public class Instructions implements ToDo {
         switch (key){
             case KeyboardEvent.KEY_SPACE:
                 System.out.println("entrou");
-                //mainMenu.deleteInstruction();
+
                 deleteInstruction();
                 new MainMenu();
                 break;
