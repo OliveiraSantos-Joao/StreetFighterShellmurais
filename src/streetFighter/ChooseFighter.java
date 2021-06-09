@@ -5,7 +5,6 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import streetFighter.inputs.Inputs;
-import streetFighter.inputs.ScreenTypes;
 import streetFighter.inputs.ToDo;
 
 
@@ -78,10 +77,7 @@ public class ChooseFighter implements ToDo {
     return maxchampions;
   }
 
-  @Override
-  public ScreenTypes getScreen() {
-    return ScreenTypes.CHAMPSELECT;
-  }
+
 
   @Override
   public void action(int key) {

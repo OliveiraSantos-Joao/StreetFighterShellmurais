@@ -12,6 +12,5 @@ public class ArenaTester {
        Player player2 = new Player(Game.width-10-100 , 400, PlayerType.PLAYER2);
 
         Arena arena = new Arena(player1.getFighter(),player2.getFighter());
-
     }
 }

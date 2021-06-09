@@ -5,7 +5,6 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import streetFighter.inputs.Inputs;
-import streetFighter.inputs.ScreenTypes;
 import streetFighter.inputs.ToDo;
 
 public class Instructions implements ToDo {
@@ -15,8 +14,8 @@ public class Instructions implements ToDo {
 
 
     public Instructions() {
-
         Inputs.setInputScreen(this);
+
 
         System.out.println("inst");
 
@@ -43,10 +42,7 @@ public class Instructions implements ToDo {
         textInst1.delete();
     }
 
-    @Override
-    public ScreenTypes getScreen() {
-        return ScreenTypes.INSTRUCTIONS;
-    }
+
 
     @Override
     public void action(int key) {

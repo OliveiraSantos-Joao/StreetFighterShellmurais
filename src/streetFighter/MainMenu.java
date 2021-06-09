@@ -1,7 +1,6 @@
 package streetFighter;
 
 import streetFighter.inputs.Inputs;
-import streetFighter.inputs.ScreenTypes;
 import streetFighter.inputs.ToDo;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -25,19 +24,13 @@ public class MainMenu implements ToDo {
 
 //Contructor MainMenu
     public MainMenu() {
-
-
         Inputs.setInputScreen(this);
 
         mainMenuPic = new Picture(10, 10, "BlackBackground2.png");
         mainMenuPic.draw();
 
         currentlyPressedPosition = 1;
-
         drawMainMenu();
-
-
-
     }
 
 // Getters Setters
@@ -109,13 +102,10 @@ public class MainMenu implements ToDo {
         text.delete();
         text2.delete();
         text3.delete();
+        mainMenuPic.delete();
     }
 
 
-    @Override
-    public ScreenTypes getScreen() {
-        return ScreenTypes.MAIN_MENU;
-    }
 
     @Override
     public void action(int key) {
