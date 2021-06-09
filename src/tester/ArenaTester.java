@@ -1,7 +1,8 @@
-package streetFighter.arena;
+package tester;
 
 import streetFighter.Game;
 import streetFighter.Player;
+import streetFighter.arena.Arena;
 import streetFighter.fighters.Fighter;
 import streetFighter.fighters.PlayerType;
 

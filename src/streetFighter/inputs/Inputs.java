@@ -11,7 +11,7 @@ public class Inputs implements KeyboardHandler {
 /**
 
 
-    Ao usar inputs usar sempre i setInput Screen antes do que queremos
+    Ao usar inputs usar sempre i setInput Screen() antes do que queremos
 
 
 

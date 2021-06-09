@@ -40,16 +40,18 @@ public class ChooseFighter implements ToDo {
   }
 
   public void createFighters() {
+
+
     mainMenu = new Picture(Game.PADDING, Game.PADDING, "BlackBackground2.png");
     mainMenu.draw();
 
     saraPic = new Picture(mainMenu.getWidth() / 2, mainMenu.getHeight() * 0.6, "sara.png");
     saraPic.draw();
 
-    pauloPic = new Picture(saraPic.getX() - saraPic.getWidth() - 20, saraPic.getY(), "paulo.png");
+    pauloPic = new Picture(saraPic.getX() - saraPic.getWidth() - 20, saraPic.getY(), "paulo2_72x72.jpeg");
     pauloPic.draw();
 
-    pedroPic = new Picture(pauloPic.getX() - pauloPic.getWidth() - 20, pauloPic.getY(), "paulo.png");
+    pedroPic = new Picture(pauloPic.getX() - pauloPic.getWidth() - 20, pauloPic.getY(), "paulo2_72x72.jpeg");
     pedroPic.draw();
 
     fighter1Pic = new Picture((pedroPic.getX()) - pedroPic.getWidth() - 20 , pauloPic.getY() , "sara.png");

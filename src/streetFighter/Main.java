@@ -1,6 +1,7 @@
 package streetFighter;
 
 import streetFighter.ChooseFighter;
+import streetFighter.inputs.Inputs;
 
 public class Main {
 
@@ -8,10 +9,10 @@ public class Main {
 
        streetFighter.Game game = new streetFighter.Game();
 
-        game.init();
+        //game.init();
          //game.start();
-
-
+        new Inputs();
+        new ChooseFighter();
 
 
     }
