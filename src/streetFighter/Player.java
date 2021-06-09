@@ -5,7 +5,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import streetFighter.fighters.PlayerType;
 
-public class Player implements KeyboardHandler {
+public class Player {
     //é o jogador
 
 
@@ -25,14 +25,5 @@ public class Player implements KeyboardHandler {
         return fighter;
     }
 
-    //keyboard handler
-    @Override
-    public void keyPressed(KeyboardEvent keyboardEvent) {
 
-    }
-
-    @Override
-    public void keyReleased(KeyboardEvent keyboardEvent) {
-
-    }
 }

@@ -1,10 +1,11 @@
-package streetFighter;
+package ficheirosAntigosIgnore;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import streetFighter.ChooseFighter;
 
 public class ChampionInputs implements KeyboardHandler {
 

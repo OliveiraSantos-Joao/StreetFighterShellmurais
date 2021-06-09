@@ -2,11 +2,14 @@ package streetFighter;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-import streetFighter.ChampionInputs;
+import streetFighter.inputs.Inputs;
+import streetFighter.inputs.ScreenTypes;
+import streetFighter.inputs.ToDo;
 
 
-public class ChooseFighter {
+public class ChooseFighter implements ToDo {
   private Picture saraPic;
   private Picture pauloPic;
   private Picture pedroPic;
@@ -29,7 +32,8 @@ public class ChooseFighter {
 
 
   public ChooseFighter() {
-
+    Inputs.setInputScreen(this);
+    createFighters();
   }
 
   public Rectangle[] getPhotoFrame() {
@@ -68,17 +72,128 @@ public class ChooseFighter {
     rect4.draw();
     photoFrame[0]=rect4;
 
-
-    ChampionInputs championMenu = new ChampionInputs(pressedCharacterP1,pressedCharacterP2,this);
-    championMenu.menuChooseChampions();
-
-
-
   }
 
   public int getMaxchampions() {
     return maxchampions;
   }
 
-//menu para escolher o fighter
+  @Override
+  public ScreenTypes getScreen() {
+    return ScreenTypes.CHAMPSELECT;
+  }
+
+  @Override
+  public void action(int key) {
+    switch (key) {
+
+      case KeyboardEvent.KEY_RIGHT:
+        switch (pressedCharacterP1){
+          case 1:
+            pressedCharacterP1++;
+            break;
+
+          case 2:
+            pressedCharacterP1++;
+            break;
+
+          case 3:
+            pressedCharacterP1++;
+            break;
+
+          case 4:
+            pressedCharacterP1 = 1;
+            break;
+        }
+        break;
+
+      case KeyboardEvent.KEY_LEFT:
+
+        switch (pressedCharacterP1){
+
+          case 1:
+            pressedCharacterP1 = getMaxchampions();//para voltar ao ultimo
+            break;
+          case 2:
+            pressedCharacterP1--;
+            break;
+          case 3:
+            pressedCharacterP1--;
+            break;
+
+          case 4:
+            pressedCharacterP1--;
+            break;
+        }
+        break;
+
+      case KeyboardEvent.KEY_D:
+        switch (pressedCharacterP2){
+          case 1:
+            pressedCharacterP2 ++;
+            break;
+
+          case 2:
+            pressedCharacterP2 ++;
+            break;
+
+          case 3:
+            pressedCharacterP2 ++;
+            break;
+
+          case 4:
+            pressedCharacterP2 = 1; //pq da a volta !!
+            break;
+        }
+        break;
+
+      case KeyboardEvent.KEY_A:
+        switch (pressedCharacterP2){
+          case 1:
+            pressedCharacterP2 = getMaxchampions();
+            break;
+
+          case 2:
+            pressedCharacterP2--;
+            break;
+
+          case 3:
+            pressedCharacterP2--;
+            break;
+
+          case 4:
+            pressedCharacterP2--;
+            break;
+
+        }
+        break;
+    }
+    update();
+
+
+  }
+
+  private void update(){
+
+    for (int i = 0; i < getPhotoFrame().length; i++) {
+      if(pressedCharacterP1 == i+1 && pressedCharacterP2 == i+1){
+        getPhotoFrame()[i].setColor(Color.WHITE);
+        getPhotoFrame()[i].draw();
+        continue;
+      }
+      if(pressedCharacterP1 == i + 1) {
+        getPhotoFrame()[i].setColor(Color.RED);
+        getPhotoFrame()[i].draw();
+        continue;
+      }
+      if(pressedCharacterP2 == i + 1) {
+        getPhotoFrame()[i].setColor(Color.BLUE);
+        getPhotoFrame()[i].draw();
+        continue;
+      }
+      getPhotoFrame()[i].delete();
+    }
+
+  }
+
 }

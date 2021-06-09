@@ -4,6 +4,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import streetFighter.MainMenu;
 import streetFighter.Player;
 import streetFighter.fighters.PlayerType;
+import streetFighter.inputs.Inputs;
 
 public class Game {
 
@@ -15,10 +16,11 @@ public class Game {
     public static final int height = 720;
     public static final int width = 1280;
 
+    private MainMenu mainMenu;
 
     public Game(){
 
-        MainMenu main = new MainMenu();
+
 
     }
 
@@ -30,8 +32,10 @@ public class Game {
 
         Rectangle screen = new Rectangle(PADDING, PADDING, width, height);
         screen.draw();
-        MainMenu main = new MainMenu();
 
+        new Inputs(); //inicialização keyboard;
+
+        MainMenu mainMenu = new MainMenu();
 
         //players
         player1 = new Player((Game.width/4),400, PlayerType.PLAYER1);

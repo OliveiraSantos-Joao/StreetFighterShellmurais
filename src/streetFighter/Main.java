@@ -6,15 +6,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-       // streetFighter.Game game = new streetFighter.Game();
+       streetFighter.Game game = new streetFighter.Game();
 
-        //game.init();
+        game.init();
          //game.start();
 
 
-        ChooseFighter fiter = new ChooseFighter();
 
-        fiter.createFighters();
 
     }
 }
