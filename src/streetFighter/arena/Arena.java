@@ -36,13 +36,13 @@ public class Arena implements ToDo {
 
     public void init() {
 
-        drawStuff();
+        drawArena();
         gMech.init();
 
     }
 
 
-    public void drawStuff() {
+    public void drawArena() {
 
         //Método temporário
 

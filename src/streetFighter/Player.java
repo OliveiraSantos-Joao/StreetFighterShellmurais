@@ -12,6 +12,7 @@ public class Player {
     private Fighter fighter;
     private PlayerType playerType;
 
+
     public Player(int xInitial, int yInitial, PlayerType playerType){
         this.playerType = playerType;
 
