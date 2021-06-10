@@ -20,6 +20,8 @@ public class MainMenu implements ToDo {
     private Text textInstructions;
     private Text textExit;
 
+    private int RECT_X_DEFAULT;
+
     private int currentlyPressedPosition = 1;
 
 
@@ -30,6 +32,8 @@ public class MainMenu implements ToDo {
 
         mainMenuPic = new Picture(10, 10, "BlackBackground2.png");
         mainMenuPic.draw();
+
+        RECT_X_DEFAULT=mainMenuPic.getWidth() / 2;
 
         currentlyPressedPosition = 1;
         drawMainMenu();
@@ -74,7 +78,7 @@ public class MainMenu implements ToDo {
     public void drawMainMenu(){
 
         //First Text
-        textStart = new Text(mainMenuPic.getWidth() / 2, mainMenuPic.getHeight() * (0.6), "Start street");
+        textStart = new Text(RECT_X_DEFAULT, mainMenuPic.getHeight() * (0.6), "Start street");
         textStart.setColor(Color.WHITE);
         textStart.draw();
         //First Text Rectangle
@@ -91,11 +95,11 @@ public class MainMenu implements ToDo {
         rectangleInstructions.setColor(Color.WHITE);
 
         //Third Text
-        textExit = new Text(textInstructions.getX(), textInstructions.getY() + 60, "Exit");
+        textExit = new Text(textInstructions.getX() + 20, textInstructions.getY() + 60, "Exit");
         textExit.setColor(Color.WHITE);
         textExit.draw();
         //Third Text Rectangle
-        rectangleExit = new Rectangle(textExit.getX() - 50, textExit.getY() - 10, textStart.getWidth() + 100, textExit.getHeight() + 20);
+        rectangleExit = new Rectangle(textInstructions.getX() - 50, textExit.getY() - 10, textStart.getWidth() + 100, textExit.getHeight() + 20);
         rectangleExit.setColor(Color.WHITE);
 
     }
