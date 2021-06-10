@@ -12,13 +12,13 @@ public class MainMenu implements ToDo {
 
     private Picture mainMenuPic;
 
-    private Rectangle rectangle;
-    private Rectangle rectangle2;
-    private Rectangle rectangle3;
+    private Rectangle rectangleStart;
+    private Rectangle rectangleInstructions;
+    private Rectangle rectangleExit;
 
-    private Text text;
-    private Text text2;
-    private Text text3;
+    private Text textStart;
+    private Text textInstructions;
+    private Text textExit;
 
     private int currentlyPressedPosition = 1;
 
@@ -49,14 +49,14 @@ public class MainMenu implements ToDo {
     public void setCurrentlyPressedPosition(int currentlyPressedPosition) {
         this.currentlyPressedPosition = currentlyPressedPosition;
     }
-    public Rectangle getRectangle() {
-        return rectangle;
+    public Rectangle getRectangleStart() {
+        return rectangleStart;
     }
-    public Rectangle getRectangle2() {
-        return rectangle2;
+    public Rectangle getRectangleInstructions() {
+        return rectangleInstructions;
     }
-    public Rectangle getRectangle3() {
-        return rectangle3;
+    public Rectangle getRectangleExit() {
+        return rectangleExit;
     }
 
 
@@ -74,39 +74,39 @@ public class MainMenu implements ToDo {
     public void drawMainMenu(){
 
         //First Text
-        text = new Text(mainMenuPic.getWidth() / 2, mainMenuPic.getHeight() * (0.6), "Start street");
-        text.setColor(Color.WHITE);
-        text.draw();
+        textStart = new Text(mainMenuPic.getWidth() / 2, mainMenuPic.getHeight() * (0.6), "Start street");
+        textStart.setColor(Color.WHITE);
+        textStart.draw();
         //First Text Rectangle
-        rectangle = new Rectangle(text.getX() - 50, text.getY() - 10, text.getWidth() + 100, text.getHeight() + 20);
-        rectangle.setColor(Color.WHITE);
-        rectangle.draw();
+        rectangleStart = new Rectangle(textStart.getX() - 50, textStart.getY() - 10, textStart.getWidth() + 100, textStart.getHeight() + 20);
+        rectangleStart.setColor(Color.WHITE);
+        rectangleStart.draw();
 
         //Second Text
-        text2 = new Text(text.getX(), text.getY() + 60, "Instructions");
-        text2.setColor(Color.WHITE);
-        text2.draw();
+        textInstructions = new Text(textStart.getX(), textStart.getY() + 60, "Instructions");
+        textInstructions.setColor(Color.WHITE);
+        textInstructions.draw();
         //Second Text Rectangle
-        rectangle2 = new Rectangle(text2.getX() - 50, text2.getY() - 10, text2.getWidth() + 100, text2.getHeight() + 20);
-        rectangle2.setColor(Color.WHITE);
+        rectangleInstructions = new Rectangle(textInstructions.getX() - 50, textInstructions.getY() - 10, textInstructions.getWidth() + 100, textInstructions.getHeight() + 20);
+        rectangleInstructions.setColor(Color.WHITE);
 
         //Third Text
-        text3 = new Text(text2.getX(), text2.getY() + 60, "\t\t\tExit");
-        text3.setColor(Color.WHITE);
-        text3.draw();
+        textExit = new Text(textInstructions.getX(), textInstructions.getY() + 60, "Exit");
+        textExit.setColor(Color.WHITE);
+        textExit.draw();
         //Third Text Rectangle
-        rectangle3 = new Rectangle(text3.getX() - 50, text3.getY() - 10, text3.getWidth() + 100, text3.getHeight() + 20);
-        rectangle3.setColor(Color.WHITE);
+        rectangleExit = new Rectangle(textExit.getX() - 50, textExit.getY() - 10, textStart.getWidth() + 100, textExit.getHeight() + 20);
+        rectangleExit.setColor(Color.WHITE);
 
     }
 
     public void deleteAll(){
-        rectangle.delete();
-        rectangle2.delete();
-        rectangle3.delete();
-        text.delete();
-        text2.delete();
-        text3.delete();
+        rectangleStart.delete();
+        rectangleInstructions.delete();
+        rectangleExit.delete();
+        textStart.delete();
+        textInstructions.delete();
+        textExit.delete();
         mainMenuPic.delete();
     }
 
@@ -119,21 +119,21 @@ public class MainMenu implements ToDo {
                 switch (getCurrentlyPressedPosition()) {
 
                     case 1:
-                        getRectangle().delete();
-                        getRectangle2().draw();
+                        getRectangleStart().delete();
+                        getRectangleInstructions().draw();
                         incrementCurrentlyPressedPosition();
 
                         break;
 
                     case 2:
-                        getRectangle2().delete();
-                        getRectangle3().draw();
+                        getRectangleInstructions().delete();
+                        getRectangleExit().draw();
                         incrementCurrentlyPressedPosition();
                         break;
 
                     case 3:
-                        getRectangle3().delete();
-                        getRectangle().draw();
+                        getRectangleExit().delete();
+                        getRectangleStart().draw();
                         setCurrentlyPressedPosition(1);
                         break;
                 }
@@ -143,20 +143,20 @@ public class MainMenu implements ToDo {
                 switch (getCurrentlyPressedPosition()) {
 
                     case 1:
-                        getRectangle().delete();
-                        getRectangle3().draw();
+                        getRectangleStart().delete();
+                        getRectangleExit().draw();
                         setCurrentlyPressedPosition(3);
                         break;
 
                     case 2:
-                        getRectangle2().delete();
-                        getRectangle().draw();
+                        getRectangleInstructions().delete();
+                        getRectangleStart().draw();
                         decrementCurrentlyPressedPosition();
                         break;
 
                     case 3:
-                        getRectangle3().delete();
-                        getRectangle2().draw();
+                        getRectangleExit().delete();
+                        getRectangleInstructions().draw();
                         decrementCurrentlyPressedPosition();
                         break;
                 }
