@@ -18,7 +18,7 @@ public class ArenaTester {
 
         GameMech gMech = new GameMech();
 
-        Arena arena = new Arena(player1.getFighter(),player2.getFighter(), gMech);
+        Arena arena = new Arena(player1.getFighter(),player2.getFighter());
 
         arena.init();
 

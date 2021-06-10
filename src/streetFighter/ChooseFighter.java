@@ -5,6 +5,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import streetFighter.arena.Arena;
 import streetFighter.fighters.Fighter;
 import streetFighter.fighters.Fighters;
 import streetFighter.fighters.PlayerType;
@@ -35,6 +36,7 @@ public class ChooseFighter implements ToDo {
     private Fighter fighterP1ready;
     private Fighter fighterP2ready;
 
+    private Arena arena;
 
     private Rectangle[] photoFrame = new Rectangle[maxchampions];
 
@@ -43,8 +45,8 @@ public class ChooseFighter implements ToDo {
         Inputs.setInputScreen(this);
         createFighters();
 
-    }
 
+    }
 
 
     public Rectangle[] getPhotoFrame() {
@@ -96,6 +98,11 @@ public class ChooseFighter implements ToDo {
         switch (key) {
 
             case KeyboardEvent.KEY_RIGHT:
+
+                if (p2Ready == true) {
+                    break;
+                }
+
                 switch (pressedCharacterP2) {
                     case 1:
                         pressedCharacterP2++;
@@ -117,6 +124,10 @@ public class ChooseFighter implements ToDo {
 
             case KeyboardEvent.KEY_LEFT:
 
+                if (p2Ready == true) {
+                    break;
+                }
+
                 switch (pressedCharacterP2) {
 
                     case 1:
@@ -136,6 +147,11 @@ public class ChooseFighter implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_D:
+
+                if (p1Ready == true) {
+                    break;
+                }
+
                 switch (pressedCharacterP1) {
                     case 1:
                         pressedCharacterP1++;
@@ -156,6 +172,11 @@ public class ChooseFighter implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_A:
+
+                if (p1Ready == true) {
+                    break;
+                }
+
                 switch (pressedCharacterP1) {
                     case 1:
                         pressedCharacterP1 = getMaxChampions();
@@ -177,6 +198,12 @@ public class ChooseFighter implements ToDo {
 
             case KeyboardEvent.KEY_1:
 
+                if (p1Ready == true) {
+                    if (p1Ready && p2Ready) {
+                        arena = new Arena(fighterP1ready, fighterP2ready);
+                    }
+                    break;
+                }
                 p1Ready = true;
 
                 switch (pressedCharacterP1) {
@@ -196,10 +223,17 @@ public class ChooseFighter implements ToDo {
                         fighterP1ready = new Fighter(PlayerType.PLAYER1, Fighters.IGREJA);
                         break;
                 }
+
                 break;
 
             case KeyboardEvent.KEY_SPACE:
 
+                if (p2Ready == true) {
+                    if (p1Ready && p2Ready) {
+                        arena = new Arena(fighterP1ready, fighterP2ready);
+                    }
+                    break;
+                }
                 p2Ready = true;
 
                 switch (pressedCharacterP2) {
@@ -219,6 +253,7 @@ public class ChooseFighter implements ToDo {
                         fighterP1ready = new Fighter(PlayerType.PLAYER2, Fighters.IGREJA);
                         break;
                 }
+
                 break;
         }
 
@@ -252,5 +287,5 @@ public class ChooseFighter implements ToDo {
         }
 
     }
-    
+
 }

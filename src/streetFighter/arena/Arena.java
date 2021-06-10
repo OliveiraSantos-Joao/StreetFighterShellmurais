@@ -22,14 +22,18 @@ public class Arena implements ToDo {
     private GameMech gMech;
 
 
-    public Arena(Fighter player1, Fighter player2, GameMech gMech) {
+    public Arena(Fighter player1, Fighter player2) {
 
         Inputs.setInputScreen(this);
+
+        gMech = new GameMech();
 
         this.player1 = player1;
         this.player2 = player2;
 
         this.gMech = gMech;
+
+        init();
 
     }
 
