@@ -194,40 +194,8 @@ public class ChooseFighter implements ToDo {
 
         }
 
-<<<<<<< HEAD
-          case 4:
-            pressedCharacterP2--;
-            break;
-
-        }
-        break;
     }
 
-    update();
-
-  }
-
-  private void update(){
-
-    for (int i = 0; i < getPhotoFrame().length; i++) {
-      if(pressedCharacterP1 == i+1 && pressedCharacterP2 == i+1){
-        getPhotoFrame()[i].setColor(Color.WHITE);
-        getPhotoFrame()[i].draw();
-        continue;
-      }
-      if(pressedCharacterP1 == i + 1) {
-        getPhotoFrame()[i].setColor(Color.RED);
-        getPhotoFrame()[i].draw();
-        continue;
-      }
-      if(pressedCharacterP2 == i + 1) {
-        getPhotoFrame()[i].setColor(Color.BLUE);
-        getPhotoFrame()[i].draw();
-        continue;
-      }
-      getPhotoFrame()[i].delete();
-=======
->>>>>>> pereiraWorks
-    }
-    
 }
+
+

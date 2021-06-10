@@ -69,6 +69,7 @@ public class Fighter {
     }
 
     public void hit(int hit){
+
         this.health -= hit;
         checkIfDead();
 
@@ -92,6 +93,7 @@ public class Fighter {
 
     }
 
+
     public void move(){
 
         InputsChampionFightingMovements champMove = new InputsChampionFightingMovements(this);
@@ -99,6 +101,7 @@ public class Fighter {
     }
 
     public void healthBar(){
+
 
     }
 

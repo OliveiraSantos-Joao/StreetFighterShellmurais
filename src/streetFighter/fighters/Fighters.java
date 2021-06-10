@@ -12,21 +12,14 @@ public enum Fighters {
     private int health;
 
 
-<<<<<<< HEAD
-    Fighters(int damage, int health){
-=======
+
     Fighters(int damage, int health) {
->>>>>>> pereiraWorks
         this.damage = damage;
         this.health = health;
     }
 
-<<<<<<< HEAD
 
-    public static int getDamage(Fighters champion){
-=======
     public static int getDamage(Fighters champion) {
->>>>>>> pereiraWorks
 
         switch (champion) {
             case SARA:
@@ -39,6 +32,7 @@ public enum Fighters {
                 return IGREJA.damage;
             default:
                 return 0;
+
         }
 
     }
