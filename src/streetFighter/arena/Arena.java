@@ -1,24 +1,27 @@
 package streetFighter.arena;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import streetFighter.Game;
 import streetFighter.GameMech;
 import streetFighter.HealthBar;
-import streetFighter.MainMenu;
 import streetFighter.fighters.Fighter;
 import streetFighter.inputs.Inputs;
 import streetFighter.inputs.ToDo;
 
 public class Arena implements ToDo {
 
-    private Picture arena;
+    private Picture arenaGraf;
+
     private Rectangle player1Rec;
     private Rectangle player2Rec;
+
     private Fighter player1;
     private Fighter player2;
+
+    private HealthBar hb;
+
     private GameMech gMech;
 
 
@@ -41,6 +44,8 @@ public class Arena implements ToDo {
     public void init() {
 
         drawArena();
+        drawPLayers();
+
         gMech.init();
 
     }
@@ -48,23 +53,16 @@ public class Arena implements ToDo {
 
     public void drawArena() {
 
-        //Método temporário
+        arenaGraf = new Picture(Game.PADDING, Game.PADDING, "arena2.png");
+        arenaGraf.draw();
 
-        arena = new Picture(Game.PADDING, Game.PADDING, "arena2.png");
-        arena.draw();
+        hb = new HealthBar(player1.getHealth(), player2.getHealth());
 
-        player1Rec = new Rectangle(player1.getPosX(), player1.getPosY(), player1.getWidth(), player1.getHeight());
-        player1Rec.setColor(Color.GREEN);
-        player1Rec.fill();
+    }
 
-        player2Rec = new Rectangle(player2.getPosX(), player2.getPosY(), player2.getWidth(), player2.getHeight());
-        player2Rec.setColor(Color.CYAN);
-        player2Rec.fill();
+    public void drawPLayers(){
 
-        HealthBar hb = new HealthBar(player1.getHealth(), player2.getHealth());
-
-        Punch punch = new Punch(player2);
-        Punch punch2 = new Punch(player1);
+        hb = new HealthBar(player1.getHealth(), player2.getHealth());
 
     }
 

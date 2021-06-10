@@ -21,7 +21,7 @@ public class Fighter {
 
         this.playerType = playerType;
 
-        if (playerType == PlayerType.PLAYER1) { posX = 0; } else  { posX = 100; }
+        if (playerType == PlayerType.PLAYER1) { posX = 100; } else  { posX = 400; }
 
         this.fighter = fighter;
         this.health = Fighters.getInitialHealth(fighter);

@@ -28,16 +28,15 @@ public class HealthBar {
 
 
     public HealthBar(int healthP1, int healthP2) {
+
         this.healthP1 = healthP1;
         this.healthP2 = healthP2;
 
-
         init();
+
     }
 
     public void init() {
-
-
 
         rectangleP1 = new Rectangle(Game.PADDING+ 70, Game.PADDING +50, barWidth, barHeight);
         rectangleP1.setColor(Color.WHITE);
