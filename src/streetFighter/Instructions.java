@@ -11,7 +11,9 @@ public class Instructions implements ToDo {
 
     private Rectangle rectangleInst;
     private Text textInst1;
+    private Rectangle exitRect;
 
+    private Text exitText;
 
     public Instructions() {
 
@@ -24,6 +26,17 @@ public class Instructions implements ToDo {
         this.textInst1 = new Text(Game.PADDING + 45, Game.PADDING + 45, "Teste");
         textInst1.setColor(Color.WHITE);
         textInst1.draw();
+
+
+        exitRect = new Rectangle(Game.width/2,Game.height-Game.height/5,100,50);
+        exitRect.setColor(Color.WHITE);
+        exitRect.draw();
+
+        exitText = new Text(Game.width/2+8,Game.height-Game.height/5+18,"SPACE to exit");
+        exitText.setColor(Color.WHITE);
+        exitText.draw();
+
+
 
     }
 
