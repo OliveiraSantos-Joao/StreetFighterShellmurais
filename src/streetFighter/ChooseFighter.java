@@ -304,3 +304,4 @@ public class ChooseFighter implements ToDo {
     }
 
 }
+

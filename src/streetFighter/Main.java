@@ -10,7 +10,7 @@ public class Main {
        streetFighter.Game game = new streetFighter.Game();
 
         game.init();
-        game.start();
+        //game.start();
         //new Inputs();
         //new ChooseFighter();
 

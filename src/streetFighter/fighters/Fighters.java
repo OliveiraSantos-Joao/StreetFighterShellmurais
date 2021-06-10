@@ -12,10 +12,12 @@ public enum Fighters {
     private int health;
 
 
+
     Fighters(int damage, int health) {
         this.damage = damage;
         this.health = health;
     }
+
 
     public static int getDamage(Fighters champion) {
 
@@ -30,6 +32,7 @@ public enum Fighters {
                 return IGREJA.damage;
             default:
                 return 0;
+
         }
 
     }
