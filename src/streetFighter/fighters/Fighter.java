@@ -18,6 +18,7 @@ public class Fighter {
 
 
     public Fighter(int xInitial, int yInitial, PlayerType playerType){
+
         this.playerType = playerType;
 
         this.posX = xInitial;
@@ -26,7 +27,8 @@ public class Fighter {
         this.fighter = Fighters.values()[(int) (Math.random()* Fighters.values().length)];
         this.health = Fighters.getInitialHealth(fighter);
         this.damage = Fighters.getDamage(fighter);
-        this.dead = false;
+        this.dead = checkIfDead();
+
     }
 
 // getters && setters
@@ -50,50 +52,47 @@ public class Fighter {
         return playerType;
     }
 
-    public int getHeight() {
-        return height;
-    }
+    public int getHeight() { return height; }
+    public int getWidth() { return width; }
 
-    public int getWidth() {
-        return width;
-    }
+    public void moveRight() { this.posX = posX + pixelMovement; }
+    public void moveLeft() { this.posX = posX - pixelMovement; }
 
-    public void moveRight() {
-        this.posX = posX + pixelMovement;
-    }
-    public void moveLeft() {
-        this.posX = posX - pixelMovement;
-    }
-
-    public int getPixelMovement() {
-        return pixelMovement;
-    }
+    public int getPixelMovement() { return pixelMovement; }
 
 
+
+    // methods
 
     public void jump(){
         this.posY = posY + jump;
     }
 
-    // methods
-
     public void hit(int hit){
+
         this.health -= hit;
         checkIfDead();
 
     }
 
-    private void checkIfDead(){
+    private boolean checkIfDead(){
+
         if(health <= 0){
+
             this.health = 0;
-            this.dead = true;
+            return true;
+
         }
+
+        return false;
+
     }
 
 
     public void attack(){
 
     }
+
 
     public void move(){
 
@@ -102,6 +101,7 @@ public class Fighter {
     }
 
     public void healthBar(){
+
 
     }
 

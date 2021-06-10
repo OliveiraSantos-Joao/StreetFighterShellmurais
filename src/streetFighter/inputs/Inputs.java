@@ -18,7 +18,8 @@ public class Inputs implements KeyboardHandler {
 */
 
 
-    public static ToDo inputScreen ;
+    public static ToDo inputScreen;
+
 
     public Inputs(){
         Keyboard keyboard = new Keyboard(this);
@@ -55,6 +56,10 @@ public class Inputs implements KeyboardHandler {
         spacePressedP2.setKey(KeyboardEvent.KEY_W);
         spacePressedP2.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
+        KeyboardEvent pPressed = new KeyboardEvent();
+        pPressed.setKey(KeyboardEvent.KEY_P);
+        pPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+
         keyboard.addEventListener(upPressed);
         keyboard.addEventListener(downPressed);
         keyboard.addEventListener(spacePressed);
@@ -63,6 +68,7 @@ public class Inputs implements KeyboardHandler {
         keyboard.addEventListener(rightPressedP2);
         keyboard.addEventListener(leftPressedP2);
         keyboard.addEventListener(spacePressedP2);
+        keyboard.addEventListener(pPressed);
     }
 
 
