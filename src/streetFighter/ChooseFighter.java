@@ -96,81 +96,81 @@ public class ChooseFighter implements ToDo {
         switch (key) {
 
             case KeyboardEvent.KEY_RIGHT:
-                switch (pressedCharacterP1) {
+                switch (pressedCharacterP2) {
                     case 1:
-                        pressedCharacterP1++;
+                        pressedCharacterP2++;
                         break;
 
                     case 2:
-                        pressedCharacterP1++;
+                        pressedCharacterP2++;
                         break;
 
                     case 3:
-                        pressedCharacterP1++;
+                        pressedCharacterP2++;
                         break;
 
                     case 4:
-                        pressedCharacterP1 = 1;
+                        pressedCharacterP2 = 1;
                         break;
                 }
                 break;
 
             case KeyboardEvent.KEY_LEFT:
 
-                switch (pressedCharacterP1) {
+                switch (pressedCharacterP2) {
 
                     case 1:
-                        pressedCharacterP1 = getMaxChampions();//para voltar ao ultimo
+                        pressedCharacterP2 = getMaxChampions();//para voltar ao ultimo
                         break;
                     case 2:
-                        pressedCharacterP1--;
+                        pressedCharacterP2--;
                         break;
                     case 3:
-                        pressedCharacterP1--;
+                        pressedCharacterP2--;
                         break;
 
                     case 4:
-                        pressedCharacterP1--;
+                        pressedCharacterP2--;
                         break;
                 }
                 break;
 
             case KeyboardEvent.KEY_D:
-                switch (pressedCharacterP2) {
+                switch (pressedCharacterP1) {
                     case 1:
-                        pressedCharacterP2++;
+                        pressedCharacterP1++;
                         break;
 
                     case 2:
-                        pressedCharacterP2++;
+                        pressedCharacterP1++;
                         break;
 
                     case 3:
-                        pressedCharacterP2++;
+                        pressedCharacterP1++;
                         break;
 
                     case 4:
-                        pressedCharacterP2 = 1; //pq da a volta !!
+                        pressedCharacterP1 = 1; //pq da a volta !!
                         break;
                 }
                 break;
 
             case KeyboardEvent.KEY_A:
-                switch (pressedCharacterP2) {
+                switch (pressedCharacterP1) {
                     case 1:
-                        pressedCharacterP2 = getMaxChampions();
+                        pressedCharacterP1 = getMaxChampions();
                         break;
 
                     case 2:
-                        pressedCharacterP2--;
+                        pressedCharacterP1--;
                         break;
 
                     case 3:
-                        pressedCharacterP2--;
+                        pressedCharacterP1--;
                         break;
 
                     case 4:
-                        pressedCharacterP2--;
+                        pressedCharacterP1--;
                         break;
                 }
                 break;
@@ -196,7 +196,29 @@ public class ChooseFighter implements ToDo {
                         fighterP1ready = new Fighter(PlayerType.PLAYER1, Fighters.IGREJA);
                         break;
                 }
+                break;
 
+            case KeyboardEvent.KEY_SPACE:
+
+                p2Ready = true;
+
+                switch (pressedCharacterP2) {
+                    case 1:
+                        fighterP1ready = new Fighter(PlayerType.PLAYER2, Fighters.PAULO);
+                        break;
+
+                    case 2:
+                        fighterP1ready = new Fighter(PlayerType.PLAYER2, Fighters.SARA);
+                        break;
+
+                    case 3:
+                        fighterP1ready = new Fighter(PlayerType.PLAYER2, Fighters.PEDRO);
+                        break;
+
+                    case 4:
+                        fighterP1ready = new Fighter(PlayerType.PLAYER2, Fighters.IGREJA);
+                        break;
+                }
                 break;
         }
 

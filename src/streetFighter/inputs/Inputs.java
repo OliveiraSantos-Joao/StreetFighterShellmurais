@@ -60,6 +60,10 @@ public class Inputs implements KeyboardHandler {
         pPressed.setKey(KeyboardEvent.KEY_P);
         pPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
+        KeyboardEvent onePressed = new KeyboardEvent();
+        onePressed.setKey(KeyboardEvent.KEY_1);
+        onePressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+
         keyboard.addEventListener(upPressed);
         keyboard.addEventListener(downPressed);
         keyboard.addEventListener(spacePressed);
@@ -69,6 +73,8 @@ public class Inputs implements KeyboardHandler {
         keyboard.addEventListener(leftPressedP2);
         keyboard.addEventListener(spacePressedP2);
         keyboard.addEventListener(pPressed);
+        keyboard.addEventListener(onePressed);
+        
     }
 
 
