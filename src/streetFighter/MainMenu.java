@@ -30,7 +30,8 @@ public class MainMenu implements ToDo {
 
         Inputs.setInputScreen(this);
 
-        mainMenuPic = new Picture(10, 10, "BlackBackground2.png");
+        //mainMenuPic = new Picture(10, 10, "BlackBackground2.png");
+        mainMenuPic = new Picture(10, 10, "elephantes_1280x720.jpeg");
         mainMenuPic.draw();
 
         RECT_X_DEFAULT=mainMenuPic.getWidth() / 2;
@@ -78,7 +79,7 @@ public class MainMenu implements ToDo {
     public void drawMainMenu(){
 
         //First Text
-        textStart = new Text(RECT_X_DEFAULT, mainMenuPic.getHeight() * (0.6), "Start street");
+        textStart = new Text(RECT_X_DEFAULT-25, mainMenuPic.getHeight() * (0.6) + 130, "Start street");
         textStart.setColor(Color.WHITE);
         textStart.draw();
         //First Text Rectangle
