@@ -4,7 +4,8 @@ public enum Fighters {
 
     SARA(35, 100),
     PEDRO(50,100),
-    PAULO(35, 100);
+    PAULO(35, 100),
+    IGREJA(35, 100);
 
 
     private int damage;
@@ -28,8 +29,10 @@ public enum Fighters {
                 return PAULO.damage;
             case PEDRO:
                 return PEDRO.damage;
+            case IGREJA:
+                return IGREJA.damage;
             default:
-                return 10;
+                return 0;
         }
 
     }
@@ -43,8 +46,11 @@ public enum Fighters {
                 return PAULO.health;
             case PEDRO:
                 return PEDRO.health;
+            case IGREJA:
+                return IGREJA.health;
             default:
                 return 5;
+
         }
     }
 

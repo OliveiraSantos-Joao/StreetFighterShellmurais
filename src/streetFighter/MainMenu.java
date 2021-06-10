@@ -63,6 +63,8 @@ public class MainMenu implements ToDo {
     public void startGame() {
 
         System.out.println("start");
+        deleteAll();
+        ChooseFighter chooseFighter = new ChooseFighter();
 
     }
 
