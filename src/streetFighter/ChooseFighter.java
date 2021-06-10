@@ -14,6 +14,8 @@ import streetFighter.inputs.ToDo;
 
 
 public class ChooseFighter implements ToDo {
+
+
     private Picture saraPic;
     private Picture pauloPic;
     private Picture pedroPic;
@@ -92,9 +94,23 @@ public class ChooseFighter implements ToDo {
         return maxchampions;
     }
 
+    public void deleteAll(){
+        saraPic.delete();
+        pauloPic.delete();
+        pedroPic.delete();
+        fighter1Pic.delete();
+        mainMenu.delete();
+
+        rect1.delete();
+        rect2.delete();
+        rect3.delete();
+        rect4.delete();
+    }
+
 
     @Override
     public void action(int key) {
+
         switch (key) {
 
             case KeyboardEvent.KEY_RIGHT:
@@ -199,9 +215,6 @@ public class ChooseFighter implements ToDo {
             case KeyboardEvent.KEY_1:
 
                 if (p1Ready == true) {
-                    if (p1Ready && p2Ready) {
-                        arena = new Arena(fighterP1ready, fighterP2ready);
-                    }
                     break;
                 }
                 p1Ready = true;
@@ -223,15 +236,16 @@ public class ChooseFighter implements ToDo {
                         fighterP1ready = new Fighter(PlayerType.PLAYER1, Fighters.IGREJA);
                         break;
                 }
-
+                if (p1Ready && p2Ready) {
+                    deleteAll();
+                    arena = new Arena(fighterP1ready, fighterP2ready);
+                }
                 break;
 
             case KeyboardEvent.KEY_SPACE:
 
                 if (p2Ready == true) {
-                    if (p1Ready && p2Ready) {
-                        arena = new Arena(fighterP1ready, fighterP2ready);
-                    }
+
                     break;
                 }
                 p2Ready = true;
@@ -253,12 +267,13 @@ public class ChooseFighter implements ToDo {
                         fighterP1ready = new Fighter(PlayerType.PLAYER2, Fighters.IGREJA);
                         break;
                 }
-
+                if (p1Ready && p2Ready) {
+                    deleteAll();
+                    arena = new Arena(fighterP1ready, fighterP2ready);
+                }
                 break;
         }
-
         update();
-
     }
 
     private void update() {
