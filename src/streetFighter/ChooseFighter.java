@@ -41,7 +41,6 @@ public class ChooseFighter implements ToDo {
 
   public void createFighters() {
 
-
     mainMenu = new Picture(Game.PADDING, Game.PADDING, "BlackBackground2.png");
     mainMenu.draw();
 
@@ -75,7 +74,7 @@ public class ChooseFighter implements ToDo {
 
   }
 
-  public int getMaxchampions() {
+  public int getMaxChampions() {
     return maxchampions;
   }
 
@@ -110,7 +109,7 @@ public class ChooseFighter implements ToDo {
         switch (pressedCharacterP1){
 
           case 1:
-            pressedCharacterP1 = getMaxchampions();//para voltar ao ultimo
+            pressedCharacterP1 = getMaxChampions();//para voltar ao ultimo
             break;
           case 2:
             pressedCharacterP1--;
@@ -148,7 +147,7 @@ public class ChooseFighter implements ToDo {
       case KeyboardEvent.KEY_A:
         switch (pressedCharacterP2){
           case 1:
-            pressedCharacterP2 = getMaxchampions();
+            pressedCharacterP2 = getMaxChampions();
             break;
 
           case 2:
@@ -162,12 +161,31 @@ public class ChooseFighter implements ToDo {
           case 4:
             pressedCharacterP2--;
             break;
-
         }
+
+      case KeyboardEvent.KEY_A:
+        switch (pressedCharacterP2){
+          case 1:
+            pressedCharacterP2 = getMaxChampions();
+            break;
+
+          case 2:
+            pressedCharacterP2--;
+            break;
+
+          case 3:
+            pressedCharacterP2--;
+            break;
+
+          case 4:
+            pressedCharacterP2--;
+            break;
+        }
+
         break;
     }
-    update();
 
+    update();
 
   }
 

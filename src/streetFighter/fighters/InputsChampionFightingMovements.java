@@ -12,7 +12,6 @@ public class InputsChampionFightingMovements implements KeyboardHandler {
 
     public InputsChampionFightingMovements(Fighter champion) {
         this.champion = champion;
-
     }
 
     public void movement(){
@@ -82,12 +81,11 @@ public class InputsChampionFightingMovements implements KeyboardHandler {
                 champion.moveLeft();
         }
 
-
-
     }
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
     }
+
 }

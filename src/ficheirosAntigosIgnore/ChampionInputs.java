@@ -92,7 +92,7 @@ public class ChampionInputs implements KeyboardHandler {
                 switch  (pressedCharacterP1){
 
                     case 1:
-                        pressedCharacterP1 = chooseFighter.getMaxchampions();//para voltar ao ultimo
+                        pressedCharacterP1 = chooseFighter.getMaxChampions();//para voltar ao ultimo
                         break;
                     case 2:
                         pressedCharacterP1--;
@@ -130,7 +130,7 @@ public class ChampionInputs implements KeyboardHandler {
             case KeyboardEvent.KEY_A:
                 switch (pressedCharacterP2){
                     case 1:
-                        pressedCharacterP2 = chooseFighter.getMaxchampions();
+                        pressedCharacterP2 = chooseFighter.getMaxChampions();
                         break;
 
                     case 2:

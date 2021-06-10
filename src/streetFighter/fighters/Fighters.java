@@ -3,7 +3,7 @@ package streetFighter.fighters;
 public enum Fighters {
 
     SARA(35, 100),
-    PEDRO(50,100),
+    PEDRO(50, 100),
     PAULO(35, 100),
     IGREJA(35, 100);
 
@@ -12,17 +12,14 @@ public enum Fighters {
     private int health;
 
 
-
-    Fighters(int damage, int health){
+    Fighters(int damage, int health) {
         this.damage = damage;
         this.health = health;
-
-
     }
 
-    public static int getDamage(Fighters champion){
+    public static int getDamage(Fighters champion) {
 
-        switch (champion){
+        switch (champion) {
             case SARA:
                 return SARA.damage;
             case PAULO:
@@ -37,9 +34,10 @@ public enum Fighters {
 
     }
 
-    public static int getInitialHealth(Fighters champion){
 
-        switch (champion){
+    public static int getInitialHealth(Fighters champion) {
+
+        switch (champion) {
             case SARA:
                 return SARA.health;
             case PAULO:
@@ -49,13 +47,11 @@ public enum Fighters {
             case IGREJA:
                 return IGREJA.health;
             default:
-                return 5;
+                return 0;
 
         }
+
     }
-
-
-
 
 }
 

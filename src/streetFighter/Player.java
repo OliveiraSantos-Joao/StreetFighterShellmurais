@@ -7,6 +7,7 @@ import streetFighter.fighters.PlayerType;
 
 public class Player {
     //é o jogador
+    // ESTA CLASSE É OBSOLETA PARA JÁ
 
 
     private Fighter fighter;
@@ -20,11 +21,11 @@ public class Player {
 
         //chose fighter - -chamar menu streetFighter.fighters
         //fighter = new fighter(menufighters)
+
     }
 
     public Fighter getFighter() {
         return fighter;
     }
-
 
 }
