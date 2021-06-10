@@ -4,6 +4,10 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+
+import streetFighter.fighters.Fighter;
+import streetFighter.fighters.Fighters;
+import streetFighter.fighters.PlayerType;
 import streetFighter.inputs.Inputs;
 import streetFighter.inputs.ToDo;
 
@@ -26,6 +30,11 @@ public class ChooseFighter implements ToDo {
     private int pressedCharacterP1 = 1;
     private int pressedCharacterP2 = maxchampions;
 
+    private boolean p1Ready = false;
+    private boolean p2Ready = false;
+    private Fighter fighterP1ready;
+    private Fighter fighterP2ready;
+
 
     private Rectangle[] photoFrame = new Rectangle[maxchampions];
 
@@ -33,7 +42,10 @@ public class ChooseFighter implements ToDo {
     public ChooseFighter() {
         Inputs.setInputScreen(this);
         createFighters();
+
     }
+
+
 
     public Rectangle[] getPhotoFrame() {
         return photoFrame;
@@ -159,6 +171,29 @@ public class ChooseFighter implements ToDo {
 
                     case 4:
                         pressedCharacterP2--;
+                        break;
+                }
+                break;
+
+            case KeyboardEvent.KEY_1:
+
+                p1Ready = true;
+
+                switch (pressedCharacterP1) {
+                    case 1:
+                        fighterP1ready = new Fighter(PlayerType.PLAYER1, Fighters.PAULO);
+                        break;
+
+                    case 2:
+                        fighterP1ready = new Fighter(PlayerType.PLAYER1, Fighters.SARA);
+                        break;
+
+                    case 3:
+                        fighterP1ready = new Fighter(PlayerType.PLAYER1, Fighters.PEDRO);
+                        break;
+
+                    case 4:
+                        fighterP1ready = new Fighter(PlayerType.PLAYER1, Fighters.IGREJA);
                         break;
                 }
 

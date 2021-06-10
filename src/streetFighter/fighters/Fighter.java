@@ -17,17 +17,18 @@ public class Fighter {
 
 
 
-    public Fighter(int xInitial, int yInitial, PlayerType playerType){
+    public Fighter(PlayerType playerType, Fighters fighter){
 
         this.playerType = playerType;
 
-        this.posX = xInitial;
-        this.posY = yInitial;
+        if (playerType == PlayerType.PLAYER1) { posX = 0; } else  { posX = 100; }
 
-        this.fighter = Fighters.values()[(int) (Math.random()* Fighters.values().length)];
+        this.fighter = fighter;
         this.health = Fighters.getInitialHealth(fighter);
         this.damage = Fighters.getDamage(fighter);
         this.dead = checkIfDead();
+
+        System.out.println(playerType + " " + fighter);
 
     }
 
