@@ -9,156 +9,192 @@ import streetFighter.inputs.ToDo;
 
 
 public class ChooseFighter implements ToDo {
-  private Picture saraPic;
-  private Picture pauloPic;
-  private Picture pedroPic;
-  private Picture fighter1Pic;
+    private Picture saraPic;
+    private Picture pauloPic;
+    private Picture pedroPic;
+    private Picture fighter1Pic;
 
-  private Picture mainMenu;
+    private Picture mainMenu;
 
-  Rectangle rect1;
-  Rectangle rect2;
-  Rectangle rect3;
-  Rectangle rect4;
+    Rectangle rect1;
+    Rectangle rect2;
+    Rectangle rect3;
+    Rectangle rect4;
 
-  private int maxchampions = 4;
+    private int maxchampions = 4;
 
-  private int pressedCharacterP1 = 1;
-  private int pressedCharacterP2 = maxchampions;
-
-
-  private Rectangle[] photoFrame = new Rectangle[maxchampions];
+    private int pressedCharacterP1 = 1;
+    private int pressedCharacterP2 = maxchampions;
 
 
-  public ChooseFighter() {
-    Inputs.setInputScreen(this);
-    createFighters();
-  }
-
-  public Rectangle[] getPhotoFrame() {
-    return photoFrame;
-  }
-
-  public void createFighters() {
+    private Rectangle[] photoFrame = new Rectangle[maxchampions];
 
 
-    mainMenu = new Picture(Game.PADDING, Game.PADDING, "BlackBackground2.png");
-    mainMenu.draw();
+    public ChooseFighter() {
+        Inputs.setInputScreen(this);
+        createFighters();
+    }
 
-    saraPic = new Picture(mainMenu.getWidth() / 2, mainMenu.getHeight() * 0.6, "sara.png");
-    saraPic.draw();
+    public Rectangle[] getPhotoFrame() {
+        return photoFrame;
+    }
 
-    pauloPic = new Picture(saraPic.getX() - saraPic.getWidth() - 20, saraPic.getY(), "paulo2_72x72.jpeg");
-    pauloPic.draw();
+    public void createFighters() {
 
-    pedroPic = new Picture(pauloPic.getX() - pauloPic.getWidth() - 20, pauloPic.getY(), "paulo2_72x72.jpeg");
-    pedroPic.draw();
+        mainMenu = new Picture(Game.PADDING, Game.PADDING, "BlackBackground2.png");
+        mainMenu.draw();
 
-    fighter1Pic = new Picture((pedroPic.getX()) - pedroPic.getWidth() - 20 , pauloPic.getY() , "sara.png");
-    fighter1Pic.draw();
+        saraPic = new Picture(mainMenu.getWidth() / 2, mainMenu.getHeight() * 0.6, "sara.png");
+        saraPic.draw();
 
-    rect1 = new Rectangle(saraPic.getX(), saraPic.getY(), saraPic.getWidth(), pauloPic.getHeight());
-    rect1.setColor(Color.BLUE);
-    rect1.draw();
-    photoFrame[3]=rect1;
+        pauloPic = new Picture(saraPic.getX() - saraPic.getWidth() - 20, saraPic.getY(), "paulo2_72x72.jpeg");
+        pauloPic.draw();
 
-    rect2 = new Rectangle(pauloPic.getX(), pauloPic.getY(), pauloPic.getWidth(), pauloPic.getHeight());
-    photoFrame[2]=rect2;
+        pedroPic = new Picture(pauloPic.getX() - pauloPic.getWidth() - 20, pauloPic.getY(), "paulo2_72x72.jpeg");
+        pedroPic.draw();
 
-    rect3 = new Rectangle(pedroPic.getX(), pedroPic.getY(), pedroPic.getWidth(), pedroPic.getHeight());
-    photoFrame[1]=rect3;
+        fighter1Pic = new Picture((pedroPic.getX()) - pedroPic.getWidth() - 20, pauloPic.getY(), "sara.png");
+        fighter1Pic.draw();
 
-    rect4 = new Rectangle(fighter1Pic.getX(), fighter1Pic.getY(), fighter1Pic.getWidth(), fighter1Pic.getHeight());
-    rect4.setColor(Color.RED);
-    rect4.draw();
-    photoFrame[0]=rect4;
+        rect1 = new Rectangle(saraPic.getX(), saraPic.getY(), saraPic.getWidth(), pauloPic.getHeight());
+        rect1.setColor(Color.BLUE);
+        rect1.draw();
+        photoFrame[3] = rect1;
 
-  }
+        rect2 = new Rectangle(pauloPic.getX(), pauloPic.getY(), pauloPic.getWidth(), pauloPic.getHeight());
+        photoFrame[2] = rect2;
 
-  public int getMaxchampions() {
-    return maxchampions;
-  }
+        rect3 = new Rectangle(pedroPic.getX(), pedroPic.getY(), pedroPic.getWidth(), pedroPic.getHeight());
+        photoFrame[1] = rect3;
+
+        rect4 = new Rectangle(fighter1Pic.getX(), fighter1Pic.getY(), fighter1Pic.getWidth(), fighter1Pic.getHeight());
+        rect4.setColor(Color.RED);
+        rect4.draw();
+        photoFrame[0] = rect4;
+
+    }
+
+    public int getMaxChampions() {
+        return maxchampions;
+    }
 
 
+    @Override
+    public void action(int key) {
+        switch (key) {
 
-  @Override
-  public void action(int key) {
-    switch (key) {
+            case KeyboardEvent.KEY_RIGHT:
+                switch (pressedCharacterP1) {
+                    case 1:
+                        pressedCharacterP1++;
+                        break;
 
-      case KeyboardEvent.KEY_RIGHT:
-        switch (pressedCharacterP1){
-          case 1:
-            pressedCharacterP1++;
-            break;
+                    case 2:
+                        pressedCharacterP1++;
+                        break;
 
-          case 2:
-            pressedCharacterP1++;
-            break;
+                    case 3:
+                        pressedCharacterP1++;
+                        break;
 
-          case 3:
-            pressedCharacterP1++;
-            break;
+                    case 4:
+                        pressedCharacterP1 = 1;
+                        break;
+                }
+                break;
 
-          case 4:
-            pressedCharacterP1 = 1;
-            break;
+            case KeyboardEvent.KEY_LEFT:
+
+                switch (pressedCharacterP1) {
+
+                    case 1:
+                        pressedCharacterP1 = getMaxChampions();//para voltar ao ultimo
+                        break;
+                    case 2:
+                        pressedCharacterP1--;
+                        break;
+                    case 3:
+                        pressedCharacterP1--;
+                        break;
+
+                    case 4:
+                        pressedCharacterP1--;
+                        break;
+                }
+                break;
+
+            case KeyboardEvent.KEY_D:
+                switch (pressedCharacterP2) {
+                    case 1:
+                        pressedCharacterP2++;
+                        break;
+
+                    case 2:
+                        pressedCharacterP2++;
+                        break;
+
+                    case 3:
+                        pressedCharacterP2++;
+                        break;
+
+                    case 4:
+                        pressedCharacterP2 = 1; //pq da a volta !!
+                        break;
+                }
+                break;
+
+            case KeyboardEvent.KEY_A:
+                switch (pressedCharacterP2) {
+                    case 1:
+                        pressedCharacterP2 = getMaxChampions();
+                        break;
+
+                    case 2:
+                        pressedCharacterP2--;
+                        break;
+
+                    case 3:
+                        pressedCharacterP2--;
+                        break;
+
+                    case 4:
+                        pressedCharacterP2--;
+                        break;
+                }
+
+                break;
         }
-        break;
 
-      case KeyboardEvent.KEY_LEFT:
+        update();
 
-        switch (pressedCharacterP1){
+    }
 
-          case 1:
-            pressedCharacterP1 = getMaxchampions();//para voltar ao ultimo
-            break;
-          case 2:
-            pressedCharacterP1--;
-            break;
-          case 3:
-            pressedCharacterP1--;
-            break;
+    private void update() {
 
-          case 4:
-            pressedCharacterP1--;
-            break;
+        for (int i = 0; i < getPhotoFrame().length; i++) {
+            if (pressedCharacterP1 == i + 1 && pressedCharacterP2 == i + 1) {
+                getPhotoFrame()[i].setColor(Color.WHITE);
+                getPhotoFrame()[i].draw();
+                continue;
+            }
+
+            if (pressedCharacterP1 == i + 1) {
+                getPhotoFrame()[i].setColor(Color.RED);
+                getPhotoFrame()[i].draw();
+                continue;
+            }
+
+            if (pressedCharacterP2 == i + 1) {
+                getPhotoFrame()[i].setColor(Color.BLUE);
+                getPhotoFrame()[i].draw();
+                continue;
+            }
+
+            getPhotoFrame()[i].delete();
+
         }
-        break;
 
-      case KeyboardEvent.KEY_D:
-        switch (pressedCharacterP2){
-          case 1:
-            pressedCharacterP2 ++;
-            break;
-
-          case 2:
-            pressedCharacterP2 ++;
-            break;
-
-          case 3:
-            pressedCharacterP2 ++;
-            break;
-
-          case 4:
-            pressedCharacterP2 = 1; //pq da a volta !!
-            break;
-        }
-        break;
-
-      case KeyboardEvent.KEY_A:
-        switch (pressedCharacterP2){
-          case 1:
-            pressedCharacterP2 = getMaxchampions();
-            break;
-
-          case 2:
-            pressedCharacterP2--;
-            break;
-
-          case 3:
-            pressedCharacterP2--;
-            break;
-
+<<<<<<< HEAD
           case 4:
             pressedCharacterP2--;
             break;
@@ -190,8 +226,8 @@ public class ChooseFighter implements ToDo {
         continue;
       }
       getPhotoFrame()[i].delete();
+=======
+>>>>>>> pereiraWorks
     }
-
-  }
-
+    
 }

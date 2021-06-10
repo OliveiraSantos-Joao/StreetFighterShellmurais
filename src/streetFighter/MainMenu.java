@@ -67,6 +67,8 @@ public class MainMenu implements ToDo {
 
         ChooseFighter chooseFighter = new ChooseFighter();
         System.out.println("start");
+        deleteAll();
+        ChooseFighter chooseFighter = new ChooseFighter();
 
     }
 
