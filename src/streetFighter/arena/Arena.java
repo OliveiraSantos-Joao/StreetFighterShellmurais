@@ -29,6 +29,8 @@ public class Arena implements ToDo {
     private Picture picPlayer1Punch;
     private Picture picPlayer2Punch;
 
+    private String arenaName;
+
     private final int FIGHTER_REACH = 20;
 
     // Getters e Setters
@@ -42,12 +44,13 @@ public class Arena implements ToDo {
 
 
     //constructor
-    public Arena(Fighter player1, Fighter player2) {
+    public Arena(Fighter player1, Fighter player2, String arenaName) {
+
+        this.arenaName = arenaName;
 
         Inputs.setInputScreen(this);
 
         gMech = new GameMech();
-
 
         this.player1 = player1;
         this.player2 = player2;
@@ -66,7 +69,7 @@ public class Arena implements ToDo {
 
 
     public void drawArena() {
-        arenaPic = new Picture(Game.PADDING, Game.PADDING, "elephantes_1280x720.jpeg");
+        arenaPic = new Picture(Game.PADDING, Game.PADDING, arenaName);
         arenaPic.draw();
         hb = new HealthBar(player1, player2);
         drawPlayers();
@@ -79,14 +82,12 @@ public class Arena implements ToDo {
         player2.setPosX(arenaPic.getX() + arenaPic.getWidth() - 191);
         player2.setPosY(arenaPic.getHeight() - 200);
 
-        picPlayer1 = new Picture(player1.getPosX(), player1.getPosY(), "RyuLeft.png");
-        picPlayer2 = new Picture(player2.getPosX(), player2.getPosY(), "KenRight.png");
+        picPlayer1 = new Picture(player1.getPosX(), player1.getPosY(),     player1.getFighter().getPhotoName(player1.getFighter()) +"_" + "stand"+"_"+ "right.png");
+        picPlayer2 = new Picture(player2.getPosX(), player2.getPosY(), player2.getFighter().getPhotoName(player2.getFighter()) + "_" +"stand" + "_" + "left.png");
 
-        picPlayer1Punch = new Picture(player1.getPosX(), player1.getPosY(), "RyuLeft_Punch.png");
-        picPlayer2Punch = new Picture(player2.getPosX(), player2.getPosY(), "KenRight_Punch.png");
-
-        picPlayer1.grow(10, 10);
-        //picPlayer2.grow(4,4);
+        picPlayer1Punch = new Picture(player1.getPosX(), player1.getPosY(),player1.getFighter().getPhotoName(player1.getFighter()) +"_" + "punch"+"_"+ "right.png");
+        picPlayer2Punch = new Picture(player2.getPosX(), player2.getPosY(), player2.getFighter().getPhotoName(player2.getFighter()) + "_" +"punch" + "_" + "left.png");
+        //Resources/Fighters/
         picPlayer1.draw();
         picPlayer2.draw();
     }

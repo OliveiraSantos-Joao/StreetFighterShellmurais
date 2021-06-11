@@ -38,8 +38,6 @@ public class ChooseFighter implements ToDo {
     private Fighter fighterP1ready;
     private Fighter fighterP2ready;
 
-    private Arena arena;
-
     private Rectangle[] photoFrame = new Rectangle[maxchampions];
 
 
@@ -243,7 +241,7 @@ public class ChooseFighter implements ToDo {
                 }
                 if (p1Ready && p2Ready) {
                     deleteAll();
-                    arena = new Arena(fighterP1ready, fighterP2ready);
+                    new ChooseArena(fighterP1ready, fighterP2ready);
                 }
                 break;
 
@@ -274,7 +272,7 @@ public class ChooseFighter implements ToDo {
                 }
                 if (p1Ready && p2Ready) {
                     deleteAll();
-                    arena = new Arena(fighterP1ready, fighterP2ready);
+                    new ChooseArena(fighterP1ready, fighterP2ready);
 
                 }
                 break;

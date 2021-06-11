@@ -56,6 +56,24 @@ public enum Fighters {
 
     }
 
+
+    public static String getPhotoName(Fighters champion){
+
+        switch (champion) {
+            case SARA:
+                return "sara";
+            case PAULO:
+                return "paulo";
+            case PEDRO:
+                return "pedro";
+            case JEANMARK:
+                return "igreja";
+            default:
+                return "Fudeu";
+
+        }
+
+    }
 }
 
 
