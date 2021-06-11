@@ -11,7 +11,6 @@ import streetFighter.inputs.Inputs;
 import streetFighter.inputs.ToDo;
 
 public class Arena implements ToDo {
-
     private Picture arenaPic;
 
     private Rectangle player1Rec;
@@ -24,6 +23,19 @@ public class Arena implements ToDo {
 
     private GameMech gMech;
 
+    private Picture picPlayer1;
+    private Picture picPlayer2;
+
+    // Getters e Setters
+
+
+    public Picture getPicPlayer1() {
+        return picPlayer1;
+    }
+
+    public Picture getPicPlayer2() {
+        return picPlayer2;
+    }
 
     public Arena(Fighter player1, Fighter player2) {
 
@@ -42,25 +54,28 @@ public class Arena implements ToDo {
 
 
     public void init() {
-
         drawArena();
-     
-
         gMech.init();
-
     }
 
 
     public void drawArena() {
-
         arenaPic = new Picture(Game.PADDING, Game.PADDING, "elephantes_1280x720.jpeg");
-
         arenaPic.draw();
-
         hb = new HealthBar(player1, player2);
-
+        drawPlayers();
     }
 
+    public void drawPlayers (){
+
+        picPlayer1 = new Picture(70 , arenaPic.getHeight()-200, "RyuLeft.png");
+        picPlayer2 = new Picture(arenaPic.getX() + arenaPic.getWidth() - 100 , arenaPic.getHeight()-200, "KenRight.png");
+
+        picPlayer1.grow(10,10);
+        picPlayer2.grow(4,4);
+        picPlayer1.draw();
+        picPlayer2.draw();
+    }
 
 
     @Override
