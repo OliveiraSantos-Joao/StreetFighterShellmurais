@@ -1,10 +1,8 @@
 package streetFighter;
 
-import streetFighter.inputs.Inputs;
-
 public class GameMech {
 
-    private boolean flag = true;
+    private boolean paused = true;
 
     public void init() {
 
@@ -14,16 +12,16 @@ public class GameMech {
 
     }
 
-    public void setFlagTrue(){
-        this.flag = true;
+    public void setPausedTrue(){
+        this.paused = true;
     }
 
-    public void setFlagFalse(){
-        this.flag = false;
+    public void setPausedFalse(){
+        this.paused = false;
     }
 
-    public boolean isFlag() {
-        return flag;
+    public boolean isPaused() {
+        return paused;
     }
 
 }

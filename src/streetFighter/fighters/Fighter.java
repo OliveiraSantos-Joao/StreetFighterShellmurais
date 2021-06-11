@@ -10,7 +10,7 @@ public class Fighter {
     private PlayerType playerType;
     private int posX;
     private int posY;
-    private int pixelMovement = 10;
+    private int pixelMovement = 30;
     private int jump = 20;
     private int height = 250;
     private int width = 100;
@@ -21,7 +21,7 @@ public class Fighter {
 
         this.playerType = playerType;
 
-        if (playerType == PlayerType.PLAYER1) { posX = 100; } else  { posX = 400; }
+
 
         this.fighter = fighter;
         this.health = Fighters.getInitialHealth(fighter);
@@ -47,6 +47,14 @@ public class Fighter {
     }
     public int getPosY() {
         return posY;
+    }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
     }
 
     public PlayerType getPlayerType() {

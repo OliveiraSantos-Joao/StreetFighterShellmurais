@@ -25,6 +25,10 @@ public class Arena implements ToDo {
 
     private Picture picPlayer1;
     private Picture picPlayer2;
+    private Picture picPlayer1Punch;
+    private Picture picPlayer2Punch;
+
+
 
     // Getters e Setters
 
@@ -42,6 +46,9 @@ public class Arena implements ToDo {
         Inputs.setInputScreen(this);
 
         gMech = new GameMech();
+
+
+
 
         this.player1 = player1;
         this.player2 = player2;
@@ -67,9 +74,16 @@ public class Arena implements ToDo {
     }
 
     public void drawPlayers (){
+        player1.setPosX(70);
+        player1.setPosY(arenaPic.getHeight()-200);
+        player2.setPosX(arenaPic.getX() + arenaPic.getWidth() - 100 );
+        player2.setPosY(arenaPic.getHeight()-200);
 
-        picPlayer1 = new Picture(70 , arenaPic.getHeight()-200, "RyuLeft.png");
-        picPlayer2 = new Picture(arenaPic.getX() + arenaPic.getWidth() - 100 , arenaPic.getHeight()-200, "KenRight.png");
+        picPlayer1 = new Picture(player1.getPosX(), player1.getPosY(), "RyuLeft.png");
+        picPlayer2 = new Picture(player2.getPosX(), player2.getPosY(), "KenRight.png");
+
+        picPlayer1Punch = new Picture(player1.getPosX(), player1.getPosY(), "RyuLeftPunch.png");
+        picPlayer2Punch = new Picture(player2.getPosX(), player2.getPosY(), "KenRightPunch.png");
 
         picPlayer1.grow(10,10);
         picPlayer2.grow(4,4);
@@ -82,16 +96,51 @@ public class Arena implements ToDo {
     public void action(int key) {
         switch (key) {
             case KeyboardEvent.KEY_P:
-                if (gMech.isFlag())
-                {
-                    gMech.setFlagFalse();
+                if (gMech.isPaused()) {
+                    gMech.setPausedFalse();
                 } else {
-                    gMech.setFlagTrue();
+                    gMech.setPausedTrue();
                     gMech.init();
                 }
+                break;
+            case KeyboardEvent.KEY_A:
+                picPlayer1.translate(-player1.getPixelMovement(), 0);
+                picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
+                picPlayer1.draw();
+
+                player1.moveLeft();
+                break;
+            case KeyboardEvent.KEY_D:
+                picPlayer1.translate(player1.getPixelMovement(), 0);
+                picPlayer1Punch.translate(player1.getPixelMovement(), 0);
+                player1.moveRight();
+                break;
+
+            case KeyboardEvent.KEY_LEFT:
+                picPlayer2.translate(-player2.getPixelMovement(),0);
+                picPlayer2Punch.translate(-player2.getPixelMovement(),0);
+                player2.moveLeft();
+                break;
+            case KeyboardEvent.KEY_RIGHT:
+                picPlayer2.translate(player2.getPixelMovement(),0);
+                picPlayer2Punch.translate(player2.getPixelMovement(),0);
+                player2.moveRight();
+                break;
+
+            case KeyboardEvent.KEY_1:
+                picPlayer1.delete();
+                picPlayer1Punch.draw();
+                picPlayer1Punch.delete();
+
+                break;
+
+            case KeyboardEvent.KEY_SPACE:
+                picPlayer2Punch.draw();
+                picPlayer2.delete();
 
                 break;
         }
+
     }
 
 
