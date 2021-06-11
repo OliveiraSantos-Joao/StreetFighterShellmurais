@@ -114,7 +114,7 @@ public class ChooseFighter implements ToDo {
 
 
     @Override
-    public void action(int key) {
+    public void actionPressed(int key) {
 
         switch (key) {
 
@@ -282,6 +282,11 @@ public class ChooseFighter implements ToDo {
         if(!p1Ready || !p2Ready) {
             update();
         }
+    }
+
+    @Override
+    public void actionReleased(int key) {
+
     }
 
     private void update() {

@@ -64,6 +64,21 @@ public class Inputs implements KeyboardHandler {
         onePressed.setKey(KeyboardEvent.KEY_1);
         onePressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
+
+
+
+
+        KeyboardEvent spaceDepressed = new KeyboardEvent();
+        spaceDepressed.setKey(KeyboardEvent.KEY_SPACE);
+        spaceDepressed.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
+        KeyboardEvent oneDepressed = new KeyboardEvent();
+        oneDepressed.setKey(KeyboardEvent.KEY_1);
+        oneDepressed.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
+
+
+
         keyboard.addEventListener(upPressed);
         keyboard.addEventListener(downPressed);
         keyboard.addEventListener(spacePressed);
@@ -74,6 +89,10 @@ public class Inputs implements KeyboardHandler {
         keyboard.addEventListener(spacePressedP2);
         keyboard.addEventListener(pPressed);
         keyboard.addEventListener(onePressed);
+
+
+        keyboard.addEventListener(spaceDepressed);
+        keyboard.addEventListener(oneDepressed);
         
     }
 
@@ -81,11 +100,11 @@ public class Inputs implements KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-        inputScreen.action(keyboardEvent.getKey());
+        inputScreen.actionPressed(keyboardEvent.getKey());
     }
 
     @Override
-    public void keyReleased(KeyboardEvent keyboardEvent) {
+    public void keyReleased(KeyboardEvent keyboardEvent) { inputScreen.actionReleased(keyboardEvent.getKey());
 
     }
 

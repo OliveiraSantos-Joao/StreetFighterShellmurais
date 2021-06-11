@@ -30,17 +30,16 @@ public class Arena implements ToDo {
 
 
 
-    // Getters e Setters
-
-
+// Getters e Setters
     public Picture getPicPlayer1() {
         return picPlayer1;
     }
-
     public Picture getPicPlayer2() {
         return picPlayer2;
     }
 
+
+//constructor
     public Arena(Fighter player1, Fighter player2) {
 
         Inputs.setInputScreen(this);
@@ -74,26 +73,27 @@ public class Arena implements ToDo {
     }
 
     public void drawPlayers (){
+
         player1.setPosX(70);
-        player1.setPosY(arenaPic.getHeight()-200);
+        player1.setPosY(arenaPic.getHeight() - 200);
         player2.setPosX(arenaPic.getX() + arenaPic.getWidth() - 100 );
-        player2.setPosY(arenaPic.getHeight()-200);
+        player2.setPosY(arenaPic.getHeight() - 200);
 
         picPlayer1 = new Picture(player1.getPosX(), player1.getPosY(), "RyuLeft.png");
         picPlayer2 = new Picture(player2.getPosX(), player2.getPosY(), "KenRight.png");
 
-        picPlayer1Punch = new Picture(player1.getPosX(), player1.getPosY(), "RyuLeftPunch.png");
-        picPlayer2Punch = new Picture(player2.getPosX(), player2.getPosY(), "KenRightPunch.png");
+        picPlayer1Punch = new Picture(player1.getPosX(), player1.getPosY(), "RyuLeft_Punch.png");
+        picPlayer2Punch = new Picture(player2.getPosX(), player2.getPosY(), "KenRight_Punch.png");
 
         picPlayer1.grow(10,10);
-        picPlayer2.grow(4,4);
+        //picPlayer2.grow(4,4);
         picPlayer1.draw();
         picPlayer2.draw();
     }
 
 
     @Override
-    public void action(int key) {
+    public void actionPressed(int key) {
         switch (key) {
             case KeyboardEvent.KEY_P:
                 if (gMech.isPaused()) {
@@ -106,10 +106,9 @@ public class Arena implements ToDo {
             case KeyboardEvent.KEY_A:
                 picPlayer1.translate(-player1.getPixelMovement(), 0);
                 picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
-                picPlayer1.draw();
-
                 player1.moveLeft();
                 break;
+
             case KeyboardEvent.KEY_D:
                 picPlayer1.translate(player1.getPixelMovement(), 0);
                 picPlayer1Punch.translate(player1.getPixelMovement(), 0);
@@ -121,6 +120,7 @@ public class Arena implements ToDo {
                 picPlayer2Punch.translate(-player2.getPixelMovement(),0);
                 player2.moveLeft();
                 break;
+
             case KeyboardEvent.KEY_RIGHT:
                 picPlayer2.translate(player2.getPixelMovement(),0);
                 picPlayer2Punch.translate(player2.getPixelMovement(),0);
@@ -128,21 +128,34 @@ public class Arena implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_1:
-                picPlayer1.delete();
                 picPlayer1Punch.draw();
-                picPlayer1Punch.delete();
-
+                picPlayer1.delete();
                 break;
 
             case KeyboardEvent.KEY_SPACE:
                 picPlayer2Punch.draw();
                 picPlayer2.delete();
+                break;
+        }
+    }
+
+    @Override
+    public void actionReleased(int key) {
+        switch (key){
+            case KeyboardEvent.KEY_1:
+
+                picPlayer1.draw();
+                picPlayer1Punch.delete();
+
+                break;
+
+            case KeyboardEvent.KEY_SPACE:
+                picPlayer2.draw();
+                picPlayer2Punch.delete();
 
                 break;
         }
-
     }
-
 
 
 }

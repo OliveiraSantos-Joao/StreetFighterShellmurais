@@ -118,7 +118,7 @@ public class MainMenu implements ToDo {
 
 
     @Override
-    public void action(int key) {
+    public void actionPressed(int key) {
         switch (key){
             case KeyboardEvent.KEY_DOWN:
                 switch (getCurrentlyPressedPosition()) {
@@ -192,6 +192,11 @@ public class MainMenu implements ToDo {
                 }
                 break;
         }
+    }
+
+    @Override
+    public void actionReleased(int key) {
+
     }
 
 }

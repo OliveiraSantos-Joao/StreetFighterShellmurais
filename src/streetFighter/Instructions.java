@@ -54,7 +54,7 @@ public class Instructions implements ToDo {
     }
 
     @Override
-    public void action(int key) {
+    public void actionPressed(int key) {
         switch (key){
             case KeyboardEvent.KEY_SPACE:
                 System.out.println("entrou");
@@ -63,5 +63,10 @@ public class Instructions implements ToDo {
                 new MainMenu();
                 break;
         }
+    }
+
+    @Override
+    public void actionReleased(int key) {
+
     }
 }

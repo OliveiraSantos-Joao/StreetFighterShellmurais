@@ -2,6 +2,7 @@ package streetFighter.inputs;
 
 public interface ToDo {
 
-     void action(int key);
+     void actionPressed(int key);
+     void actionReleased(int key);
 
 }
