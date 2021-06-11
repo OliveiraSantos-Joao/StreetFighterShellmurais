@@ -1,3 +1,4 @@
+
 package streetFighter;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
@@ -88,3 +89,4 @@ public class HealthBar {
 
     }
 }
+

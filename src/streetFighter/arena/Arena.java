@@ -1,6 +1,8 @@
 package streetFighter.arena;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import streetFighter.Game;
@@ -44,6 +46,8 @@ public class Arena implements ToDo {
     public void init() {
 
         drawArena();
+        System.out.println("entrou");
+
         drawPLayers();
 
         gMech.init();
@@ -82,6 +86,9 @@ public class Arena implements ToDo {
                 break;
         }
     }
+
+
+
 }
 
 
