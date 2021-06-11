@@ -57,6 +57,10 @@ public class Fighter {
         this.posY = posY;
     }
 
+    public int getDamage() {
+        return damage;
+    }
+
     public PlayerType getPlayerType() {
         return playerType;
     }
@@ -79,23 +83,16 @@ public class Fighter {
     }
 
     public void hit(int hit){
-
         this.health -= hit;
         checkIfDead();
-
     }
 
     private boolean checkIfDead(){
-
         if(health <= 0){
-
             this.health = 0;
             return true;
-
         }
-
         return false;
-
     }
 
 
@@ -104,28 +101,13 @@ public class Fighter {
     }
 
 
-    public void move(){
-
-        InputsChampionFightingMovements champMove = new InputsChampionFightingMovements(this);
-        champMove.movement();
-    }
-
-    public void healthBar(){
 
 
-    }
 
 
-    public void defend(){
-        //extra
-
-    }
 
 
-    public void finishHim(){
-        //mega extra
 
-    }
 
 
 }

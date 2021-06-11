@@ -54,7 +54,7 @@ public class HealthBar {
         player1Name.grow(25,10);
         player1Name.draw();
 
-        rectangleP2 = new Rectangle(Game.width - 70 - barWidth, Game.PADDING +50, barWidth, barHeight);
+        rectangleP2 = new Rectangle(Game.WIDTH - 70 - barWidth, Game.PADDING +50, barWidth, barHeight);
         rectangleP2.setColor(Color.BLACK);
         rectangleP2.fill();
 
@@ -93,6 +93,12 @@ public class HealthBar {
 
         lifeP2.fill();
 
+    }
+    public void healthBarDelete(){
+        rectangleP1.delete();
+        rectangleP2.delete();
+        lifeP1.delete();
+        lifeP2.delete();
     }
 }
 

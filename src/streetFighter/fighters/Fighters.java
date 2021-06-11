@@ -2,10 +2,10 @@ package streetFighter.fighters;
 
 public enum Fighters {
 
-    SARA(35, 100),
+    SARA(5, 100),
     PEDRO(50, 100),
-    PAULO(35, 100),
-    JEANMARK(35, 100);
+    PAULO(5, 100),
+    JEANMARK(1, 100);
 
 
     private int damage;

@@ -19,7 +19,7 @@ public class Instructions implements ToDo {
 
         Inputs.setInputScreen(this);
 
-        rectangleInst = new Rectangle(Game.PADDING + 35, Game.PADDING + 35, Game.width - 70, Game.height - 70);
+        rectangleInst = new Rectangle(Game.PADDING + 35, Game.PADDING + 35, Game.WIDTH - 70, Game.HEIGHT - 70);
         rectangleInst.setColor(Color.DARK_GRAY);
         rectangleInst.fill();
 
@@ -28,11 +28,11 @@ public class Instructions implements ToDo {
         textInst1.draw();
 
 
-        exitRect = new Rectangle(Game.width/2,Game.height-Game.height/5,100,50);
+        exitRect = new Rectangle(Game.WIDTH /2,Game.HEIGHT -Game.HEIGHT /5,100,50);
         exitRect.setColor(Color.WHITE);
         exitRect.draw();
 
-        exitText = new Text(Game.width/2+8,Game.height-Game.height/5+18,"SPACE to exit");
+        exitText = new Text(Game.WIDTH /2+8,Game.HEIGHT -Game.HEIGHT /5+18,"SPACE to exit");
         exitText.setColor(Color.WHITE);
         exitText.draw();
 

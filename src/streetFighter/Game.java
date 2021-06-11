@@ -1,16 +1,14 @@
 package streetFighter;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import streetFighter.MainMenu;
-import streetFighter.Player;
-import streetFighter.fighters.PlayerType;
 import streetFighter.inputs.Inputs;
 
 public class Game {
 
     public static final int PADDING = 10;
-    public static final int height = 720;
-    public static final int width = 1280;
+    public static final int HEIGHT = 720;
+    public static final int WIDTH = 1280;
+    public static final int BORDER = 10;
 
     private MainMenu mainMenu;
     private ChooseFighter chooseFighter;
@@ -27,7 +25,7 @@ public class Game {
         //help();
         //criar 2 players
 
-        Rectangle screen = new Rectangle(PADDING, PADDING, width, height);
+        Rectangle screen = new Rectangle(PADDING, PADDING, WIDTH, HEIGHT);
         screen.draw();
 
         new Inputs(); //inicialização keyboard;
