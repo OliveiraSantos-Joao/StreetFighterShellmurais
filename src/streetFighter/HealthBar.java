@@ -5,6 +5,7 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+import streetFighter.fighters.Fighter;
 
 public class HealthBar {
 
@@ -24,15 +25,20 @@ public class HealthBar {
     private int barWidth = 500;
     private int barHeight = 40;
     private int maxHealth = 100;
+    private Fighter player1;
+    private Fighter player2;
+
 
     private int BORDER = 5;
 
 
-    public HealthBar(int healthP1, int healthP2) {
+    public HealthBar(Fighter player1, Fighter player2) {
 
-        this.healthP1 = healthP1;
-        this.healthP2 = healthP2;
+        this.player1 = player1;
+        this.player2 = player2;
 
+        this.healthP1 = player1.getHealth();
+        this.healthP2 = player2.getHealth();
         init();
 
     }
@@ -40,19 +46,19 @@ public class HealthBar {
     public void init() {
 
         rectangleP1 = new Rectangle(Game.PADDING+ 70, Game.PADDING +50, barWidth, barHeight);
-        rectangleP1.setColor(Color.WHITE);
-        rectangleP1.draw();
+        rectangleP1.setColor(Color.BLACK);
+        rectangleP1.fill();
 
-        player1Name = new Text(rectangleP1.getX() + 25, rectangleP1.getY() - 20,"Player 1");
+        player1Name = new Text(rectangleP1.getX() + 25, rectangleP1.getY() - 20,player1.getFighter().name());
         player1Name.setColor(Color.WHITE);
         player1Name.grow(25,10);
         player1Name.draw();
 
         rectangleP2 = new Rectangle(Game.width - 70 - barWidth, Game.PADDING +50, barWidth, barHeight);
-        rectangleP2.setColor(Color.WHITE);
-        rectangleP2.draw();
+        rectangleP2.setColor(Color.BLACK);
+        rectangleP2.fill();
 
-        player2Name = new Text(rectangleP2.getX()+rectangleP2.getWidth()-50 - 25, rectangleP2.getY() - 20,"Player 2");
+        player2Name = new Text(rectangleP2.getX()+rectangleP2.getWidth()-50 - 25, rectangleP2.getY() - 20,player2.getFighter().name());
         player2Name.setColor(Color.WHITE);
         player2Name.grow(25,10);
         player2Name.draw();

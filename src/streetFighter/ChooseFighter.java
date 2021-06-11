@@ -105,6 +105,11 @@ public class ChooseFighter implements ToDo {
         rect2.delete();
         rect3.delete();
         rect4.delete();
+
+        for (int i = 0; i < getPhotoFrame().length; i++){
+            getPhotoFrame()[i].delete();
+
+        }
     }
 
 
@@ -233,7 +238,7 @@ public class ChooseFighter implements ToDo {
                         break;
 
                     case 4:
-                        fighterP1ready = new Fighter(PlayerType.PLAYER1, Fighters.IGREJA);
+                        fighterP1ready = new Fighter(PlayerType.PLAYER1, Fighters.JEANMARK);
                         break;
                 }
                 if (p1Ready && p2Ready) {
@@ -252,28 +257,31 @@ public class ChooseFighter implements ToDo {
 
                 switch (pressedCharacterP2) {
                     case 1:
-                        fighterP1ready = new Fighter(PlayerType.PLAYER2, Fighters.PAULO);
+                        fighterP2ready = new Fighter(PlayerType.PLAYER2, Fighters.PAULO);
                         break;
 
                     case 2:
-                        fighterP1ready = new Fighter(PlayerType.PLAYER2, Fighters.SARA);
+                        fighterP2ready = new Fighter(PlayerType.PLAYER2, Fighters.SARA);
                         break;
 
                     case 3:
-                        fighterP1ready = new Fighter(PlayerType.PLAYER2, Fighters.PEDRO);
+                        fighterP2ready = new Fighter(PlayerType.PLAYER2, Fighters.PEDRO);
                         break;
 
                     case 4:
-                        fighterP1ready = new Fighter(PlayerType.PLAYER2, Fighters.IGREJA);
+                        fighterP2ready = new Fighter(PlayerType.PLAYER2, Fighters.JEANMARK);
                         break;
                 }
                 if (p1Ready && p2Ready) {
                     deleteAll();
                     arena = new Arena(fighterP1ready, fighterP2ready);
+
                 }
                 break;
         }
-        update();
+        if(!p1Ready || !p2Ready) {
+            update();
+        }
     }
 
     private void update() {

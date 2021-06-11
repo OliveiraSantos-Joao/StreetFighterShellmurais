@@ -8,9 +8,9 @@ public class GameMech {
 
     public void init() {
 
-        while(flag) {
-            System.out.println("mech");
-        }
+//        while(flag) {
+//            System.out.println("mech");
+//        }
 
     }
 

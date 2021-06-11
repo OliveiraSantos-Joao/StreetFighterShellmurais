@@ -1,8 +1,6 @@
 package streetFighter.arena;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import streetFighter.Game;
@@ -14,7 +12,7 @@ import streetFighter.inputs.ToDo;
 
 public class Arena implements ToDo {
 
-    private Picture arenaGraf;
+    private Picture arenaPic;
 
     private Rectangle player1Rec;
     private Rectangle player2Rec;
@@ -46,9 +44,7 @@ public class Arena implements ToDo {
     public void init() {
 
         drawArena();
-        System.out.println("entrou");
-
-        drawPLayers();
+     
 
         gMech.init();
 
@@ -57,18 +53,14 @@ public class Arena implements ToDo {
 
     public void drawArena() {
 
-        arenaGraf = new Picture(Game.PADDING, Game.PADDING, "arena2.png");
-        arenaGraf.draw();
+        arenaPic = new Picture(Game.PADDING, Game.PADDING, "elephantes_1280x720.jpeg");
 
-        hb = new HealthBar(player1.getHealth(), player2.getHealth());
+        arenaPic.draw();
 
-    }
-
-    public void drawPLayers(){
-
-        hb = new HealthBar(player1.getHealth(), player2.getHealth());
+        hb = new HealthBar(player1, player2);
 
     }
+
 
 
     @Override

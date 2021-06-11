@@ -61,8 +61,9 @@ public class Fighter {
 
     public int getPixelMovement() { return pixelMovement; }
 
-
-
+    public Fighters getFighter() {
+        return fighter;
+    }
     // methods
 
     public void jump(){
