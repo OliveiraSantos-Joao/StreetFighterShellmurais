@@ -87,19 +87,13 @@ public class Fighter {
         checkIfDead();
     }
 
-    private boolean checkIfDead(){
+    public boolean checkIfDead(){
         if(health <= 0){
             this.health = 0;
             return true;
         }
         return false;
     }
-
-
-    public void attack(){
-
-    }
-
 
 
 

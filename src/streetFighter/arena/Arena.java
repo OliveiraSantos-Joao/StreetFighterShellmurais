@@ -3,13 +3,14 @@ package streetFighter.arena;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import streetFighter.Game;
+import streetFighter.GameOverScreen;
 import streetFighter.HealthBar;
 import streetFighter.fighters.Fighter;
 import streetFighter.inputs.Inputs;
 import streetFighter.inputs.ToDo;
-
 import java.util.Timer;
 import java.util.TimerTask;
+
 
 
 public class Arena implements ToDo {
@@ -30,6 +31,8 @@ public class Arena implements ToDo {
 
     private int jumpDistance;
 
+
+    private boolean fightOver = false;
 
     private boolean player1Jump = true;
     private boolean player2Jump = true;
@@ -152,7 +155,7 @@ public class Arena implements ToDo {
 
             case KeyboardEvent.KEY_A:
 
-                if (inBoundsLeft(player1) && player1CanAct) {
+                if (inBoundsLeft(player1) && player1CanAct && player1Loop) {
 
 
                         picPlayer1.translate(-player1.getPixelMovement(), 0);
@@ -164,7 +167,7 @@ public class Arena implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_D:
-                if (inBoundsRight(player1) && player1CanAct) {
+                if (inBoundsRight(player1) && player1CanAct && player1Loop) {
                     if (facingInitialPosition()) {
 
                         picPlayer1.translate(player1.getPixelMovement(), 0);
@@ -183,7 +186,7 @@ public class Arena implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_LEFT:
-                if (inBoundsLeft(player2) && player2CanAct) {
+                if (inBoundsLeft(player2) && player2CanAct && player2Loop) {
                     if (facingInitialPosition()) {
 
                         picPlayer2.translate(-player2.getPixelMovement(), 0);
@@ -196,7 +199,7 @@ public class Arena implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_RIGHT:
-                if (inBoundsRight(player2) && player2CanAct) {
+                if (inBoundsRight(player2) && player2CanAct && player2Loop) {
 
                         picPlayer2.translate(player2.getPixelMovement(), 0);
                         picPlayer2Punch.translate(player2.getPixelMovement(), 0);
@@ -207,7 +210,7 @@ public class Arena implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_1:
-                if (player1CanAct ) {
+                if (player1CanAct && player1Loop) {
                     picPlayer1Punch.draw();
                     picPlayer1.delete();
                    // player1PunchCooldown = 1;
@@ -215,7 +218,7 @@ public class Arena implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_SPACE:
-                if (player2CanAct ) {
+                if (player2CanAct && player2Loop) {
                     picPlayer2Punch.draw();
                     picPlayer2.delete();
                     //player2PunchCooldown = 1;
@@ -229,7 +232,7 @@ public class Arena implements ToDo {
     public void actionReleased(int key) {
         switch (key) {
             case KeyboardEvent.KEY_1:
-                if (player1CanAct) {
+                if (player1CanAct && player1Loop) {
                     picPlayer1.draw();
                     picPlayer1Punch.delete();
                     hitInTheFace(player1, player2);
@@ -238,7 +241,7 @@ public class Arena implements ToDo {
 
             case KeyboardEvent.KEY_SPACE:
 
-                if (player2CanAct) {
+                if (player2CanAct&& player2Loop) {
                     picPlayer2.draw();
                     picPlayer2Punch.delete();
                     hitInTheFace(player2, player1);
@@ -289,15 +292,33 @@ public class Arena implements ToDo {
                 }
             }
         }
+
         hb.healthBarDelete();
         hb = new HealthBar(player1, player2);
+        checkIfDead();
     }
 
-    private void deslarga (){
+    private void checkIfDead() {
 
+        if (player1.checkIfDead()) {
+            fightOver = true;
+            System.out.println("player 2 won");
+
+            player1Loop = false;
+            player2Loop = false;
+            new GameOverScreen();
+        }
+
+        if (player2.checkIfDead()) {
+            fightOver = true;
+            System.out.println("Player 1 won");
+
+            player1Loop = false;
+            player2Loop = false;
+            new GameOverScreen();
+        }
 
     }
-
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7
