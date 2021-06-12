@@ -189,7 +189,8 @@ public class Arena implements ToDo {
                         picPlayer2.translate(-player2.getPixelMovement(), 0);
                         picPlayer2Punch.translate(-player2.getPixelMovement(), 0);
                         player2.moveLeft();
-                    };
+                    }
+                    ;
                 }
                 break;
 
@@ -265,20 +266,24 @@ public class Arena implements ToDo {
             if (initialFacingPositions) {
                 if (Math.abs(playerPuncher.getPosX() + playerPuncher.getWidth() - playerPuncherReceiver.getPosX()) < FIGHTER_REACH) {
                     playerPuncherReceiver.hit(playerPuncher.getDamage());
+                    whoKicksback();
                 }
             } else {
                 if (Math.abs(playerPuncherReceiver.getPosX() + playerPuncherReceiver.getWidth() - playerPuncher.getPosX()) < FIGHTER_REACH) {
                     playerPuncherReceiver.hit(playerPuncher.getDamage());
+                    whoKicksback();
                 }
             }
         } else {
             if (initialFacingPositions) {
                 if (Math.abs(playerPuncherReceiver.getPosX() + playerPuncherReceiver.getWidth() - playerPuncher.getPosX()) < FIGHTER_REACH) {
                     playerPuncherReceiver.hit(playerPuncher.getDamage());
+                    whoKicksback();
                 }
             } else {
                 if (Math.abs(playerPuncher.getPosX() + playerPuncher.getWidth() - playerPuncherReceiver.getPosX()) < FIGHTER_REACH) {
                     playerPuncherReceiver.hit(playerPuncher.getDamage());
+                    whoKicksback();
                 }
             }
         }
@@ -365,7 +370,13 @@ public class Arena implements ToDo {
         @Override
         public void run() {
             while (player1Loop) {
-                System.out.println("is pissas");
+
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
                 if (player1Jump) {
                     jump();
                     player1Jump = false;
@@ -398,22 +409,15 @@ public class Arena implements ToDo {
         }
 
         void callKickback() {
-
             for (int i = 0; i < 5; i++) {
-
                 player2Kickback();
-
-
                 try {
                     Thread.sleep(25);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
             }
-
             player2Kickback = false;
-
         }
 
         void callGravity() {
@@ -428,7 +432,14 @@ public class Arena implements ToDo {
         @Override
         public void run() {
             while (player2Loop) {
-                System.out.println("is pissas");
+
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+
                 if (player2Jump) {
                     jump();
                     player2Jump = false;
@@ -497,8 +508,19 @@ public class Arena implements ToDo {
         player2.moveRight();
     }
 
+    public void whoKicksback () {
+        if(player1.getPosX() + player1.getWidth() >= arenaPic.getWidth() / 2)
+        {
+            player1Kickback = true;
+            return;
+        }
 
-    
+        if(player2.getPosX() <= arenaPic.getWidth() / 2)
+        {
+            player2Kickback = true;
+            return;
+        }
 
+    }
 
 }
