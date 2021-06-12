@@ -22,8 +22,15 @@ public class Arena implements ToDo {
     private Picture picPlayer2Punch;
     private int jumpDistance;
     private String arenaName;
+
+
     private boolean player1Jump = true;
     private boolean player2Jump = true;
+
+    private boolean player1Loop = true;
+    private boolean player2Loop = true;
+
+
     private int teste = 0;
     private final int FIGHTER_REACH = 20;
 
@@ -31,6 +38,7 @@ public class Arena implements ToDo {
     public Picture getPicPlayer1() {
         return picPlayer1;
     }
+
     public Picture getPicPlayer2() {
         return picPlayer2;
     }
@@ -98,7 +106,7 @@ public class Arena implements ToDo {
     public void actionPressed(int key) {
         switch (key) {
             case KeyboardEvent.KEY_W:
-                player1Jump = false;
+                player1Jump = true;
                 break;
 
             case KeyboardEvent.KEY_P:
@@ -131,10 +139,10 @@ public class Arena implements ToDo {
                 }
                 break;
 
-                case KeyboardEvent.KEY_UP:
-                    System.out.println("");
-                    player2Jump = false;
-                    break;
+            case KeyboardEvent.KEY_UP:
+                System.out.println("");
+                player2Jump = true;
+                break;
 
             case KeyboardEvent.KEY_LEFT:
                 if (inBoundsLeft(player2)) {
@@ -235,11 +243,11 @@ public class Arena implements ToDo {
         hb.healthBarDelete();
         hb = new HealthBar(player1, player2);
     }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7
 //Threads
     private boolean facingInitialPosition() {
         if (player1.getPosX() + player1.getWidth() - 10 < player2.getPosX()) {
-
             return true;
         }
         return false;
@@ -247,9 +255,9 @@ public class Arena implements ToDo {
 
     Thread player1ThreadJump = new Thread(new Runnable() {
 
-        void jump(){
+        void jump() {
 
-            for (int i = 0; i < 20; i++){
+            for (int i = 0; i < 20; i++) {
 
                 goUp1();
 
@@ -260,9 +268,10 @@ public class Arena implements ToDo {
                 }
             }
 
-            for (int i = 0; i < 20; i++){
+            for (int i = 0; i < 20; i++) {
 
                 goDown1();
+
                 try {
                     Thread.sleep(25);
                 } catch (InterruptedException e) {
@@ -276,29 +285,26 @@ public class Arena implements ToDo {
         @Override
         public void run() {
 
-            while (player1Jump) {
+            while (player1Loop) {
 
                 System.out.println("is pissas");
 
-                if (!player1Jump) {
-
+                if (player1Jump) {
                     jump();
-                    player1Jump = true;
-
+                    player1Jump = false;
                 }
 
             }
 
         }
 
-
     });
 
     Thread player2ThreadJump = new Thread(new Runnable() {
 
-        void jump(){
+        void jump() {
 
-            for (int i = 0; i < 20; i++){
+            for (int i = 0; i < 20; i++) {
 
                 goUp2();
 
@@ -309,9 +315,10 @@ public class Arena implements ToDo {
                 }
             }
 
-            for (int i = 0; i < 20; i++){
+            for (int i = 0; i < 20; i++) {
 
                 goDown2();
+
                 try {
                     Thread.sleep(25);
                 } catch (InterruptedException e) {
@@ -325,16 +332,15 @@ public class Arena implements ToDo {
         @Override
         public void run() {
 
-
-            while (player2Jump) {
+            while (player2Loop) {
 
                 System.out.println("is pissas");
 
-                if (!player2Jump) {
+                if (player2Jump) {
 
                     jump();
 
-                    player2Jump = true;
+                    player2Jump = false;
 
                 }
 
@@ -365,7 +371,6 @@ public class Arena implements ToDo {
         picPlayer2.translate(0, jumpDistance);
         picPlayer2Punch.translate(0, jumpDistance);
     }
-
 
 
 }

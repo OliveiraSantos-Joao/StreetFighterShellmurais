@@ -20,47 +20,58 @@ public class Inputs implements KeyboardHandler {
 
     public static ToDo inputScreen;
 
+    private Keyboard keyboard = new Keyboard(this);
+    private KeyboardEvent upPressed = new KeyboardEvent();
+    private KeyboardEvent downPressed = new KeyboardEvent();
+    private KeyboardEvent rightPressedP1 = new KeyboardEvent();
+    private KeyboardEvent leftPressedP1 = new KeyboardEvent();
+    private KeyboardEvent spacePressed = new KeyboardEvent();
+    private KeyboardEvent rightPressedP2 = new KeyboardEvent();
+    private KeyboardEvent leftPressedP2 = new KeyboardEvent();
+    private KeyboardEvent spacePressedP2 = new KeyboardEvent();
+    private KeyboardEvent pPressed = new KeyboardEvent();
+    private KeyboardEvent onePressed = new KeyboardEvent();
+
 
     public Inputs(){
-        Keyboard keyboard = new Keyboard(this);
 
-        KeyboardEvent upPressed = new KeyboardEvent();
+
         upPressed.setKey(KeyboardEvent.KEY_UP);
         upPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-        KeyboardEvent downPressed = new KeyboardEvent();
+
         downPressed.setKey(KeyboardEvent.KEY_DOWN);
         downPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-        KeyboardEvent rightPressedP1 = new KeyboardEvent();
+
         rightPressedP1.setKey(KeyboardEvent.KEY_RIGHT);
         rightPressedP1.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-        KeyboardEvent leftPressedP1 = new KeyboardEvent();
+
         leftPressedP1.setKey(KeyboardEvent.KEY_LEFT);
         leftPressedP1.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-        KeyboardEvent spacePressed = new KeyboardEvent();
+
         spacePressed.setKey(KeyboardEvent.KEY_SPACE);
         spacePressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-        KeyboardEvent rightPressedP2 = new KeyboardEvent();
+
         rightPressedP2.setKey(KeyboardEvent.KEY_D);
         rightPressedP2.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-        KeyboardEvent leftPressedP2 = new KeyboardEvent();
+
         leftPressedP2.setKey(KeyboardEvent.KEY_A);
         leftPressedP2.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-        KeyboardEvent spacePressedP2 = new KeyboardEvent();
+
         spacePressedP2.setKey(KeyboardEvent.KEY_W);
         spacePressedP2.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-        KeyboardEvent pPressed = new KeyboardEvent();
+
         pPressed.setKey(KeyboardEvent.KEY_P);
         pPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-        KeyboardEvent onePressed = new KeyboardEvent();
+
         onePressed.setKey(KeyboardEvent.KEY_1);
         onePressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
@@ -93,7 +104,8 @@ public class Inputs implements KeyboardHandler {
 
         keyboard.addEventListener(spaceDepressed);
         keyboard.addEventListener(oneDepressed);
-        
+
+
     }
 
 
@@ -111,6 +123,7 @@ public class Inputs implements KeyboardHandler {
     public static void setInputScreen(ToDo inputScreen2) {
         inputScreen = inputScreen2;
     }
+
 
 
     //    InputsTypes inputTypes;
