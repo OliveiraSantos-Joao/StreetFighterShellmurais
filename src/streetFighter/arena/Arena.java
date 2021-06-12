@@ -27,26 +27,19 @@ public class Arena implements ToDo {
     private String arenaName;
     private HealthBar hb;
 
-    private boolean initialFacingPositions = true;
-
-
     private int jumpDistance;
 
-
+    private boolean initialFacingPositions = true;
     private boolean fightOver = false;
-
     private boolean player1Jump = true;
     private boolean player2Jump = true;
-
     private boolean player1Kickback = false;
     private boolean player2Kickback = false;
 
     private boolean player1CanAct = true;
     private boolean player2CanAct = true;
-
     private boolean player1Loop = true;
     private boolean player2Loop = true;
-
     private boolean isGroundedP1 = false;
     private boolean isGroundedP2 = false;
 
@@ -114,7 +107,6 @@ public class Arena implements ToDo {
     public void drawArena() {
         arenaPic = new Picture(Game.PADDING, Game.PADDING, arenaName);
         arenaPic.draw();
-
         hb = new HealthBar(player1, player2);
         drawPlayers();
 
@@ -155,11 +147,13 @@ public class Arena implements ToDo {
 
             case KeyboardEvent.KEY_A:
 
+
                 if (inBoundsLeft(player1) && player1CanAct && player1Loop && player1MoveCooldown == 0) {
                     picPlayer1.translate(-player1.getPixelMovement(), 0);
                     picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
                     player1.moveLeft();
                     player1MoveCooldown = 1;
+
                 }
                 break;
 
@@ -187,9 +181,10 @@ public class Arena implements ToDo {
                         picPlayer2.translate(-player2.getPixelMovement(), 0);
                         picPlayer2Punch.translate(-player2.getPixelMovement(), 0);
                         player2.moveLeft();
+
                         player2MoveCooldown = 1;
                     }
-                    ;
+
                 }
                 break;
 
@@ -247,7 +242,14 @@ public class Arena implements ToDo {
     }
 
 ///////////////////// Metodos
-
+    public void deleteAll(){
+        arenaPic.delete();
+        picPlayer1.delete();
+        picPlayer2.delete();
+        picPlayer1Punch.delete();
+        picPlayer2Punch.delete();
+        hb.healthBarDelete();
+    }
 
     private boolean inBoundsRight(Fighter player) {
         if ((player.getPosX() + player.getWidth() > arenaPic.getX() + arenaPic.getWidth() - (Game.BORDER + player.getWidth()))) {
@@ -307,7 +309,7 @@ public class Arena implements ToDo {
 
             player1Loop = false;
             player2Loop = false;
-            new GameOverScreen();
+            new GameOverScreen(2,this);
         }
 
         if (player2.checkIfDead()) {
@@ -316,7 +318,7 @@ public class Arena implements ToDo {
 
             player1Loop = false;
             player2Loop = false;
-            new GameOverScreen();
+            new GameOverScreen(1,this);
         }
 
     }
@@ -528,5 +530,9 @@ public class Arena implements ToDo {
         }
 
     }
+
+
+
+
 
 }
