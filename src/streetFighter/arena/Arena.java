@@ -1,6 +1,5 @@
 package streetFighter.arena;
 
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import streetFighter.Game;
@@ -12,34 +11,26 @@ import streetFighter.inputs.ToDo;
 
 public class Arena implements ToDo {
     private Picture arenaPic;
-
-
     private Fighter player1;
     private Fighter player2;
-
     private boolean initialFacingPositions = true;
-
-
     private HealthBar hb;
-
     private GameMech gMech;
-
     private Picture picPlayer1;
     private Picture picPlayer2;
     private Picture picPlayer1Punch;
     private Picture picPlayer2Punch;
-
+    private int jumpDistance;
     private String arenaName;
-
-
-
+    private boolean player1Jump = true;
+    private boolean player2Jump = true;
+    private int teste = 0;
     private final int FIGHTER_REACH = 20;
 
     // Getters e Setters
     public Picture getPicPlayer1() {
         return picPlayer1;
     }
-
     public Picture getPicPlayer2() {
         return picPlayer2;
     }
@@ -57,10 +48,14 @@ public class Arena implements ToDo {
         this.player1 = player1;
         this.player2 = player2;
 
+        this.jumpDistance = 15;
+
         this.gMech = gMech;
 
         init();
 
+        player1ThreadJump.start();
+        player2ThreadJump.start();
     }
 
 
@@ -94,12 +89,17 @@ public class Arena implements ToDo {
 
         picPlayer1.draw();
         picPlayer2.draw();
+
     }
 
 
     @Override
     public void actionPressed(int key) {
         switch (key) {
+            case KeyboardEvent.KEY_W:
+                player1Jump = false;
+                break;
+
             case KeyboardEvent.KEY_P:
                 if (gMech.isPaused()) {
                     gMech.setPausedFalse();
@@ -107,17 +107,15 @@ public class Arena implements ToDo {
                     gMech.setPausedTrue();
                     gMech.init();
                 }
-                break;
+
             case KeyboardEvent.KEY_A:
 
-                if (inBoundsLeft(player1) ) {
-                    if(facingInitialPosition()) {
+                if (inBoundsLeft(player1)) {
+                    if (facingInitialPosition()) {
                         picPlayer1.translate(-player1.getPixelMovement(), 0);
                         picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
                         player1.moveLeft();
                     }
-
-
                 }
                 break;
 
@@ -132,9 +130,14 @@ public class Arena implements ToDo {
                 }
                 break;
 
+                case KeyboardEvent.KEY_UP:
+                    System.out.println("");
+                    player2Jump = false;
+                    break;
+
             case KeyboardEvent.KEY_LEFT:
-                if (inBoundsLeft(player2) ) {
-                    if(facingInitialPosition()) {
+                if (inBoundsLeft(player2)) {
+                    if (facingInitialPosition()) {
 
                         picPlayer2.translate(-player2.getPixelMovement(), 0);
                         picPlayer2Punch.translate(-player2.getPixelMovement(), 0);
@@ -145,7 +148,7 @@ public class Arena implements ToDo {
 
             case KeyboardEvent.KEY_RIGHT:
                 if (inBoundsRight(player2)) {
-                    if(facingInitialPosition()) {
+                    if (facingInitialPosition()) {
                         picPlayer2.translate(player2.getPixelMovement(), 0);
                         picPlayer2Punch.translate(player2.getPixelMovement(), 0);
                         player2.moveRight();
@@ -176,6 +179,7 @@ public class Arena implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_SPACE:
+
                 picPlayer2.draw();
                 picPlayer2Punch.delete();
                 hitInTheFace(player2, player1);
@@ -230,15 +234,139 @@ public class Arena implements ToDo {
         hb.healthBarDelete();
         hb = new HealthBar(player1, player2);
     }
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7
+//Threads
     private boolean facingInitialPosition() {
-        if (player1.getPosX() + player1.getWidth() - 10< player2.getPosX()) {
+        if (player1.getPosX() + player1.getWidth() - 10 < player2.getPosX()) {
 
             return true;
         }
         return false;
     }
+
+    Thread player1ThreadJump = new Thread(new Runnable() {
+
+        void jump(){
+
+            for (int i = 0; i < 20; i++){
+
+                goUp1();
+
+                try {
+                    Thread.sleep(25);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            for (int i = 0; i < 20; i++){
+
+                goDown1();
+                try {
+                    Thread.sleep(25);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        }
+
+        @Override
+        public void run() {
+
+            while (player1Jump) {
+
+                System.out.println("is pissas");
+
+                if (!player1Jump) {
+
+                    jump();
+                    player1Jump = true;
+
+                }
+
+            }
+
+        }
+
+
+    });
+
+    Thread player2ThreadJump = new Thread(new Runnable() {
+
+        void jump(){
+
+            for (int i = 0; i < 20; i++){
+
+                goUp2();
+
+                try {
+                    Thread.sleep(25);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            for (int i = 0; i < 20; i++){
+
+                goDown2();
+                try {
+                    Thread.sleep(25);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        }
+
+        @Override
+        public void run() {
+
+
+            while (player2Jump) {
+
+                System.out.println("is pissas");
+
+                if (!player2Jump) {
+
+                    jump();
+
+                    player2Jump = true;
+
+                }
+
+            }
+
+        }
+
+
+    });
+
+
+    public void goUp1() {
+        picPlayer1.translate(0, -jumpDistance);
+        picPlayer1Punch.translate(0, -jumpDistance);
+    }
+
+    public void goDown1() {
+        picPlayer1.translate(0, jumpDistance);
+        picPlayer1Punch.translate(0, jumpDistance);
+    }
+
+    public void goUp2() {
+        picPlayer2.translate(0, -jumpDistance);
+        picPlayer2Punch.translate(0, -jumpDistance);
+    }
+
+    public void goDown2() {
+        picPlayer2.translate(0, jumpDistance);
+        picPlayer2Punch.translate(0, jumpDistance);
+    }
+
+
+
 }
 
 //    private void initialFacedPositions() {
