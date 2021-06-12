@@ -50,7 +50,9 @@ public class ChooseArena implements ToDo {
         Inputs.setInputScreen(this);
         this.player1 = player1;
         this.player2 = player2;
-        arenaColumns = (Game.WIDTH / (maxArena +2)) +25;
+
+
+        arenaColumns = (Game.WIDTH / (maxArena + 3));
         arenaRows = (int) (Game.HEIGHT * 0.8);
 
         arenaBackground = new Picture(Game.PADDING, Game.PADDING, "Resources/arena1.png");
@@ -69,7 +71,7 @@ public class ChooseArena implements ToDo {
     public void createArena() {
 
 
-        arena1 = new Picture(arenaColumns * 2 , arenaRows, "Resources/arena1Resized.png");
+        arena1 = new Picture((arenaColumns * 2 ) + Game.PADDING, arenaRows, "Resources/arena1Resized.png");
         arena1.draw();
 
         arena2 = new Picture(arena1.getX() + arena1.getWidth()  + distanceToNextArena, arenaRows, "Resources/arena2Resized.png");
@@ -126,7 +128,7 @@ public class ChooseArena implements ToDo {
 
     @Override
     public void actionPressed(int key) {
-        update();
+
         switch (key) {
             case KeyboardEvent.KEY_RIGHT:
                 switch (pressedArena) {
@@ -183,6 +185,7 @@ public class ChooseArena implements ToDo {
                 }
 
         }
+        update();
 
     }
 
