@@ -6,8 +6,6 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import streetFighter.arena.Arena;
 import streetFighter.fighters.Fighter;
-import streetFighter.fighters.Fighters;
-import streetFighter.fighters.PlayerType;
 import streetFighter.inputs.Inputs;
 import streetFighter.inputs.ToDo;
 
@@ -20,18 +18,24 @@ public class ChooseArena implements ToDo {
     private Picture arena3;
     private Picture arena4;
 
-    private Picture mainMenu;
+    private Picture arenaBackground;
 
     Rectangle rect1;
     Rectangle rect2;
     Rectangle rect3;
     Rectangle rect4;
 
+    private int arenaColumns;
+    private int arenaRows;
+    private final int distanceToNextArena = 20;
+
+    private String[] arenaNames={"Resources/arena1.png",  "Resources/arena2.png", "Resources/arena3.png", "Resources/elephantes_1280x720.jpeg"};
+
     private int maxArena = 4;
 
     private int pressedArena = 1;
 
-    private boolean fightersReady = false;
+
 
     private Arena arena;
 
@@ -47,6 +51,13 @@ public class ChooseArena implements ToDo {
         this.player1 = player1;
         this.player2 = player2;
 
+
+        arenaColumns = (Game.WIDTH / (maxArena + 3));
+        arenaRows = (int) (Game.HEIGHT * 0.8);
+
+        arenaBackground = new Picture(Game.PADDING, Game.PADDING, "Resources/arena1.png");
+        arenaBackground.draw();
+
         createArena();
 
 
@@ -59,34 +70,37 @@ public class ChooseArena implements ToDo {
 
     public void createArena() {
 
-        mainMenu = new Picture(Game.PADDING, Game.PADDING, "BlackBackground2.png");
-        mainMenu.draw();
 
-        arena1 = new Picture(mainMenu.getWidth() / 2, mainMenu.getHeight() * 0.6, "Resources/arena1Resized.png");
+        arena1 = new Picture((arenaColumns * 2 ) + Game.PADDING, arenaRows, "Resources/arena1Resized.png");
         arena1.draw();
 
-        arena2 = new Picture(arena1.getX() - arena1.getWidth() - 20, arena1.getY(), "Resources/arena2Resized.png");
+        arena2 = new Picture(arena1.getX() + arena1.getWidth()  + distanceToNextArena, arenaRows, "Resources/arena2Resized.png");
         arena2.draw();
 
-        arena3 = new Picture(arena2.getX() - arena2.getWidth() - 20, arena2.getY(), "Resources/arena3Resized.png");
+        arena3 = new Picture(arena2.getX() + arena2.getWidth() + distanceToNextArena, arenaRows, "Resources/arena3Resized.png");
         arena3.draw();
 
-        arena4 = new Picture((arena3.getX()) - arena3.getWidth() - 20, arena1.getY(), "Resources/elephantes_1280x720Resized.jpeg");
+        arena4 = new Picture(arena3.getX() + arena3.getWidth() + distanceToNextArena, arenaRows, "Resources/elephantes_1280x720Resized.jpeg");
         arena4.draw();
 
         rect1 = new Rectangle(arena1.getX(), arena1.getY(), arena1.getWidth(), arena1.getHeight());
         rect1.setColor(Color.WHITE);
-        rect1.draw();
-        photoFrame[3] = rect1;
+        if(pressedArena==1){
+            rect1.draw();
+        }
+
+
+        photoFrame[0] = rect1;
 
         rect2 = new Rectangle(arena2.getX(), arena2.getY(), arena2.getWidth(), arena2.getHeight());
-        photoFrame[2] = rect2;
+        photoFrame[1] = rect2;
 
         rect3 = new Rectangle(arena3.getX(), arena3.getY(), arena3.getWidth(), arena3.getHeight());
-        photoFrame[1] = rect3;
+        photoFrame[2] = rect3;
 
         rect4 = new Rectangle(arena4.getX(), arena4.getY(), arena4.getWidth(), arena4.getHeight());
-        photoFrame[0] = rect4;
+        photoFrame[3] = rect4;
+
 
     }
 
@@ -99,7 +113,7 @@ public class ChooseArena implements ToDo {
         arena2.delete();
         arena3.delete();
         arena4.delete();
-        mainMenu.delete();
+        arenaBackground.delete();
 
         rect1.delete();
         rect2.delete();
@@ -114,7 +128,7 @@ public class ChooseArena implements ToDo {
 
     @Override
     public void actionPressed(int key) {
-        update();
+
         switch (key) {
             case KeyboardEvent.KEY_RIGHT:
                 switch (pressedArena) {
@@ -122,11 +136,13 @@ public class ChooseArena implements ToDo {
                         //getPhotoFrame()[pressedArena].delete();
                         pressedArena = 1;
                         //getPhotoFrame()[pressedArena].draw();
+                        update();
                         break;
                     default:
                         //getPhotoFrame()[pressedArena].delete();
                         pressedArena++;
                         // getPhotoFrame()[pressedArena].draw();
+                        update();
                         break;
                 }
                 break;
@@ -138,11 +154,13 @@ public class ChooseArena implements ToDo {
                         //getPhotoFrame()[pressedArena].delete();
                         pressedArena = getMaxChampions();//para voltar ao ultimo
                         //getPhotoFrame()[pressedArena].draw();
+                        update();
                         break;
                     default:
                         //getPhotoFrame()[pressedArena].delete();
                         pressedArena--;
                         //getPhotoFrame()[pressedArena].draw();
+                        update();
                         break;
                 }
                 break;
@@ -172,6 +190,8 @@ public class ChooseArena implements ToDo {
 
         }
 
+
+
     }
 
     @Override
@@ -185,8 +205,16 @@ public class ChooseArena implements ToDo {
           //  System.out.println(getPhotoFrame()[i]);
 
             if (pressedArena == i +1) {
+                deleteAll();
+
+                arenaBackground.delete();
+                arenaBackground = new Picture(Game.PADDING, Game.PADDING, arenaNames[i]);
+                arenaBackground.draw();
+                createArena();
                 getPhotoFrame()[i].setColor(Color.WHITE);
                 getPhotoFrame()[i].draw();
+
+
                 continue;
             }
             getPhotoFrame()[i].delete();

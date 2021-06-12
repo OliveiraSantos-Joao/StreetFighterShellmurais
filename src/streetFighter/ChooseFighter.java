@@ -20,6 +20,14 @@ public class ChooseFighter implements ToDo {
     private Picture pauloPic;
     private Picture pedroPic;
     private Picture fighter1Pic;
+    private Picture saraBigPicRight;
+    private Picture pauloBigPicRight;
+    private Picture pedroBigPicRight;
+    private Picture fighter1BigPicRight;
+    private Picture saraBigPicLeft;
+    private Picture pauloBigPicLeft;
+    private Picture pedroBigPicLeft;
+    private Picture fighter1BigPicLeft;
 
     private Picture mainMenu;
 
@@ -38,53 +46,113 @@ public class ChooseFighter implements ToDo {
     private Fighter fighterP1ready;
     private Fighter fighterP2ready;
 
-    private Rectangle[] photoFrame = new Rectangle[maxchampions];
+    private int championColumns;
+    private int championRow;
+    private final int distanceToNextChamp = 20;
+    private final int RECT_X_START = 5;
+    private final int RECT_Y_START = RECT_X_START*2;
 
+
+
+    private Rectangle[] photoFrame = new Rectangle[maxchampions];
+    private Picture[] championFrame = new Picture[maxchampions];
+    private Picture[] bigChampSelectFrameRight = new Picture[maxchampions];
+    private Picture[] bigChampSelectFrameLeft = new Picture[maxchampions];
 
     public ChooseFighter() {
         Inputs.setInputScreen(this);
+
         createFighters();
-
-
     }
-
 
     public Rectangle[] getPhotoFrame() {
         return photoFrame;
     }
 
+    public Picture[] getChampionFrame() {
+        return championFrame;
+    }
+
+    public Picture[] getBigChampSelectFrameRight() {
+        return bigChampSelectFrameRight;
+    }
+
+    public Picture[] getBigChampSelectFrameLeft() {
+        return bigChampSelectFrameLeft;
+    }
+
     public void createFighters() {
 
-        mainMenu = new Picture(Game.PADDING, Game.PADDING, "BlackBackground2.png");
+        mainMenu = new Picture(Game.PADDING, Game.PADDING, "elephantes_1280x720.jpeg");
         mainMenu.draw();
 
-        saraPic = new Picture(mainMenu.getWidth() / 2, mainMenu.getHeight() * 0.6, "sara.png");
-        saraPic.draw();
+        championColumns = (mainMenu.getWidth() / (maxchampions + 2)) + 25;
+        championRow = (int) (mainMenu.getHeight() * 0.8);
 
-        pauloPic = new Picture(saraPic.getX() - saraPic.getWidth() - 20, saraPic.getY(), "paulo2_72x72.jpeg");
+
+        saraPic = new Picture(championColumns * 2, championRow, "SaraIcon.png");
+        championFrame[0] = saraPic;
+
+        pauloPic = new Picture(saraPic.getX() + saraPic.getWidth() + distanceToNextChamp, championRow, "PauloIcon.png");
         pauloPic.draw();
+        championFrame[1] = pauloPic;
 
-        pedroPic = new Picture(pauloPic.getX() - pauloPic.getWidth() - 20, pauloPic.getY(), "paulo2_72x72.jpeg");
+        pedroPic = new Picture(pauloPic.getX() + pauloPic.getWidth() + distanceToNextChamp, championRow, "PedroIcon.jpeg");
         pedroPic.draw();
+        championFrame[2] = pedroPic;
 
-        fighter1Pic = new Picture((pedroPic.getX()) - pedroPic.getWidth() - 20, pauloPic.getY(), "sara.png");
+        fighter1Pic = new Picture(pedroPic.getX() + pedroPic.getWidth() + distanceToNextChamp, championRow, "IgrejaIcon.jpeg");
+
+        championFrame[3] = fighter1Pic;
+
+        rect1 = new Rectangle(saraPic.getX() - RECT_X_START, saraPic.getY() - RECT_X_START, saraPic.getWidth() + RECT_Y_START, pauloPic.getHeight() + RECT_Y_START);
+        rect1.setColor(Color.BLUE);
+        rect1.fill();
+        photoFrame[0] = rect1;
+
+        rect2 = new Rectangle(pauloPic.getX() - RECT_X_START, pauloPic.getY() - RECT_X_START, pauloPic.getWidth() + RECT_Y_START, pauloPic.getHeight() + RECT_Y_START);
+        photoFrame[1] = rect2;
+
+        rect3 = new Rectangle(pedroPic.getX() - RECT_X_START, pedroPic.getY() - RECT_X_START, pedroPic.getWidth() + RECT_Y_START, pedroPic.getHeight() + RECT_Y_START);
+        photoFrame[2] = rect3;
+
+        rect4 = new Rectangle(fighter1Pic.getX() - RECT_X_START, fighter1Pic.getY() - RECT_X_START, fighter1Pic.getWidth() + RECT_Y_START, fighter1Pic.getHeight() + RECT_Y_START);
+        rect4.setColor(Color.RED);
+        rect4.fill();
+        photoFrame[3] = rect4;
+
+        saraPic.draw();
         fighter1Pic.draw();
 
-        rect1 = new Rectangle(saraPic.getX(), saraPic.getY(), saraPic.getWidth(), pauloPic.getHeight());
-        rect1.setColor(Color.BLUE);
-        rect1.draw();
-        photoFrame[3] = rect1;
 
-        rect2 = new Rectangle(pauloPic.getX(), pauloPic.getY(), pauloPic.getWidth(), pauloPic.getHeight());
-        photoFrame[2] = rect2;
+        // BIG PICS RIGHT
+        saraBigPicRight = new Picture(200, 83, "SaraBig.png");
+        bigChampSelectFrameRight[0] = saraBigPicRight;
+        saraBigPicRight.draw();
 
-        rect3 = new Rectangle(pedroPic.getX(), pedroPic.getY(), pedroPic.getWidth(), pedroPic.getHeight());
-        photoFrame[1] = rect3;
+        pauloBigPicRight = new Picture(200, 83, "PauloBig.png");
+        bigChampSelectFrameRight[1] = pauloBigPicRight;
 
-        rect4 = new Rectangle(fighter1Pic.getX(), fighter1Pic.getY(), fighter1Pic.getWidth(), fighter1Pic.getHeight());
-        rect4.setColor(Color.RED);
-        rect4.draw();
-        photoFrame[0] = rect4;
+        pedroBigPicRight = new Picture(200, 83, "PedroBig.jpeg");
+        bigChampSelectFrameRight[2] = pedroBigPicRight;
+
+        fighter1BigPicRight = new Picture(200, 83, "IgrejaBig.jpeg");
+        bigChampSelectFrameRight[3] = fighter1BigPicRight;
+
+// BIG PICS RIGHT
+        saraBigPicLeft = new Picture(670, 83, "SaraBig.png");
+        bigChampSelectFrameLeft[0] = saraBigPicLeft;
+
+        pauloBigPicLeft = new Picture(670, 83, "PauloBig.png");
+        bigChampSelectFrameLeft[1] = pauloBigPicLeft;
+
+        pedroBigPicLeft = new Picture(670, 83, "PedroBig.jpeg");
+        bigChampSelectFrameLeft[2] = pedroBigPicLeft;
+
+        fighter1BigPicLeft = new Picture(670, 83, "IgrejaBig.jpeg");
+        bigChampSelectFrameLeft[3] = fighter1BigPicLeft;
+
+        fighter1BigPicLeft.draw();
 
     }
 
@@ -92,7 +160,7 @@ public class ChooseFighter implements ToDo {
         return maxchampions;
     }
 
-    public void deleteAll(){
+    public void deleteAll() {
         saraPic.delete();
         pauloPic.delete();
         pedroPic.delete();
@@ -104,9 +172,21 @@ public class ChooseFighter implements ToDo {
         rect3.delete();
         rect4.delete();
 
-        for (int i = 0; i < getPhotoFrame().length; i++){
-            getPhotoFrame()[i].delete();
+        saraBigPicRight.delete();
+        pauloBigPicRight.delete();
+        pedroBigPicRight.delete();
+        fighter1BigPicRight.delete();
+        saraBigPicLeft.delete();
+        pauloBigPicLeft.delete();
+        pedroBigPicLeft.delete();
+        fighter1BigPicLeft.delete();
 
+
+        for (int i = 0; i < getPhotoFrame().length; i++) {
+            getPhotoFrame()[i].delete();
+            getChampionFrame()[i].delete();
+            getBigChampSelectFrameLeft()[i].delete();
+            getBigChampSelectFrameRight()[i].delete();
         }
     }
 
@@ -277,7 +357,7 @@ public class ChooseFighter implements ToDo {
                 }
                 break;
         }
-        if(!p1Ready || !p2Ready) {
+        if (!p1Ready || !p2Ready) {
             update();
         }
     }
@@ -292,23 +372,41 @@ public class ChooseFighter implements ToDo {
         for (int i = 0; i < getPhotoFrame().length; i++) {
             if (pressedCharacterP1 == i + 1 && pressedCharacterP2 == i + 1) {
                 getPhotoFrame()[i].setColor(Color.WHITE);
-                getPhotoFrame()[i].draw();
+                getPhotoFrame()[i].fill();
+                getChampionFrame()[i].delete();
+                getChampionFrame()[i].draw();
+
+                getBigChampSelectFrameLeft()[i].delete();
+                getBigChampSelectFrameRight()[i].delete();
+                getBigChampSelectFrameRight()[i].draw();
+                getBigChampSelectFrameLeft()[i].draw();
                 continue;
             }
 
             if (pressedCharacterP1 == i + 1) {
                 getPhotoFrame()[i].setColor(Color.RED);
-                getPhotoFrame()[i].draw();
+                getPhotoFrame()[i].fill();
+                getChampionFrame()[i].delete();
+                getChampionFrame()[i].draw();
+                getBigChampSelectFrameRight()[i].delete();
+                getBigChampSelectFrameRight()[i].draw();
+
                 continue;
             }
 
             if (pressedCharacterP2 == i + 1) {
                 getPhotoFrame()[i].setColor(Color.BLUE);
-                getPhotoFrame()[i].draw();
+                getPhotoFrame()[i].fill();
+                getChampionFrame()[i].delete();
+                getChampionFrame()[i].draw();
+                getBigChampSelectFrameLeft()[i].delete();
+                getBigChampSelectFrameLeft()[i].draw();
                 continue;
             }
-
             getPhotoFrame()[i].delete();
+            getBigChampSelectFrameRight()[i].delete();
+            getBigChampSelectFrameLeft()[i].delete();
+
 
         }
 
