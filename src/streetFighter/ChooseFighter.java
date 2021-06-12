@@ -38,11 +38,17 @@ public class ChooseFighter implements ToDo {
     private Fighter fighterP1ready;
     private Fighter fighterP2ready;
 
+    private int championColumns;
+    private int championRow;
+    private final int distanceToNextChamp = 20;
+
     private Rectangle[] photoFrame = new Rectangle[maxchampions];
 
 
     public ChooseFighter() {
         Inputs.setInputScreen(this);
+
+
         createFighters();
 
 
@@ -55,19 +61,22 @@ public class ChooseFighter implements ToDo {
 
     public void createFighters() {
 
-        mainMenu = new Picture(Game.PADDING, Game.PADDING, "BlackBackground2.png");
+        mainMenu = new Picture(Game.PADDING, Game.PADDING, "elephantes_1280x720.jpeg");
         mainMenu.draw();
 
-        saraPic = new Picture(mainMenu.getWidth() / 2, mainMenu.getHeight() * 0.6, "sara.png");
+        championColumns = (mainMenu.getWidth()/(maxchampions+2)) + 25;
+        championRow = (int) (mainMenu.getHeight() * 0.8);
+
+        saraPic = new Picture(championColumns * 2, championRow, "sara.png");
         saraPic.draw();
 
-        pauloPic = new Picture(saraPic.getX() - saraPic.getWidth() - 20, saraPic.getY(), "paulo2_72x72.jpeg");
+        pauloPic = new Picture(saraPic.getX() + saraPic.getWidth() + distanceToNextChamp, championRow, "paulo2_72x72.jpeg");
         pauloPic.draw();
 
-        pedroPic = new Picture(pauloPic.getX() - pauloPic.getWidth() - 20, pauloPic.getY(), "paulo2_72x72.jpeg");
+        pedroPic = new Picture(pauloPic.getX() + pauloPic.getWidth() + distanceToNextChamp, championRow, "paulo2_72x72.jpeg");
         pedroPic.draw();
 
-        fighter1Pic = new Picture((pedroPic.getX()) - pedroPic.getWidth() - 20, pauloPic.getY(), "sara.png");
+        fighter1Pic = new Picture(pedroPic.getX() + pedroPic.getWidth() + distanceToNextChamp, championRow, "sara.png");
         fighter1Pic.draw();
 
         rect1 = new Rectangle(saraPic.getX(), saraPic.getY(), saraPic.getWidth(), pauloPic.getHeight());
