@@ -355,22 +355,15 @@ public class Arena implements ToDo {
 
         @Override
         public void run() {
-
             while (player1Loop) {
-
                 System.out.println("is pissas");
-
                 if (player1Jump) {
                     jump();
                     player1Jump = false;
                 }
-
                 callGravity();
-
             }
-
         }
-
     });
 
     Thread player2ThreadJump = new Thread(new Runnable() {
@@ -389,6 +382,12 @@ public class Arena implements ToDo {
             }
         }
 
+        void kickback() {
+
+
+
+        }
+
         void callGravity() {
                 player2Gravity();
                 try {
@@ -402,6 +401,11 @@ public class Arena implements ToDo {
         public void run() {
             while (player2Loop) {
                 System.out.println("is pissas");
+                if (player2Jump) {
+                    jump();
+                    player2Jump = false;
+                }
+
                 if (player2Jump) {
                     jump();
                     player2Jump = false;
