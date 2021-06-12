@@ -9,26 +9,50 @@ import streetFighter.fighters.Fighter;
 import streetFighter.inputs.Inputs;
 import streetFighter.inputs.ToDo;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
+
 public class Arena implements ToDo {
+
     private Picture arenaPic;
     private Fighter player1;
     private Fighter player2;
+
     private boolean initialFacingPositions = true;
     private HealthBar hb;
     private GameMech gMech;
+
     private Picture picPlayer1;
     private Picture picPlayer2;
     private Picture picPlayer1Punch;
     private Picture picPlayer2Punch;
+
     private int jumpDistance;
     private String arenaName;
-
 
     private boolean player1Jump = true;
     private boolean player2Jump = true;
 
+    private boolean player1CanPunch = true;
+    private boolean player2CanPunch = true;
+
     private boolean player1Loop = true;
     private boolean player2Loop = true;
+
+    private int player1PunchCooldown = 1;
+    private int player2PunchCooldown = 1;
+
+    private int secondsPassed = 0;
+    private Timer timer = new Timer();
+    private TimerTask task = new TimerTask() {
+        @Override
+        public void run() {
+            secondsPassed++;
+            if (player1PunchCooldown > 0) { player1PunchCooldown--; }
+            if (player2PunchCooldown > 0) { player2PunchCooldown--; }
+        }
+    };
 
 
     private int teste = 0;
@@ -58,18 +82,16 @@ public class Arena implements ToDo {
 
         this.jumpDistance = 15;
 
-        this.gMech = gMech;
-
+        timer.schedule(task, 1000, 1000);
         init();
 
         player1ThreadJump.start();
         player2ThreadJump.start();
-    }
 
+    }
 
     public void init() {
         drawArena();
-        gMech.init();
     }
 
 
@@ -110,12 +132,7 @@ public class Arena implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_P:
-                if (gMech.isPaused()) {
-                    gMech.setPausedFalse();
-                } else {
-                    gMech.setPausedTrue();
-                    gMech.init();
-                }
+                break;
 
             case KeyboardEvent.KEY_A:
 
@@ -135,12 +152,12 @@ public class Arena implements ToDo {
                         picPlayer1.translate(player1.getPixelMovement(), 0);
                         picPlayer1Punch.translate(player1.getPixelMovement(), 0);
                         player1.moveRight();
+
                     }
                 }
                 break;
 
             case KeyboardEvent.KEY_UP:
-                System.out.println("");
                 player2Jump = true;
                 break;
 
@@ -166,13 +183,19 @@ public class Arena implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_1:
-                picPlayer1Punch.draw();
-                picPlayer1.delete();
+                if (player1CanPunch && player1PunchCooldown == 0) {
+                    picPlayer1Punch.draw();
+                    picPlayer1.delete();
+                    player1PunchCooldown = 1;
+                }
                 break;
 
             case KeyboardEvent.KEY_SPACE:
-                picPlayer2Punch.draw();
-                picPlayer2.delete();
+                if (player2CanPunch && player2PunchCooldown == 0 ) {
+                    picPlayer2Punch.draw();
+                    picPlayer2.delete();
+                    player2PunchCooldown = 1;
+                }
                 break;
         }
     }
@@ -181,18 +204,20 @@ public class Arena implements ToDo {
     public void actionReleased(int key) {
         switch (key) {
             case KeyboardEvent.KEY_1:
-                picPlayer1.draw();
-                picPlayer1Punch.delete();
-                hitInTheFace(player1, player2);
-
+                if (player1CanPunch) {
+                    picPlayer1.draw();
+                    picPlayer1Punch.delete();
+                    hitInTheFace(player1, player2);
+                }
                 break;
 
             case KeyboardEvent.KEY_SPACE:
 
-                picPlayer2.draw();
-                picPlayer2Punch.delete();
-                hitInTheFace(player2, player1);
-
+                if (player2CanPunch) {
+                    picPlayer2.draw();
+                    picPlayer2Punch.delete();
+                    hitInTheFace(player2, player1);
+                }
                 break;
         }
     }
@@ -339,12 +364,11 @@ public class Arena implements ToDo {
 
                 if (player2Jump) {
 
-
                     jump();
                     player2Jump = false;
 
                 }
-                
+
             }
 
         }
@@ -354,23 +378,31 @@ public class Arena implements ToDo {
 
 
     public void goUp1() {
+        player1CanPunch = false;
         picPlayer1.translate(0, -jumpDistance);
         picPlayer1Punch.translate(0, -jumpDistance);
+        player1CanPunch = true;
     }
 
     public void goDown1() {
+        player1CanPunch = false;
         picPlayer1.translate(0, jumpDistance);
         picPlayer1Punch.translate(0, jumpDistance);
+        player1CanPunch = true;
     }
 
     public void goUp2() {
+        player2CanPunch = false;
         picPlayer2.translate(0, -jumpDistance);
         picPlayer2Punch.translate(0, -jumpDistance);
+        player2CanPunch = true;
     }
 
     public void goDown2() {
+        player2CanPunch = false;
         picPlayer2.translate(0, jumpDistance);
         picPlayer2Punch.translate(0, jumpDistance);
+        player2CanPunch = true;
     }
 
 }
