@@ -8,9 +8,9 @@ import streetFighter.HealthBar;
 import streetFighter.fighters.Fighter;
 import streetFighter.inputs.Inputs;
 import streetFighter.inputs.ToDo;
+
 import java.util.Timer;
 import java.util.TimerTask;
-
 
 
 public class Arena implements ToDo {
@@ -37,13 +37,15 @@ public class Arena implements ToDo {
     private boolean player1Jump = true;
     private boolean player2Jump = true;
 
+    private boolean player1Kickback = false;
+    private boolean player2Kickback = false;
+
     private boolean player1CanAct = true;
     private boolean player2CanAct = true;
 
     private boolean player1Loop = true;
     private boolean player2Loop = true;
 
-    private int ground;
     private boolean isGroundedP1 = false;
     private boolean isGroundedP2 = false;
 
@@ -84,6 +86,7 @@ public class Arena implements ToDo {
     public Picture getPicPlayer1() {
         return picPlayer1;
     }
+
     public Picture getPicPlayer2() {
         return picPlayer2;
     }
@@ -117,7 +120,6 @@ public class Arena implements ToDo {
         hb = new HealthBar(player1, player2);
         drawPlayers();
 
-        ground = arenaPic.getHeight()-50;
     }
 
     public void drawPlayers() {
@@ -139,30 +141,26 @@ public class Arena implements ToDo {
 
     }
 
-////////////////Keys action PRESSED
+    ////////////////Keys action PRESSED
     @Override
     public void actionPressed(int key) {
         switch (key) {
             case KeyboardEvent.KEY_W:
                 if (isGroundedP1) {
                     player1Jump = true;
-                   // player1JumpCooldown = 1;
+                    // player1JumpCooldown = 1;
                 }
                 break;
 
             //case KeyboardEvent.KEY_P:
-             //   break;
+            //   break;
 
             case KeyboardEvent.KEY_A:
 
                 if (inBoundsLeft(player1) && player1CanAct && player1Loop) {
-
-
-                        picPlayer1.translate(-player1.getPixelMovement(), 0);
-                        picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
-
-                        player1.moveLeft();
-
+                    picPlayer1.translate(-player1.getPixelMovement(), 0);
+                    picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
+                    player1.moveLeft();
                 }
                 break;
 
@@ -188,24 +186,18 @@ public class Arena implements ToDo {
             case KeyboardEvent.KEY_LEFT:
                 if (inBoundsLeft(player2) && player2CanAct && player2Loop) {
                     if (facingInitialPosition()) {
-
                         picPlayer2.translate(-player2.getPixelMovement(), 0);
                         picPlayer2Punch.translate(-player2.getPixelMovement(), 0);
-
                         player2.moveLeft();
-
-                    }
+                    };
                 }
                 break;
 
             case KeyboardEvent.KEY_RIGHT:
                 if (inBoundsRight(player2) && player2CanAct && player2Loop) {
-
-                        picPlayer2.translate(player2.getPixelMovement(), 0);
-                        picPlayer2Punch.translate(player2.getPixelMovement(), 0);
-
-                        player2.moveRight();
-
+                    picPlayer2.translate(player2.getPixelMovement(), 0);
+                    picPlayer2Punch.translate(player2.getPixelMovement(), 0);
+                    player2.moveRight();
                 }
                 break;
 
@@ -213,7 +205,7 @@ public class Arena implements ToDo {
                 if (player1CanAct && player1Loop) {
                     picPlayer1Punch.draw();
                     picPlayer1.delete();
-                   // player1PunchCooldown = 1;
+                    // player1PunchCooldown = 1;
                 }
                 break;
 
@@ -222,12 +214,13 @@ public class Arena implements ToDo {
                     picPlayer2Punch.draw();
                     picPlayer2.delete();
                     //player2PunchCooldown = 1;
+
                 }
                 break;
         }
     }
 
-///////////// action RELEASED
+    ///////////// action RELEASED
     @Override
     public void actionReleased(int key) {
         switch (key) {
@@ -241,7 +234,7 @@ public class Arena implements ToDo {
 
             case KeyboardEvent.KEY_SPACE:
 
-                if (player2CanAct&& player2Loop) {
+                if (player2CanAct && player2Loop) {
                     picPlayer2.draw();
                     picPlayer2Punch.delete();
                     hitInTheFace(player2, player1);
@@ -272,15 +265,12 @@ public class Arena implements ToDo {
             if (initialFacingPositions) {
                 if (Math.abs(playerPuncher.getPosX() + playerPuncher.getWidth() - playerPuncherReceiver.getPosX()) < FIGHTER_REACH) {
                     playerPuncherReceiver.hit(playerPuncher.getDamage());
-
                 }
-
             } else {
                 if (Math.abs(playerPuncherReceiver.getPosX() + playerPuncherReceiver.getWidth() - playerPuncher.getPosX()) < FIGHTER_REACH) {
                     playerPuncherReceiver.hit(playerPuncher.getDamage());
                 }
             }
-
         } else {
             if (initialFacingPositions) {
                 if (Math.abs(playerPuncherReceiver.getPosX() + playerPuncherReceiver.getWidth() - playerPuncher.getPosX()) < FIGHTER_REACH) {
@@ -343,6 +333,25 @@ public class Arena implements ToDo {
             }
         }
 
+        void callKickback() {
+
+            for (int i = 0; i < 5; i++) {
+
+                player1Kickback();
+
+
+                try {
+                    Thread.sleep(25);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            player1Kickback = false;
+
+        }
+
         void callGravity() {
             player1Gravity();
             try {
@@ -361,6 +370,12 @@ public class Arena implements ToDo {
                     jump();
                     player1Jump = false;
                 }
+
+                if (player1Kickback) {
+                    callKickback();
+                    player1CanAct = true;
+                }
+
                 callGravity();
             }
         }
@@ -382,19 +397,32 @@ public class Arena implements ToDo {
             }
         }
 
-        void kickback() {
+        void callKickback() {
+
+            for (int i = 0; i < 5; i++) {
+
+                player2Kickback();
 
 
-
-        }
-
-        void callGravity() {
-                player2Gravity();
                 try {
                     Thread.sleep(25);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
+            }
+
+            player2Kickback = false;
+
+        }
+
+        void callGravity() {
+            player2Gravity();
+            try {
+                Thread.sleep(25);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
@@ -406,9 +434,9 @@ public class Arena implements ToDo {
                     player2Jump = false;
                 }
 
-                if (player2Jump) {
-                    jump();
-                    player2Jump = false;
+                if (player2Kickback) {
+                    callKickback();
+                    player2CanAct = true;
                 }
                 callGravity();
             }
@@ -435,6 +463,13 @@ public class Arena implements ToDo {
         isGroundedP1 = true;
     }
 
+    public void player1Kickback() {
+        player1CanAct = false;
+        picPlayer1.translate(-player1.getPixelMovement(), 0);
+        picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
+        player1.moveLeft();
+    }
+
     public void goUp2() {
         player2CanAct = false;
         picPlayer2.translate(0, -jumpDistance);
@@ -454,6 +489,16 @@ public class Arena implements ToDo {
         player2CanAct = true;
         isGroundedP2 = true;
     }
+
+    public void player2Kickback() {
+        player2CanAct = false;
+        picPlayer2.translate(player2.getPixelMovement(), 0);
+        picPlayer2Punch.translate(player2.getPixelMovement(), 0);
+        player2.moveRight();
+    }
+
+
+    
 
 
 }
