@@ -8,6 +8,7 @@ import streetFighter.HealthBar;
 import streetFighter.fighters.Fighter;
 import streetFighter.inputs.Inputs;
 import streetFighter.inputs.ToDo;
+import streetFighter.Sound;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -54,11 +55,9 @@ public class Arena implements ToDo {
     private int player1MoveCooldown = 1;
     private int player2MoveCooldown = 1;
 
-    private int secondsPassed = 0;
+    private Sound punch1 = new Sound("/Resources/Sounding/Movement and Fight/punch1.wav");
 
     private Timer timer = new Timer();
-
-
     private TimerTask task = new TimerTask() {
         @Override
         public void run() {
@@ -204,6 +203,7 @@ public class Arena implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_1:
+
                 if (player1CanAct && player1Loop) {
                     picPlayer1Punch.draw();
                     picPlayer1.delete();
@@ -212,6 +212,7 @@ public class Arena implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_SPACE:
+
                 if (player2CanAct && player2Loop) {
                     picPlayer2Punch.draw();
                     picPlayer2.delete();
@@ -267,11 +268,13 @@ public class Arena implements ToDo {
             if (initialFacingPositions) {
                 if (Math.abs(playerPuncher.getPosX() + playerPuncher.getWidth() - playerPuncherReceiver.getPosX()) < FIGHTER_REACH) {
                     playerPuncherReceiver.hit(playerPuncher.getDamage());
+                    punch1.play(true);
                     whoKicksback();
                 }
             } else {
                 if (Math.abs(playerPuncherReceiver.getPosX() + playerPuncherReceiver.getWidth() - playerPuncher.getPosX()) < FIGHTER_REACH) {
                     playerPuncherReceiver.hit(playerPuncher.getDamage());
+                    punch1.play(true);
                     whoKicksback();
                 }
             }
@@ -279,11 +282,13 @@ public class Arena implements ToDo {
             if (initialFacingPositions) {
                 if (Math.abs(playerPuncherReceiver.getPosX() + playerPuncherReceiver.getWidth() - playerPuncher.getPosX()) < FIGHTER_REACH) {
                     playerPuncherReceiver.hit(playerPuncher.getDamage());
+                    punch1.play(true);
                     whoKicksback();
                 }
             } else {
                 if (Math.abs(playerPuncher.getPosX() + playerPuncher.getWidth() - playerPuncherReceiver.getPosX()) < FIGHTER_REACH) {
                     playerPuncherReceiver.hit(playerPuncher.getDamage());
+                    punch1.play(true);
                     whoKicksback();
                 }
             }

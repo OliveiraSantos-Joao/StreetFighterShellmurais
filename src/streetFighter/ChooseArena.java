@@ -35,14 +35,15 @@ public class ChooseArena implements ToDo {
 
     private int pressedArena = 1;
 
-
-
     private Arena arena;
 
     private Fighter player1;
     private Fighter player2;
 
     private Rectangle[] photoFrame = new Rectangle[maxArena];
+
+    private Sound optionSound = new Sound("/Resources/Sounding/Select Options/select2.wav");
+    private Sound enterClick = new Sound("/Resources/Sounding/Select Options/select3.wav");
 
 
     public ChooseArena(Fighter player1, Fighter player2) {
@@ -131,6 +132,9 @@ public class ChooseArena implements ToDo {
 
         switch (key) {
             case KeyboardEvent.KEY_RIGHT:
+
+                optionSound.play(true);
+
                 switch (pressedArena) {
                     case 4:
                         //getPhotoFrame()[pressedArena].delete();
@@ -149,6 +153,8 @@ public class ChooseArena implements ToDo {
 
             case KeyboardEvent.KEY_LEFT:
 
+                optionSound.play(true);
+
                 switch (pressedArena) {
                     case 1:
                         //getPhotoFrame()[pressedArena].delete();
@@ -166,6 +172,9 @@ public class ChooseArena implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_SPACE:
+
+                enterClick.play(true);
+
                 switch (pressedArena) {
                     case 1:
                         deleteAll();

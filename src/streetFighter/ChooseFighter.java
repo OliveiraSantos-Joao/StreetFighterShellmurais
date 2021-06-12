@@ -52,12 +52,13 @@ public class ChooseFighter implements ToDo {
     private final int RECT_X_START = 5;
     private final int RECT_Y_START = RECT_X_START*2;
 
-
-
     private Rectangle[] photoFrame = new Rectangle[maxchampions];
     private Picture[] championFrame = new Picture[maxchampions];
     private Picture[] bigChampSelectFrameRight = new Picture[maxchampions];
     private Picture[] bigChampSelectFrameLeft = new Picture[maxchampions];
+
+    private Sound optionSound = new Sound("/Resources/Sounding/Select Options/select2.wav");
+    private Sound enterClick = new Sound("/Resources/Sounding/Select Options/select3.wav");
 
     public ChooseFighter() {
         Inputs.setInputScreen(this);
@@ -198,6 +199,8 @@ public class ChooseFighter implements ToDo {
 
             case KeyboardEvent.KEY_RIGHT:
 
+                optionSound.play(true);
+
                 if (p2Ready == true) {
                     break;
                 }
@@ -223,6 +226,8 @@ public class ChooseFighter implements ToDo {
 
             case KeyboardEvent.KEY_LEFT:
 
+                optionSound.play(true);
+
                 if (p2Ready == true) {
                     break;
                 }
@@ -246,6 +251,8 @@ public class ChooseFighter implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_D:
+
+                optionSound.play(true);
 
                 if (p1Ready == true) {
                     break;
@@ -272,6 +279,8 @@ public class ChooseFighter implements ToDo {
 
             case KeyboardEvent.KEY_A:
 
+                optionSound.play(true);
+
                 if (p1Ready == true) {
                     break;
                 }
@@ -296,6 +305,8 @@ public class ChooseFighter implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_1:
+
+                enterClick.play(true);
 
                 if (p1Ready == true) {
                     break;
@@ -326,6 +337,8 @@ public class ChooseFighter implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_SPACE:
+
+                enterClick.play(true);
 
                 if (p2Ready == true) {
 

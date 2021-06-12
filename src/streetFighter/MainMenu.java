@@ -2,6 +2,8 @@ package streetFighter;
 
 import streetFighter.inputs.Inputs;
 import streetFighter.inputs.ToDo;
+import streetFighter.Sound;
+
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
@@ -24,8 +26,13 @@ public class MainMenu implements ToDo {
 
     private int currentlyPressedPosition = 1;
 
+    private static boolean isSoundPlaying;
+    private Sound enterClick = new Sound("/Resources/Sounding/Select Options/select3.wav");
+    private static Sound sound = new Sound("/Resources/Sounding/MainMenu/MainMenu(loop).wav");
+    private static Sound clickOptions = new Sound("/Resources/Sounding/Select Options/select2.wav");
 
-//Contructor MainMenu
+
+    //Contructor MainMenu
     public MainMenu() {
 
         Inputs.setInputScreen(this);
@@ -34,40 +41,46 @@ public class MainMenu implements ToDo {
         mainMenuPic = new Picture(10, 10, "elephantes_1280x720.jpeg");
         mainMenuPic.draw();
 
-        RECT_X_DEFAULT=mainMenuPic.getWidth() / 2;
+        RECT_X_DEFAULT = mainMenuPic.getWidth() / 2;
 
         currentlyPressedPosition = 1;
         drawMainMenu();
 
+        playSound();
+
     }
 
-// Getters Setters
+    // Getters Setters
     public int getCurrentlyPressedPosition() {
         return currentlyPressedPosition;
     }
+
     public void incrementCurrentlyPressedPosition() {
         this.currentlyPressedPosition++;
     }
+
     public void decrementCurrentlyPressedPosition() {
         this.currentlyPressedPosition--;
     }
+
     public void setCurrentlyPressedPosition(int currentlyPressedPosition) {
         this.currentlyPressedPosition = currentlyPressedPosition;
     }
+
     public Rectangle getRectangleStart() {
         return rectangleStart;
     }
+
     public Rectangle getRectangleInstructions() {
         return rectangleInstructions;
     }
+
     public Rectangle getRectangleExit() {
         return rectangleExit;
     }
 
 
-
-
-// methods
+    // methods
     public void startGame() {
 
         ChooseFighter chooseFighter = new ChooseFighter();
@@ -76,10 +89,10 @@ public class MainMenu implements ToDo {
 
     }
 
-    public void drawMainMenu(){
+    public void drawMainMenu() {
 
         //First Text
-        textStart = new Text(RECT_X_DEFAULT-25, mainMenuPic.getHeight() * (0.6) + 130, "Start street");
+        textStart = new Text(RECT_X_DEFAULT - 25, mainMenuPic.getHeight() * (0.6) + 130, "Start street");
         textStart.setColor(Color.WHITE);
         textStart.draw();
         //First Text Rectangle
@@ -105,7 +118,7 @@ public class MainMenu implements ToDo {
 
     }
 
-    public void deleteAll(){
+    public void deleteAll() {
         rectangleStart.delete();
         rectangleInstructions.delete();
         rectangleExit.delete();
@@ -116,11 +129,13 @@ public class MainMenu implements ToDo {
     }
 
 
-
     @Override
     public void actionPressed(int key) {
-        switch (key){
+        switch (key) {
             case KeyboardEvent.KEY_DOWN:
+
+                clickOptions.play(true);
+
                 switch (getCurrentlyPressedPosition()) {
 
                     case 1:
@@ -145,6 +160,9 @@ public class MainMenu implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_UP:
+
+                clickOptions.play(true);
+
                 switch (getCurrentlyPressedPosition()) {
 
                     case 1:
@@ -168,6 +186,9 @@ public class MainMenu implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_SPACE:
+
+                enterClick.play(true);
+
                 switch (getCurrentlyPressedPosition()) {
 
                     case 1:
@@ -198,6 +219,24 @@ public class MainMenu implements ToDo {
     public void actionReleased(int key) {
 
     }
+
+    public static void playSound() {
+        if (isSoundPlaying) {
+            return;
+        }
+        sound.play(true);
+        isSoundPlaying = true;
+    }
+
+
+    public static void stopSound() {
+        if (!isSoundPlaying) {
+            return;
+        }
+        sound.stop();
+        isSoundPlaying = false;
+    }
+
 
 }
 
