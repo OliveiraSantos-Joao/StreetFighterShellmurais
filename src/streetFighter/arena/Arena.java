@@ -51,8 +51,8 @@ public class Arena implements ToDo {
 
     //private int player1PunchCooldown = 1;
     //private int player2PunchCooldown = 1;
-    //private int player1JumpCooldown = 1;
-    //private int player2JumpCooldown = 1;
+    private int player1MoveCooldown = 1;
+    private int player2MoveCooldown = 1;
 
     private int secondsPassed = 0;
 
@@ -62,19 +62,18 @@ public class Arena implements ToDo {
     private TimerTask task = new TimerTask() {
         @Override
         public void run() {
-            secondsPassed++;
             /*if (player1PunchCooldown > 0) {
                 player1PunchCooldown--;
             }
             if (player2PunchCooldown > 0) {
                 player2PunchCooldown--;
-            }
-            if (player1JumpCooldown > 0) {
-                player1JumpCooldown--;
-            }
-            if (player2JumpCooldown > 0) {
-                player2JumpCooldown--;
             }*/
+            if (player1MoveCooldown > 0) {
+                player1MoveCooldown--;
+            }
+            if (player2MoveCooldown > 0) {
+                player2MoveCooldown--;
+            }
         }
     };
 
@@ -101,7 +100,7 @@ public class Arena implements ToDo {
         this.player2 = player2;
         this.jumpDistance = 15;
 
-        timer.schedule(task, 1000, 1000);
+        timer.schedule(task, 50, 50);
         init();
 
         player1ThreadJump.start();
@@ -157,21 +156,21 @@ public class Arena implements ToDo {
 
             case KeyboardEvent.KEY_A:
 
-                if (inBoundsLeft(player1) && player1CanAct && player1Loop) {
+                if (inBoundsLeft(player1) && player1CanAct && player1Loop && player1MoveCooldown == 0) {
                     picPlayer1.translate(-player1.getPixelMovement(), 0);
                     picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
                     player1.moveLeft();
+                    player1MoveCooldown = 1;
                 }
                 break;
 
             case KeyboardEvent.KEY_D:
-                if (inBoundsRight(player1) && player1CanAct && player1Loop) {
+                if (inBoundsRight(player1) && player1CanAct && player1Loop && player1MoveCooldown == 0) {
                     if (facingInitialPosition()) {
-
                         picPlayer1.translate(player1.getPixelMovement(), 0);
                         picPlayer1Punch.translate(player1.getPixelMovement(), 0);
-
                         player1.moveRight();
+                        player1MoveCooldown = 1;
                     }
                 }
                 break;
@@ -184,21 +183,23 @@ public class Arena implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_LEFT:
-                if (inBoundsLeft(player2) && player2CanAct && player2Loop) {
+                if (inBoundsLeft(player2) && player2CanAct && player2Loop && player2MoveCooldown == 0) {
                     if (facingInitialPosition()) {
                         picPlayer2.translate(-player2.getPixelMovement(), 0);
                         picPlayer2Punch.translate(-player2.getPixelMovement(), 0);
                         player2.moveLeft();
+                        player2MoveCooldown = 1;
                     }
                     ;
                 }
                 break;
 
             case KeyboardEvent.KEY_RIGHT:
-                if (inBoundsRight(player2) && player2CanAct && player2Loop) {
+                if (inBoundsRight(player2) && player2CanAct && player2Loop && player2MoveCooldown == 0) {
                     picPlayer2.translate(player2.getPixelMovement(), 0);
                     picPlayer2Punch.translate(player2.getPixelMovement(), 0);
                     player2.moveRight();
+                    player2MoveCooldown = 1;
                 }
                 break;
 
