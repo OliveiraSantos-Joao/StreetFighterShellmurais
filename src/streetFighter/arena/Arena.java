@@ -17,18 +17,19 @@ public class Arena implements ToDo {
     private Picture arenaPic;
     private Fighter player1;
     private Fighter player2;
-
-    private boolean initialFacingPositions = true;
-    private HealthBar hb;
-
     private Picture picPlayer1;
     private Picture picPlayer2;
     private Picture picPlayer1Punch;
     private Picture picPlayer2Punch;
 
+    private String arenaName;
+    private HealthBar hb;
+
+    private boolean initialFacingPositions = true;
+
 
     private int jumpDistance;
-    private String arenaName;
+
 
     private boolean player1Jump = true;
     private boolean player2Jump = true;
@@ -39,13 +40,20 @@ public class Arena implements ToDo {
     private boolean player1Loop = true;
     private boolean player2Loop = true;
 
+    private int ground;
+    private boolean isGroundedP1 = false;
+    private boolean isGroundedP2 = false;
+
     private int player1PunchCooldown = 1;
     private int player2PunchCooldown = 1;
     private int player1JumpCooldown = 1;
     private int player2JumpCooldown = 1;
 
     private int secondsPassed = 0;
+
     private Timer timer = new Timer();
+
+
     private TimerTask task = new TimerTask() {
         @Override
         public void run() {
@@ -73,7 +81,6 @@ public class Arena implements ToDo {
     public Picture getPicPlayer1() {
         return picPlayer1;
     }
-
     public Picture getPicPlayer2() {
         return picPlayer2;
     }
@@ -83,12 +90,9 @@ public class Arena implements ToDo {
     public Arena(Fighter player1, Fighter player2, String arenaName) {
 
         this.arenaName = arenaName;
-
         Inputs.setInputScreen(this);
-
         this.player1 = player1;
         this.player2 = player2;
-
         this.jumpDistance = 15;
 
         timer.schedule(task, 1000, 1000);
@@ -103,13 +107,14 @@ public class Arena implements ToDo {
         drawArena();
     }
 
-
     public void drawArena() {
         arenaPic = new Picture(Game.PADDING, Game.PADDING, arenaName);
         arenaPic.draw();
 
         hb = new HealthBar(player1, player2);
         drawPlayers();
+
+        ground = arenaPic.getHeight()-50;
     }
 
     public void drawPlayers() {
@@ -126,20 +131,19 @@ public class Arena implements ToDo {
         picPlayer2Punch = new Picture(player2.getPosX(), player2.getPosY(), player2.getFighter().getPhotoName(player2.getFighter()) + "_" + "punch" + "_" + "left.png");
         //Resources/Fighters/
 
-
         picPlayer1.draw();
         picPlayer2.draw();
 
     }
 
-
+////////////////Keys action PRESSED
     @Override
     public void actionPressed(int key) {
         switch (key) {
             case KeyboardEvent.KEY_W:
-                if (player1JumpCooldown == 0) {
+                if (isGroundedP1) {
                     player1Jump = true;
-                    player1JumpCooldown = 2;
+                    player1JumpCooldown = 1;
                 }
                 break;
 
@@ -150,6 +154,7 @@ public class Arena implements ToDo {
 
                 if (inBoundsLeft(player1) && player1CanAct) {
                     if (facingInitialPosition()) {
+
                         picPlayer1.translate(-player1.getPixelMovement(), 0);
                         picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
                         player1.moveLeft();
@@ -164,15 +169,14 @@ public class Arena implements ToDo {
                         picPlayer1.translate(player1.getPixelMovement(), 0);
                         picPlayer1Punch.translate(player1.getPixelMovement(), 0);
                         player1.moveRight();
-
                     }
                 }
                 break;
 
             case KeyboardEvent.KEY_UP:
-                if (player2JumpCooldown == 0) {
+                if (isGroundedP2) {
                     player2Jump = true;
-                    player1JumpCooldown = 2;
+                    player2JumpCooldown = 1;
                 }
                 break;
 
@@ -216,6 +220,7 @@ public class Arena implements ToDo {
         }
     }
 
+///////////// action RELEASED
     @Override
     public void actionReleased(int key) {
         switch (key) {
@@ -238,6 +243,7 @@ public class Arena implements ToDo {
         }
     }
 
+///////////////////// Metodos
     private boolean inBoundsRight(Fighter player) {
         if ((player.getPosX() + player.getWidth() > arenaPic.getX() + arenaPic.getWidth() - (Game.BORDER + player.getWidth()))) {
             return false;
@@ -251,7 +257,6 @@ public class Arena implements ToDo {
         }
         return true;
     }
-
 
     private void hitInTheFace(Fighter playerPuncher, Fighter playerPuncherReceiver) {
 
@@ -279,11 +284,8 @@ public class Arena implements ToDo {
                 }
             }
         }
-
-
         hb.healthBarDelete();
         hb = new HealthBar(player1, player2);
-
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7
@@ -298,24 +300,18 @@ public class Arena implements ToDo {
     Thread player1ThreadJump = new Thread(new Runnable() {
 
         void jump() {
-
             for (int i = 0; i < 20; i++) {
-
                 goUp1();
-
                 try {
                     Thread.sleep(25);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-
         }
 
         void callGravity() {
-
             player1Gravity();
-
             try {
                 Thread.sleep(25);
             } catch (InterruptedException e) {
@@ -323,7 +319,6 @@ public class Arena implements ToDo {
             }
 
         }
-
 
         @Override
         public void run() {
@@ -358,47 +353,30 @@ public class Arena implements ToDo {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
             }
-
         }
 
         void callGravity() {
-
                 player2Gravity();
-
                 try {
                     Thread.sleep(25);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
         }
 
         @Override
         public void run() {
-
-
             while (player2Loop) {
-
                 System.out.println("is pissas");
-
                 if (player2Jump) {
-
                     jump();
                     player2Jump = false;
-
                 }
-
                 callGravity();
-
             }
-
         }
-
-
     });
-
 
     public void goUp1() {
         player1CanAct = false;
@@ -409,11 +387,15 @@ public class Arena implements ToDo {
 
     public void player1Gravity() {
         player1CanAct = false;
-        if (picPlayer1.getY() + picPlayer1.getHeight() <= arenaPic.getHeight() - 50) {   
+        if (picPlayer1.getY() + picPlayer1.getHeight() <= arenaPic.getHeight() - 50) {
+            isGroundedP1 = false;
             picPlayer1.translate(0, jumpDistance);
             picPlayer1Punch.translate(0, jumpDistance);
+            player1CanAct = true;
+            return;
         }
         player1CanAct = true;
+        isGroundedP1 = true;
     }
 
     public void goUp2() {
@@ -426,32 +408,15 @@ public class Arena implements ToDo {
     public void player2Gravity() {
         player2CanAct = false;
         if (picPlayer2.getY() + picPlayer2.getHeight() <= arenaPic.getHeight() - 50) {
+            isGroundedP2 = false;
             picPlayer2.translate(0, jumpDistance);
             picPlayer2Punch.translate(0, jumpDistance);
+            player2CanAct = true;
+            return;
         }
         player2CanAct = true;
+        isGroundedP2 = true;
     }
 
 
 }
-
-//    private void initialFacedPositions() {
-//
-//
-  /*      if (player1.getPosX() + player1.getWidth() < player2.getPosX()) {
-            initialFacingPositions = true;
-//            System.out.println(player1.getPosX() + player1.getWidth() - player2.getPosX());
-//            System.out.println(player1.getPosX());
-//            System.out.println(player1.getWidth());
-//            System.out.println(player2.getPosX());
-//            System.out.println("teste1");
-//            return;
-            return;
-        }
-
-            initialFacingPositions = false;*/
-
-
-
-
-
