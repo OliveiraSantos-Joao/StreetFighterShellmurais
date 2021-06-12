@@ -332,18 +332,19 @@ public class Arena implements ToDo {
         @Override
         public void run() {
 
+
             while (player2Loop) {
 
                 System.out.println("is pissas");
 
                 if (player2Jump) {
 
-                    jump();
 
+                    jump();
                     player2Jump = false;
 
                 }
-
+                
             }
 
         }
@@ -371,7 +372,6 @@ public class Arena implements ToDo {
         picPlayer2.translate(0, jumpDistance);
         picPlayer2Punch.translate(0, jumpDistance);
     }
-
 
 }
 
