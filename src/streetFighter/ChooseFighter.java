@@ -304,11 +304,11 @@ public class ChooseFighter implements ToDo {
 
                 switch (pressedCharacterP1) {
                     case 1:
-                        fighterP1ready = new Fighter(PlayerType.PLAYER1, Fighters.PAULO);
+                        fighterP1ready = new Fighter(PlayerType.PLAYER1, Fighters.SARA);
                         break;
 
                     case 2:
-                        fighterP1ready = new Fighter(PlayerType.PLAYER1, Fighters.SARA);
+                        fighterP1ready = new Fighter(PlayerType.PLAYER1, Fighters.PAULO);
                         break;
 
                     case 3:
@@ -335,11 +335,11 @@ public class ChooseFighter implements ToDo {
 
                 switch (pressedCharacterP2) {
                     case 1:
-                        fighterP2ready = new Fighter(PlayerType.PLAYER2, Fighters.PAULO);
+                        fighterP2ready = new Fighter(PlayerType.PLAYER2, Fighters.SARA);
                         break;
 
                     case 2:
-                        fighterP2ready = new Fighter(PlayerType.PLAYER2, Fighters.SARA);
+                        fighterP2ready = new Fighter(PlayerType.PLAYER2, Fighters.PAULO);
                         break;
 
                     case 3:
