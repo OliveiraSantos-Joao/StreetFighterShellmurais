@@ -136,11 +136,13 @@ public class ChooseArena implements ToDo {
                         //getPhotoFrame()[pressedArena].delete();
                         pressedArena = 1;
                         //getPhotoFrame()[pressedArena].draw();
+                        update();
                         break;
                     default:
                         //getPhotoFrame()[pressedArena].delete();
                         pressedArena++;
                         // getPhotoFrame()[pressedArena].draw();
+                        update();
                         break;
                 }
                 break;
@@ -152,11 +154,13 @@ public class ChooseArena implements ToDo {
                         //getPhotoFrame()[pressedArena].delete();
                         pressedArena = getMaxChampions();//para voltar ao ultimo
                         //getPhotoFrame()[pressedArena].draw();
+                        update();
                         break;
                     default:
                         //getPhotoFrame()[pressedArena].delete();
                         pressedArena--;
                         //getPhotoFrame()[pressedArena].draw();
+                        update();
                         break;
                 }
                 break;
@@ -185,7 +189,8 @@ public class ChooseArena implements ToDo {
                 }
 
         }
-        update();
+
+
 
     }
 
