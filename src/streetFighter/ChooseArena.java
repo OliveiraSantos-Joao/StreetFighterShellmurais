@@ -151,22 +151,22 @@ public class ChooseArena implements ToDo {
                 switch (pressedArena) {
                     case 1:
                         deleteAll();
-                        new Arena(player1, player2, "/Users/codecadet/Desktop/StreetFighter/fighter/Resources/arena1.png");
+                        new Arena(player1, player2, "Resources/arena1.png");
                         break;
 
                     case 2:
                         deleteAll();
-                        new Arena(player1, player2, "/Users/codecadet/Desktop/StreetFighter/fighter/Resources/arena2.png");
+                        new Arena(player1, player2, "Resources/arena2.png");
                         break;
 
                     case 3:
                         deleteAll();
-                        new Arena(player1, player2, "/Users/codecadet/Desktop/StreetFighter/fighter/Resources/arena3.png");
+                        new Arena(player1, player2, "Resources/arena3.png");
                         break;
 
                     case 4:
                         deleteAll();
-                        new Arena(player1, player2, "/Users/codecadet/Desktop/StreetFighter/fighter/Resources/elephantes_1280x720.jpeg");
+                        new Arena(player1, player2, "Resources/elephantes_1280x720.jpeg");
                         break;
                 }
 
@@ -182,7 +182,7 @@ public class ChooseArena implements ToDo {
 
         for (int i = 0; i < getPhotoFrame().length; i++) {
 
-            System.out.println(getPhotoFrame()[i]);
+          //  System.out.println(getPhotoFrame()[i]);
 
             if (pressedArena == i +1) {
                 getPhotoFrame()[i].setColor(Color.WHITE);

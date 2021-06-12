@@ -68,6 +68,7 @@ public class Arena implements ToDo {
     public void drawArena() {
         arenaPic = new Picture(Game.PADDING, Game.PADDING, arenaName);
         arenaPic.draw();
+
         hb = new HealthBar(player1, player2);
         drawPlayers();
     }
