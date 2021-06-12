@@ -20,6 +20,14 @@ public class ChooseFighter implements ToDo {
     private Picture pauloPic;
     private Picture pedroPic;
     private Picture fighter1Pic;
+    private Picture saraBigPicRight;
+    private Picture pauloBigPicRight;
+    private Picture pedroBigPicRight;
+    private Picture fighter1BigPicRight;
+    private Picture saraBigPicLeft;
+    private Picture pauloBigPicLeft;
+    private Picture pedroBigPicLeft;
+    private Picture fighter1BigPicLeft;
 
     private Picture mainMenu;
 
@@ -45,9 +53,11 @@ public class ChooseFighter implements ToDo {
     private final int RECT_Y_START = RECT_X_START*2;
 
 
+
     private Rectangle[] photoFrame = new Rectangle[maxchampions];
     private Picture[] championFrame = new Picture[maxchampions];
-
+    private Picture[] bigChampSelectFrameRight = new Picture[maxchampions];
+    private Picture[] bigChampSelectFrameLeft = new Picture[maxchampions];
 
     public ChooseFighter() {
         Inputs.setInputScreen(this);
@@ -55,13 +65,20 @@ public class ChooseFighter implements ToDo {
         createFighters();
     }
 
-
     public Rectangle[] getPhotoFrame() {
         return photoFrame;
     }
 
     public Picture[] getChampionFrame() {
         return championFrame;
+    }
+
+    public Picture[] getBigChampSelectFrameRight() {
+        return bigChampSelectFrameRight;
+    }
+
+    public Picture[] getBigChampSelectFrameLeft() {
+        return bigChampSelectFrameLeft;
     }
 
     public void createFighters() {
@@ -74,7 +91,6 @@ public class ChooseFighter implements ToDo {
 
 
         saraPic = new Picture(championColumns * 2, championRow, "SaraIcon.png");
-
         championFrame[0] = saraPic;
 
         pauloPic = new Picture(saraPic.getX() + saraPic.getWidth() + distanceToNextChamp, championRow, "PauloIcon.png");
@@ -107,6 +123,37 @@ public class ChooseFighter implements ToDo {
 
         saraPic.draw();
         fighter1Pic.draw();
+
+
+        // BIG PICS RIGHT
+        saraBigPicRight = new Picture(200, 83, "SaraBig.png");
+        bigChampSelectFrameRight[0] = saraBigPicRight;
+        saraBigPicRight.draw();
+
+        pauloBigPicRight = new Picture(200, 83, "PauloBig.png");
+        bigChampSelectFrameRight[1] = pauloBigPicRight;
+
+        pedroBigPicRight = new Picture(200, 83, "PedroBig.jpeg");
+        bigChampSelectFrameRight[2] = pedroBigPicRight;
+
+        fighter1BigPicRight = new Picture(200, 83, "IgrejaBig.jpeg");
+        bigChampSelectFrameRight[3] = fighter1BigPicRight;
+
+// BIG PICS RIGHT
+        saraBigPicLeft = new Picture(670, 83, "SaraBig.png");
+        bigChampSelectFrameLeft[0] = saraBigPicLeft;
+
+        pauloBigPicLeft = new Picture(670, 83, "PauloBig.png");
+        bigChampSelectFrameLeft[1] = pauloBigPicLeft;
+
+        pedroBigPicLeft = new Picture(670, 83, "PedroBig.jpeg");
+        bigChampSelectFrameLeft[2] = pedroBigPicLeft;
+
+        fighter1BigPicLeft = new Picture(670, 83, "IgrejaBig.jpeg");
+        bigChampSelectFrameLeft[3] = fighter1BigPicLeft;
+
+        fighter1BigPicLeft.draw();
+
     }
 
     public int getMaxChampions() {
@@ -125,9 +172,21 @@ public class ChooseFighter implements ToDo {
         rect3.delete();
         rect4.delete();
 
+        saraBigPicRight.delete();
+        pauloBigPicRight.delete();
+        pedroBigPicRight.delete();
+        fighter1BigPicRight.delete();
+        saraBigPicLeft.delete();
+        pauloBigPicLeft.delete();
+        pedroBigPicLeft.delete();
+        fighter1BigPicLeft.delete();
+
+
         for (int i = 0; i < getPhotoFrame().length; i++) {
             getPhotoFrame()[i].delete();
             getChampionFrame()[i].delete();
+            getBigChampSelectFrameLeft()[i].delete();
+            getBigChampSelectFrameRight()[i].delete();
         }
     }
 
@@ -316,6 +375,11 @@ public class ChooseFighter implements ToDo {
                 getPhotoFrame()[i].fill();
                 getChampionFrame()[i].delete();
                 getChampionFrame()[i].draw();
+
+                getBigChampSelectFrameLeft()[i].delete();
+                getBigChampSelectFrameRight()[i].delete();
+                getBigChampSelectFrameRight()[i].draw();
+                getBigChampSelectFrameLeft()[i].draw();
                 continue;
             }
 
@@ -324,6 +388,9 @@ public class ChooseFighter implements ToDo {
                 getPhotoFrame()[i].fill();
                 getChampionFrame()[i].delete();
                 getChampionFrame()[i].draw();
+                getBigChampSelectFrameRight()[i].delete();
+                getBigChampSelectFrameRight()[i].draw();
+
                 continue;
             }
 
@@ -332,9 +399,14 @@ public class ChooseFighter implements ToDo {
                 getPhotoFrame()[i].fill();
                 getChampionFrame()[i].delete();
                 getChampionFrame()[i].draw();
+                getBigChampSelectFrameLeft()[i].delete();
+                getBigChampSelectFrameLeft()[i].draw();
                 continue;
             }
             getPhotoFrame()[i].delete();
+            getBigChampSelectFrameRight()[i].delete();
+            getBigChampSelectFrameLeft()[i].delete();
+
 
         }
 
