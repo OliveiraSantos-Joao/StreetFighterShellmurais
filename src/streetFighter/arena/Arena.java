@@ -317,6 +317,7 @@ public class Arena implements ToDo {
             playerPuncherReceiver.hit(playerPuncher.getDamage());
             punch1.play(true);
             whoKicksback();
+
         }
         if (playerPuncher == player2 && isCollided) {
             playerPuncherReceiver.hit(playerPuncher.getDamage());
