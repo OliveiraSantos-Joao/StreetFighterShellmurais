@@ -138,11 +138,6 @@ public class MainMenu implements ToDo {
         //Third Text Rectangle
         rectangleExit = new Rectangle(textInstructions.getX() - 50, textExit.getY() - 10, textStart.getWidth() + 100, textExit.getHeight() + 20);
         rectangleExit.setColor(Color.WHITE);
-
-
-
-
-
     }
 
     public void deleteAll() {
@@ -174,7 +169,6 @@ public class MainMenu implements ToDo {
                         getRectangleStart().delete();
                         getRectangleInstructions().draw();
                         incrementCurrentlyPressedPosition();
-
                         break;
 
                     case 2:
@@ -259,7 +253,6 @@ public class MainMenu implements ToDo {
         sound.setLoop(20);
         isSoundPlaying = true;
     }
-
 
     public static void stopSound() {
         if (!isSoundPlaying) {

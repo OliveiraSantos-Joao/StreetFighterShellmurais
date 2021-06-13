@@ -12,13 +12,10 @@ public class Instructions implements ToDo {
 
 
     private Rectangle exitRect;
-
     private Text exitText;
-
     private Rectangle frame;
     private Rectangle instructionsMenuPic;
     private Picture keys;
-
     private Sound enterClick = new Sound("/Resources/Sounding/Select Options/select3.wav");
 
 
@@ -48,7 +45,7 @@ public class Instructions implements ToDo {
 
 
 
-    //som 
+
     }
 
 

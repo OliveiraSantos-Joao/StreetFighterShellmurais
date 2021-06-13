@@ -57,38 +57,24 @@ public class GameOverScreen implements ToDo {
             p2Wins.play(true);
         }
         winnerMessage.draw();
-        //winnerText.grow(300,40);
 
-        //winnerRect = new Rectangle(winnerText.getX() - 15, winnerText.getY(), winnerText.getWidth() - 150, winnerText.getHeight() +10 );
-        //winnerRect.setColor(Color.BLACK);
-
-        //winnerRect.fill();
-        //winnerText.setColor(Color.ORANGE);
-        //winnerText.draw();
-
-        //pause rectangle
         pauseRect = new Rectangle(Game.WIDTH/3 + Game.PADDING, Game.HEIGHT/3 + Game.PADDING + 100, Game.WIDTH/3, Game.HEIGHT/3 + 100);
-        //pauseRect.fill();
 
-        //text creation
         mainMenuText = new Text(halfWidth, halfHeight+ 200, "Main Menu");
         mainMenuText.grow(100, 20);
 
         startAgainText = new Text(halfWidth, halfHeight + 100, "Start again");
         startAgainText.grow(100, 20);
 
-        //rec creation
         mainMenuRect = new Rectangle(mainMenuText.getX() - 15, mainMenuText.getY(), mainMenuText.getWidth() - 40, mainMenuText.getHeight() - 5);
         startAgainRect = new Rectangle(startAgainText.getX() - 15, startAgainText.getY() - 5, startAgainText.getWidth() - 40, startAgainText.getHeight() + 5);
 
-        //set colours
         mainMenuRect.setColor(Color.WHITE);
         startAgainRect.setColor(Color.WHITE);
 
         mainMenuText.setColor(Color.BLACK);
         startAgainText.setColor(Color.WHITE);
 
-        //draw and fill
         mainMenuRect.fill();
         mainMenuText.draw();
         startAgainText.draw();
@@ -138,12 +124,11 @@ public class GameOverScreen implements ToDo {
                         arena.deleteAll();
                         new MainMenu();
                         break;
-                        //interromper tudo da arena e ir para main menu
+
                     case(2):
                         deleteAll();
                         arena.deleteAll();
                         new ChooseFighter();
-                        //interromper tudo da arena e ir para champ select
                         break;
                 }
                 break;
@@ -161,7 +146,6 @@ public class GameOverScreen implements ToDo {
         mainMenuRect.delete();
         startAgainText.delete();
         mainMenuText.delete();
-
     }
     private void choiceMainMenu(){
         //startAgainRect.setColor(Color.BLACK);
@@ -188,6 +172,7 @@ public class GameOverScreen implements ToDo {
         mainMenuText.draw();
 
     }
+
     private void deleteAll(){
         startAgainRect.delete();
         mainMenuRect.delete();

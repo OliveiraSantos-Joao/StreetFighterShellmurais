@@ -1,12 +1,10 @@
 package streetFighter.arena;
-
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import streetFighter.*;
 import streetFighter.fighters.Fighter;
 import streetFighter.inputs.Inputs;
 import streetFighter.inputs.ToDo;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -14,53 +12,38 @@ import java.util.TimerTask;
 public class Arena implements ToDo {
 
     private Picture arenaPic;
-
     private Fighter player1;
     private Fighter player2;
-
-    Collider collider;
-
     private Picture picPlayer1;
     private Picture picPlayer2;
-
     private Picture picPlayer1Punch;
     private Picture picPlayer2Punch;
-
-
+    private Collider collider;
     private HealthBar hb;
     private String arenaName;
-
     private String[] player1HitBox = new String[40000];
     private String[] player2HitBox = new String[40000];
-
     private int jumpDistance;
-
     private boolean facingInitialPosition = true;
     private boolean fightOver = false;
-
     private boolean player1Jump = true;
     private boolean player2Jump = true;
-
     private boolean player1Kickback = false;
     private boolean player2Kickback = false;
-
     private boolean player1CanAct = true;
     private boolean player2CanAct = true;
-
     private boolean player1Loop = true;
     private boolean player2Loop = true;
-
     private boolean isGroundedP1 = false;
     private boolean isGroundedP2 = false;
     private boolean isCollided = false;
-
     private int player2MoveCooldown = 1;
     private int player1MoveCooldown = 1;
-
+    private int headJumpDistance = 5;
     //private int player1PunchCooldown = 1;
     //private int player2PunchCooldown = 1;
 
-    private int headJumpDistance = 5;
+
 
     private Sound punch1 = new Sound("/Resources/Sounding/Movement and Fight/punch1.wav");
 
@@ -95,9 +78,7 @@ public class Arena implements ToDo {
         Inputs.setInputScreen(this);
         this.player1 = player1;
         this.player2 = player2;
-
         this.collider = new Collider(this.player1, this.player2, this);
-
         this.jumpDistance = 15;
 
         timer.schedule(task, 50, 50);
@@ -168,7 +149,6 @@ public class Arena implements ToDo {
                         player1.moveLeft();
                         player1MoveCooldown = 1;
                     }
-
                     if (!facingInitialPosition && !isCollided) {
                         picPlayer1.translate(-player1.getPixelMovement(), 0);
                         picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
@@ -187,14 +167,12 @@ public class Arena implements ToDo {
                         player1.moveRight();
                         player1MoveCooldown = 1;
                     }
-
                     if (!facingInitialPosition) {
                         picPlayer1.translate(player1.getPixelMovement(), 0);
                         picPlayer1Punch.translate(player1.getPixelMovement(), 0);
                         player1.moveRight();
                         player1MoveCooldown = 1;
                     }
-
                 }
                 break;
 
@@ -312,68 +290,6 @@ public class Arena implements ToDo {
     }
 
 
-  /*  private void boxPos1() {
-        //System.out.println(player1.getPosX() + " " + player1.getWidth() + " ----- " + player1.getPosY() + " " + player1.getHeight());
-
-        int counter = 0;
-        for (int row = player1.getPosY() ; row < (player1.getPosY() + player1.getHeight())-1; row++)
-            for (int col = player1.getPosX(); col <  (player1.getPosX() + player1.getWidth())-1; col++) {
-                player1HitBox[counter] = row + "," + col;
-                counter++;
-            }
-
-    }
-
-    private void boxPos2() {
-        int counter = -1;
-        for (int row = player2.getPosY(); row > player2.getHeight(); row++)
-            for (int col = player2.getPosX(); col < player2.getWidth(); col++) {
-                player2HitBox[++counter] = row +","+ col ;
-            }
-
-    }
-    private boolean collider(){
-
-        for(int i = 0; i<40000 ; i++){
-            for(int j = 0; j<40000 ; j++){
-
-                if(player1HitBox[i].equals(player2HitBox[j])){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-*/
-
-   /* private boolean collider() {
-        int d1x = (player1.getPosX() + player1.getWidth() + FIGHTER_REACH) - (player2.getPosX());
-
-        //reversos
-        int d2x = (player2.getPosX() + player2.getWidth() + FIGHTER_REACH) - player1.getPosX();
-
-
-        int d1y = (player1.getPosY() + player1.getHeight() + headJumpDistance) - player2.getHeight();
-        int d2y = (player2.getPosY() + player2.getHeight() + headJumpDistance) - player1.getHeight();
-
-
-        if (d1x > 0 && d1y < 0) {
-            return false;
-        }
-        if (d1x < 0 && d1y > 0) {
-            return false;
-        }
-
-
-        if (d2x > 0 || d2y > 0) {
-            return false;
-        }
-        return true;
-    }
-*/
-
-
     public void deleteAll() {
         arenaPic.delete();
         picPlayer1.delete();
@@ -382,7 +298,6 @@ public class Arena implements ToDo {
         picPlayer2Punch.delete();
         hb.healthBarDelete();
     }
-
     private boolean inBoundsRight(Fighter player) {
         if ((player.getPosX() + player.getWidth() > arenaPic.getX() + arenaPic.getWidth() - (Game.BORDER + player.getWidth()))) {
             return false;
@@ -403,13 +318,11 @@ public class Arena implements ToDo {
             punch1.play(true);
             whoKicksback();
         }
-
         if (playerPuncher == player2 && isCollided) {
             playerPuncherReceiver.hit(playerPuncher.getDamage());
             punch1.play(true);
             whoKicksback();
         }
-
         hb.healthBarDelete();
         hb = new HealthBar(player1, player2);
         checkIfDead();
@@ -436,26 +349,6 @@ public class Arena implements ToDo {
         }
 
     }
-
-
-    /*private void collider (){
-        if(isInitialFacingPositions()){
-
-            if((Math.abs((player1.getPosX() + player1.getWidth() - player2.getPosX())) < FIGHTER_REACH)){
-                collided = true;
-            }
-            if(player1.getPosY() > player2.getPosY()){
-               if (Math.abs((player1.getPosY() + player1.getHeight() - player2.getPosY())) < headJumpDistance){
-                    collided = true;
-                }
-            }else{
-                if(Math.abs((player2.getPosY() + player2.getHeight() - player1.getPosY())) < headJumpDistance){
-                    collided = true;
-                }
-            }
-            collided = false;
-        }
-    }*/
 
     private void setFacingPosition() {
         if (player2.getPosX() - (player1.getPosX() + player1.getWidth()) <= -50) {
@@ -586,12 +479,8 @@ public class Arena implements ToDo {
             }
         }
     }
-
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7
 //Threads
-
-
     Thread player1ThreadJump = new Thread(new Runnable() {
 
         void jump() {
@@ -606,11 +495,8 @@ public class Arena implements ToDo {
         }
 
         void callKickback() {
-
             for (int i = 0; i < 5; i++) {
-
                 player1Kickback();
-
                 try {
                     Thread.sleep(25);
                 } catch (InterruptedException e) {
@@ -634,37 +520,28 @@ public class Arena implements ToDo {
         @Override
         public void run() {
             while (player1Loop) {
-
                 try {
                     Thread.sleep(1);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
                 if (player1Jump) {
                     jump();
                     player1Jump = false;
                 }
-
                 if (player1Kickback) {
                     callKickback();
                     player1CanAct = true;
                 }
-
                 callGravity();
-
             }
         }
     });
 
     Thread player2ThreadJump = new Thread(new Runnable() {
-
         void jump() {
-
             for (int i = 0; i < 20; i++) {
-
                 goUp2();
-
                 try {
                     Thread.sleep(25);
                 } catch (InterruptedException e) {
@@ -703,13 +580,10 @@ public class Arena implements ToDo {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-
                 if (player2Jump) {
                     jump();
                     player2Jump = false;
                 }
-
                 if (player2Kickback) {
                     callKickback();
                     player2CanAct = true;
