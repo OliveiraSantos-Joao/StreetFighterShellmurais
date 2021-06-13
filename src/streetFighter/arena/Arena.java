@@ -26,27 +26,37 @@ public class Arena implements ToDo {
 
     private String arenaName;
     private HealthBar hb;
+    private float[] player1HitBox = new float[400];
+    private float[] player2HitBox = new float[400];
 
     private int jumpDistance;
 
-    private boolean initialFacingPositions = true;
+    //private boolean initialFacingPositions = true;
+    private boolean facingInitialPosition = true;
     private boolean fightOver = false;
+
     private boolean player1Jump = true;
     private boolean player2Jump = true;
+
     private boolean player1Kickback = false;
     private boolean player2Kickback = false;
 
     private boolean player1CanAct = true;
     private boolean player2CanAct = true;
+
     private boolean player1Loop = true;
     private boolean player2Loop = true;
+
     private boolean isGroundedP1 = false;
     private boolean isGroundedP2 = false;
+    private boolean collided = false;
+
 
     //private int player1PunchCooldown = 1;
     //private int player2PunchCooldown = 1;
     private int player1MoveCooldown = 1;
     private int player2MoveCooldown = 1;
+    private int headJumpDistance = 5;
 
     private Sound punch1 = new Sound("/Resources/Sounding/Movement and Fight/punch1.wav");
 
@@ -83,6 +93,10 @@ public class Arena implements ToDo {
     }
 
 
+    public boolean isCollided() {
+        return collided;
+    }
+
     //constructor
     public Arena(Fighter player1, Fighter player2, String arenaName) {
 
@@ -90,6 +104,8 @@ public class Arena implements ToDo {
         Inputs.setInputScreen(this);
         this.player1 = player1;
         this.player2 = player2;
+
+
         this.jumpDistance = 15;
 
         timer.schedule(task, 50, 50);
@@ -153,19 +169,18 @@ public class Arena implements ToDo {
                     picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
                     player1.moveLeft();
                     player1MoveCooldown = 1;
-
                 }
                 break;
 
             case KeyboardEvent.KEY_D:
+
                 if (inBoundsRight(player1) && player1CanAct && player1Loop && player1MoveCooldown == 0) {
-                    if (facingInitialPosition()) {
                         picPlayer1.translate(player1.getPixelMovement(), 0);
                         picPlayer1Punch.translate(player1.getPixelMovement(), 0);
                         player1.moveRight();
                         player1MoveCooldown = 1;
-                    }
                 }
+
                 break;
 
             case KeyboardEvent.KEY_UP:
@@ -177,14 +192,11 @@ public class Arena implements ToDo {
 
             case KeyboardEvent.KEY_LEFT:
                 if (inBoundsLeft(player2) && player2CanAct && player2Loop && player2MoveCooldown == 0) {
-                    if (facingInitialPosition()) {
                         picPlayer2.translate(-player2.getPixelMovement(), 0);
                         picPlayer2Punch.translate(-player2.getPixelMovement(), 0);
                         player2.moveLeft();
 
                         player2MoveCooldown = 1;
-                    }
-
                 }
                 break;
 
@@ -216,6 +228,8 @@ public class Arena implements ToDo {
                 }
                 break;
         }
+        setFacingInitialPosition();
+        reverse();
     }
 
     ///////////// action RELEASED
@@ -242,7 +256,71 @@ public class Arena implements ToDo {
     }
 
 ///////////////////// Metodos
-    public void deleteAll(){
+
+    private void reverse() {
+        if (facingInitialPosition) {
+            picPlayer1.load(player1.getFighter().getPhotoName(player1.getFighter()) + "_" + "stand" + "_" + "right.png");
+            picPlayer2.load(player2.getFighter().getPhotoName(player2.getFighter()) + "_" + "stand" + "_" + "left.png");
+            picPlayer1Punch.load(player1.getFighter().getPhotoName(player1.getFighter()) + "_" + "punch" + "_" + "right.png");
+            picPlayer2Punch.load(player2.getFighter().getPhotoName(player2.getFighter()) + "_" + "punch" + "_" + "left.png");
+        } else {
+            picPlayer1.load(player1.getFighter().getPhotoName(player1.getFighter()) + "_" + "stand" + "_" + "left.png");
+            picPlayer2.load(player2.getFighter().getPhotoName(player2.getFighter()) + "_" + "stand" + "_" + "right.png");
+            picPlayer1Punch.load(player1.getFighter().getPhotoName(player1.getFighter()) + "_" + "punch" + "_" + "left.png");
+            picPlayer2Punch.load(player2.getFighter().getPhotoName(player2.getFighter()) + "_" + "punch" + "_" + "right.png");
+
+        }
+    }
+
+
+   /* private void boxPos1() {
+        int counter = 0;
+        for (int row = player1.getPosY(); row <= player1.getHeight(); row++)
+            for (int col = player1.getPosX(); col <= player1.getWidth(); col++) {
+                player1HitBox[counter] = + (row) + ","+ (col) ;
+                counter++;
+            }
+
+    }
+    private void boxPos2() {
+        int counter = 0;
+        for (int row = player2.getPosY(); row <= player2.getHeight(); row++)
+            for (int col = player2.getPosX(); col <= player2.getWidth(); col++) {
+                player2HitBox[counter] = "x: " + (row) + " y: " + (col) + "";
+                counter++;
+            }
+
+    }*/
+
+   /* private boolean collider(){
+       int d1x = (player1.getPosX() + player1.getWidth() +FIGHTER_REACH) - (player2.getPosX());
+
+       //reversos
+       int d2x = (player2.getPosX() + player2.getWidth() + FIGHTER_REACH) - player1.getPosX();
+
+
+       int d1y = (player1.getPosY() + player1.getHeight() + headJumpDistance) - player2.getHeight();
+       int d2y = (player2.getPosY() + player2.getHeight() +headJumpDistance) - player1.getHeight();
+
+
+        if (d1x > 0 && d1y < 0) {
+            return false;
+        }
+        if (d1x < 0 && d1y > 0) {
+            return false;
+        }
+
+
+
+
+       if(d2x>0 || d2y > 0){
+           return false;
+       }
+        return true;
+    }*/
+
+
+    public void deleteAll() {
         arenaPic.delete();
         picPlayer1.delete();
         picPlayer2.delete();
@@ -267,7 +345,7 @@ public class Arena implements ToDo {
 
     private void hitInTheFace(Fighter playerPuncher, Fighter playerPuncherReceiver) {
         if (playerPuncher == player1) {
-            if (initialFacingPositions) {
+            if (facingInitialPosition) {
                 if (Math.abs(playerPuncher.getPosX() + playerPuncher.getWidth() - playerPuncherReceiver.getPosX()) < FIGHTER_REACH) {
                     playerPuncherReceiver.hit(playerPuncher.getDamage());
                     punch1.play(true);
@@ -280,8 +358,8 @@ public class Arena implements ToDo {
                     whoKicksback();
                 }
             }
-        } else {
-            if (initialFacingPositions) {
+        } else /* playerPuncher == player2 */ {
+            if (facingInitialPosition) {
                 if (Math.abs(playerPuncherReceiver.getPosX() + playerPuncherReceiver.getWidth() - playerPuncher.getPosX()) < FIGHTER_REACH) {
                     playerPuncherReceiver.hit(playerPuncher.getDamage());
                     punch1.play(true);
@@ -309,7 +387,7 @@ public class Arena implements ToDo {
 
             player1Loop = false;
             player2Loop = false;
-            new GameOverScreen(2,this);
+            new GameOverScreen(2, this);
         }
 
         if (player2.checkIfDead()) {
@@ -318,7 +396,139 @@ public class Arena implements ToDo {
 
             player1Loop = false;
             player2Loop = false;
-            new GameOverScreen(1,this);
+            new GameOverScreen(1, this);
+        }
+
+    }
+
+    /*private void collider (){
+        if(isInitialFacingPositions()){
+
+            if((Math.abs((player1.getPosX() + player1.getWidth() - player2.getPosX())) < FIGHTER_REACH)){
+                collided = true;
+            }
+            if(player1.getPosY() > player2.getPosY()){
+               if (Math.abs((player1.getPosY() + player1.getHeight() - player2.getPosY())) < headJumpDistance){
+                    collided = true;
+                }
+            }else{
+                if(Math.abs((player2.getPosY() + player2.getHeight() - player1.getPosY())) < headJumpDistance){
+                    collided = true;
+                }
+            }
+            collided = false;
+        }
+    }*/
+
+    private void setFacingInitialPosition() {
+        if (player2.getPosX() - (player1.getPosX() + player1.getWidth()) <= -50) {
+            facingInitialPosition = false;
+
+        } else {
+            if (player1.getPosX() - (player2.getPosX() + player2.getWidth()) <= -50) {
+                facingInitialPosition = true;
+            }
+        }
+    }
+
+
+    public void goUp1() {
+        player1CanAct = false;
+        picPlayer1.translate(0, -jumpDistance);
+        picPlayer1Punch.translate(0, -jumpDistance);
+        player1CanAct = true;
+    }
+
+    public void player1Gravity() {
+        player1CanAct = false;
+        if (picPlayer1.getY() + picPlayer1.getHeight() <= arenaPic.getHeight() - 50) {
+            isGroundedP1 = false;
+            picPlayer1.translate(0, jumpDistance);
+            picPlayer1Punch.translate(0, jumpDistance);
+            player1CanAct = true;
+            return;
+        }
+        player1CanAct = true;
+        isGroundedP1 = true;
+    }
+
+    public void player1Kickback() {
+        player1CanAct = false;
+
+        if (facingInitialPosition) {
+            picPlayer1.translate(-player1.getPixelMovement(), 0);
+            picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
+            player1.moveLeft();
+        }
+
+        if (!facingInitialPosition) {
+            picPlayer1.translate(player2.getPixelMovement(), 0);
+            picPlayer1Punch.translate(player2.getPixelMovement(), 0);
+            player1.moveRight();
+        }
+
+    }
+
+    public void goUp2() {
+        player2CanAct = false;
+        picPlayer2.translate(0, -jumpDistance);
+        picPlayer2Punch.translate(0, -jumpDistance);
+        player2CanAct = true;
+    }
+
+    public void player2Gravity() {
+        player2CanAct = false;
+        if (picPlayer2.getY() + picPlayer2.getHeight() <= arenaPic.getHeight() - 50) {
+            isGroundedP2 = false;
+            picPlayer2.translate(0, jumpDistance);
+            picPlayer2Punch.translate(0, jumpDistance);
+            player2CanAct = true;
+            return;
+        }
+        player2CanAct = true;
+        isGroundedP2 = true;
+    }
+
+    public void player2Kickback() {
+        player2CanAct = false;
+
+        if (facingInitialPosition) {
+            picPlayer2.translate(player2.getPixelMovement(), 0);
+            picPlayer2Punch.translate(player2.getPixelMovement(), 0);
+            player2.moveRight();
+        }
+
+        if (!facingInitialPosition) {
+            picPlayer2.translate(-player1.getPixelMovement(), 0);
+            picPlayer2Punch.translate(-player1.getPixelMovement(), 0);
+            player2.moveLeft();
+        }
+
+    }
+
+    public void whoKicksback() {
+        if(facingInitialPosition) {
+            if (player1.getPosX() + player1.getWidth() >= arenaPic.getWidth() / 2) {
+                player1Kickback = true;
+                return;
+            }
+
+            if (player2.getPosX() <= arenaPic.getWidth() / 2) {
+                player2Kickback = true;
+                return;
+            }
+        }
+
+        if(!facingInitialPosition) {
+            if (player1.getPosX() + player1.getWidth() >= arenaPic.getWidth() / 2) {
+                player2Kickback = true;
+                return;
+            }
+
+            if (player2.getPosX() <= arenaPic.getWidth() / 2) {
+                player1Kickback = true;
+                return;
+            }
         }
 
     }
@@ -326,12 +536,7 @@ public class Arena implements ToDo {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7
 //Threads
-    private boolean facingInitialPosition() {
-        if (player1.getPosX() + player1.getWidth() + 10 < player2.getPosX()) {
-            return true;
-        }
-        return false;
-    }
+
 
     Thread player1ThreadJump = new Thread(new Runnable() {
 
@@ -352,7 +557,6 @@ public class Arena implements ToDo {
 
                 player1Kickback();
 
-
                 try {
                     Thread.sleep(25);
                 } catch (InterruptedException e) {
@@ -360,9 +564,7 @@ public class Arena implements ToDo {
                 }
 
             }
-
             player1Kickback = false;
-
         }
 
         void callGravity() {
@@ -461,78 +663,5 @@ public class Arena implements ToDo {
             }
         }
     });
-
-    public void goUp1() {
-        player1CanAct = false;
-        picPlayer1.translate(0, -jumpDistance);
-        picPlayer1Punch.translate(0, -jumpDistance);
-        player1CanAct = true;
-    }
-
-    public void player1Gravity() {
-        player1CanAct = false;
-        if (picPlayer1.getY() + picPlayer1.getHeight() <= arenaPic.getHeight() - 50) {
-            isGroundedP1 = false;
-            picPlayer1.translate(0, jumpDistance);
-            picPlayer1Punch.translate(0, jumpDistance);
-            player1CanAct = true;
-            return;
-        }
-        player1CanAct = true;
-        isGroundedP1 = true;
-    }
-
-    public void player1Kickback() {
-        player1CanAct = false;
-        picPlayer1.translate(-player1.getPixelMovement(), 0);
-        picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
-        player1.moveLeft();
-    }
-
-    public void goUp2() {
-        player2CanAct = false;
-        picPlayer2.translate(0, -jumpDistance);
-        picPlayer2Punch.translate(0, -jumpDistance);
-        player2CanAct = true;
-    }
-
-    public void player2Gravity() {
-        player2CanAct = false;
-        if (picPlayer2.getY() + picPlayer2.getHeight() <= arenaPic.getHeight() - 50) {
-            isGroundedP2 = false;
-            picPlayer2.translate(0, jumpDistance);
-            picPlayer2Punch.translate(0, jumpDistance);
-            player2CanAct = true;
-            return;
-        }
-        player2CanAct = true;
-        isGroundedP2 = true;
-    }
-
-    public void player2Kickback() {
-        player2CanAct = false;
-        picPlayer2.translate(player2.getPixelMovement(), 0);
-        picPlayer2Punch.translate(player2.getPixelMovement(), 0);
-        player2.moveRight();
-    }
-
-    public void whoKicksback () {
-        if(player1.getPosX() + player1.getWidth() >= arenaPic.getWidth() / 2)
-        {
-            player1Kickback = true;
-            return;
-        }
-
-        if(player2.getPosX() <= arenaPic.getWidth() / 2)
-        {
-            player2Kickback = true;
-            return;
-        }
-
-    }
-
-
-
-
 
 }

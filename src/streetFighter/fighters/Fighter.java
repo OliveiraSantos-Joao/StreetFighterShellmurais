@@ -1,5 +1,9 @@
 package streetFighter.fighters;
 
+import java.awt.*;
+import java.util.Map;
+import java.util.TreeMap;
+
 public class Fighter {
     //
     Fighters fighter;
@@ -14,14 +18,13 @@ public class Fighter {
     private int jump = 20;
     private int height = 250;
     private int width = 100;
+    private int corner = width + height;
 
 
 
-    public Fighter(PlayerType playerType, Fighters fighter){
+    public Fighter(PlayerType playerType, Fighters fighter) {
 
         this.playerType = playerType;
-
-
 
         this.fighter = fighter;
         this.health = Fighters.getInitialHealth(fighter);
@@ -45,6 +48,7 @@ public class Fighter {
     public int getPosX() {
         return posX;
     }
+
     public int getPosY() {
         return posY;
     }
@@ -65,41 +69,47 @@ public class Fighter {
         return playerType;
     }
 
-    public int getHeight() { return height; }
-    public int getWidth() { return width; }
+    public int getHeight() {
+        return height;
+    }
 
-    public void moveRight() { this.posX = posX + pixelMovement; }
-    public void moveLeft() { this.posX = posX - pixelMovement; }
+    public int getWidth() {
+        return width;
+    }
 
-    public int getPixelMovement() { return pixelMovement; }
+    public void moveRight() {
+        this.posX = posX + pixelMovement;
+    }
+
+    public void moveLeft() {
+        this.posX = posX - pixelMovement;
+    }
+
+    public int getPixelMovement() {
+        return pixelMovement;
+    }
 
     public Fighters getFighter() {
         return fighter;
     }
     // methods
 
-    public void jump(){
+    public void jump() {
         this.posY = posY + jump;
     }
 
-    public void hit(int hit){
+    public void hit(int hit) {
         this.health -= hit;
         checkIfDead();
     }
 
-    public boolean checkIfDead(){
-        if(health <= 0){
+    public boolean checkIfDead() {
+        if (health <= 0) {
             this.health = 0;
             return true;
         }
         return false;
     }
-
-
-
-
-
-
 
 
 
