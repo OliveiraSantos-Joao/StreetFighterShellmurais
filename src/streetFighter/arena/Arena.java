@@ -309,7 +309,6 @@ public class Arena implements ToDo {
 
     public void useCollider() {
         isCollided = collider.checkCollision();
-        System.out.println("is colliding: " + isCollided);
     }
 
 
@@ -397,7 +396,7 @@ public class Arena implements ToDo {
         }
         return true;
     }
-    
+
     private void hitInTheFace(Fighter playerPuncher, Fighter playerPuncherReceiver) {
         if (playerPuncher == player1 && isCollided) {
             playerPuncherReceiver.hit(playerPuncher.getDamage());
@@ -405,7 +404,7 @@ public class Arena implements ToDo {
             whoKicksback();
         }
 
-        if (playerPuncher == player2 && isCollided){
+        if (playerPuncher == player2 && isCollided) {
             playerPuncherReceiver.hit(playerPuncher.getDamage());
             punch1.play(true);
             whoKicksback();
@@ -430,7 +429,7 @@ public class Arena implements ToDo {
         if (player2.checkIfDead()) {
             fightOver = true;
             System.out.println("Player 1 won");
-
+            player1CanAct = true;
             player1Loop = false;
             player2Loop = false;
             new GameOverScreen(1, this);
@@ -461,11 +460,10 @@ public class Arena implements ToDo {
     private void setFacingPosition() {
         if (player2.getPosX() - (player1.getPosX() + player1.getWidth()) <= -50) {
             facingInitialPosition = false;
+        }
 
-        } else {
-            if (player1.getPosX() - (player2.getPosX() + player2.getWidth()) <= -50) {
-                facingInitialPosition = true;
-            }
+        if (player1.getPosX() - (player2.getPosX() + player2.getWidth()) <= -50) {
+            facingInitialPosition = true;
         }
     }
 
@@ -473,19 +471,28 @@ public class Arena implements ToDo {
     public void goUp1() {
         player1CanAct = false;
         useCollider();
+        try{
         picPlayer1.translate(0, -jumpDistance);
-        picPlayer1Punch.translate(0, -jumpDistance);
+        picPlayer1Punch.translate(0, -jumpDistance);}
+        catch (java.util.ConcurrentModificationException e) {
+            System.out.println("CMExc");
+        }
         player1.moveUp();
         player1CanAct = true;
     }
 
     public void player1Gravity() {
-        player1CanAct = false;
         if (picPlayer1.getY() + picPlayer1.getHeight() <= arenaPic.getHeight() - 50) {
+            player1CanAct = false;
             isGroundedP1 = false;
+            try {
             picPlayer1.translate(0, jumpDistance);
-            picPlayer1Punch.translate(0, jumpDistance);
+            picPlayer1Punch.translate(0, jumpDistance); }
+            catch (java.util.ConcurrentModificationException e) {
+                System.out.println("CMExc");
+            }
             player1.moveDown();
+            player1CanAct = true;
             return;
         }
         isGroundedP1 = true;
@@ -511,19 +518,28 @@ public class Arena implements ToDo {
     public void goUp2() {
         player2CanAct = false;
         useCollider();
+        try{
         picPlayer2.translate(0, -jumpDistance);
-        picPlayer2Punch.translate(0, -jumpDistance);
+        picPlayer2Punch.translate(0, -jumpDistance);}
+        catch (java.util.ConcurrentModificationException e) {
+            System.out.println("CMExc");
+        }
         player2.moveUp();
         player2CanAct = true;
     }
 
     public void player2Gravity() {
-        player2CanAct = false;
         if (picPlayer2.getY() + picPlayer2.getHeight() <= arenaPic.getHeight() - 50) {
+            player2CanAct = false;
             isGroundedP2 = false;
+            try {
             picPlayer2.translate(0, jumpDistance);
-            picPlayer2Punch.translate(0, jumpDistance);
+            picPlayer2Punch.translate(0, jumpDistance); }
+            catch (java.util.ConcurrentModificationException e) {
+                System.out.println("CMExc");
+            }
             player2.moveDown();
+            player2CanAct = true;
             return;
         }
         isGroundedP2 = true;
@@ -531,7 +547,6 @@ public class Arena implements ToDo {
 
     public void player2Kickback() {
         player2CanAct = false;
-
         if (facingInitialPosition) {
             picPlayer2.translate(player2.getPixelMovement(), 0);
             picPlayer2Punch.translate(player2.getPixelMovement(), 0);
@@ -608,7 +623,6 @@ public class Arena implements ToDo {
 
         void callGravity() {
             player1Gravity();
-            player1CanAct = true;
             try {
                 Thread.sleep(25);
             } catch (InterruptedException e) {
@@ -638,6 +652,7 @@ public class Arena implements ToDo {
                 }
 
                 callGravity();
+
             }
         }
     });
@@ -672,7 +687,6 @@ public class Arena implements ToDo {
 
         void callGravity() {
             player2Gravity();
-            player2CanAct = true;
             try {
                 Thread.sleep(25);
             } catch (InterruptedException e) {
