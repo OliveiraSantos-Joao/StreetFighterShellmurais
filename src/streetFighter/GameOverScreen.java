@@ -26,6 +26,10 @@ public class GameOverScreen implements ToDo {
     private int keyPressed = 1;
     private int maxChoices = 2;
 
+    private Sound p1Wins = new Sound("/Resources/Sounding/P1, P2 Wins/P1Wins.wav");
+    private Sound p2Wins = new Sound("/Resources/Sounding/P1, P2 Wins/Player2Wins.wav");
+
+
 
     private final int halfWidth = Game.WIDTH / 2;
     private final int halfHeight = Game.HEIGHT / 2;
@@ -46,6 +50,12 @@ public class GameOverScreen implements ToDo {
         //winner text and rect
         //winnerText = new Text(halfWidth ,halfHeight - (halfHeight/2),"Player " + winner + " is the WINNER CARALHO!");
         winnerMessage = new Picture(0,halfHeight/2,"P"+ winner+ "Wins.png");
+        if(winner == 1) {
+            p1Wins.play(true);
+        }
+        if(winner == 2){
+            p2Wins.play(true);
+        }
         winnerMessage.draw();
         //winnerText.grow(300,40);
 

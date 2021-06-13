@@ -61,6 +61,10 @@ public class ChooseFighter implements ToDo {
 
     private Sound optionSound = new Sound("/Resources/Sounding/Select Options/select2.wav");
     private Sound enterClick = new Sound("/Resources/Sounding/Select Options/select3.wav");
+    private Sound saraSound = new Sound("/Resources/Sounding/Choosing Fighters/Sara.wav");
+    private Sound pauloSound = new Sound("/Resources/Sounding/Choosing Fighters/Paulo.wav");
+    private Sound pedroSound = new Sound("/Resources/Sounding/Choosing Fighters/Pedrito.wav");
+    private Sound igrejaSound = new Sound("/Resources/Sounding/Choosing Fighters/Igreja.wav");
 
     public ChooseFighter() {
         Inputs.setInputScreen(this);
@@ -323,18 +327,22 @@ public class ChooseFighter implements ToDo {
 
                 switch (pressedCharacterP1) {
                     case 1:
+                        saraSound.play(true);
                         fighterP1ready = new Fighter(PlayerType.PLAYER1, Fighters.SARA);
                         break;
 
                     case 2:
+                        pauloSound.play(true);
                         fighterP1ready = new Fighter(PlayerType.PLAYER1, Fighters.PAULO);
                         break;
 
                     case 3:
+                        pedroSound.play(true);
                         fighterP1ready = new Fighter(PlayerType.PLAYER1, Fighters.PEDRO);
                         break;
 
                     case 4:
+                        igrejaSound.play(true);
                         fighterP1ready = new Fighter(PlayerType.PLAYER1, Fighters.JEANMARK);
                         break;
                 }
@@ -356,18 +364,22 @@ public class ChooseFighter implements ToDo {
 
                 switch (pressedCharacterP2) {
                     case 1:
+                        saraSound.play(true);
                         fighterP2ready = new Fighter(PlayerType.PLAYER2, Fighters.SARA);
                         break;
 
                     case 2:
+                        pauloSound.play(true);
                         fighterP2ready = new Fighter(PlayerType.PLAYER2, Fighters.PAULO);
                         break;
 
                     case 3:
+                        pedroSound.play(true);
                         fighterP2ready = new Fighter(PlayerType.PLAYER2, Fighters.PEDRO);
                         break;
 
                     case 4:
+                        igrejaSound.play(true);
                         fighterP2ready = new Fighter(PlayerType.PLAYER2, Fighters.JEANMARK);
                         break;
                 }

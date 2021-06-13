@@ -19,6 +19,8 @@ public class Instructions implements ToDo {
     private Rectangle instructionsMenuPic;
     private Picture keys;
 
+    private Sound enterClick = new Sound("/Resources/Sounding/Select Options/select3.wav");
+
 
     public Instructions() {
 
@@ -62,6 +64,7 @@ public class Instructions implements ToDo {
     public void actionPressed(int key) {
         switch (key){
             case KeyboardEvent.KEY_SPACE:
+                enterClick.play(true);
                 System.out.println("entrou");
 
                 deleteInstruction();

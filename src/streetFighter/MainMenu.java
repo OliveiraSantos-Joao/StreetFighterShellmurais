@@ -36,6 +36,7 @@ public class MainMenu implements ToDo {
     private Sound enterClick = new Sound("/Resources/Sounding/Select Options/select3.wav");
     private static Sound sound = new Sound("/Resources/Sounding/MainMenu/MainMenu(loop).wav");
     private static Sound clickOptions = new Sound("/Resources/Sounding/Select Options/select2.wav");
+    private Sound welcomeSound = new Sound("/Resources/Sounding/Welcome to street.wav");
 
 
     //Contructor MainMenu
@@ -66,6 +67,7 @@ public class MainMenu implements ToDo {
         currentlyPressedPosition = 1;
         drawMainMenu();
 
+        welcomeSound.play(true);
         playSound();
 
 
@@ -254,7 +256,7 @@ public class MainMenu implements ToDo {
         if (isSoundPlaying) {
             return;
         }
-        sound.play(true);
+        sound.setLoop(20);
         isSoundPlaying = true;
     }
 
