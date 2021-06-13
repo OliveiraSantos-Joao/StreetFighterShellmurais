@@ -147,6 +147,10 @@ public class MainMenu implements ToDo {
         textInstructions.delete();
         textExit.delete();
         mainMenuPic.delete();
+        saraPic.delete();
+        pauloPic.delete();
+        pedroPic.delete();
+        igrejaPic.delete();
     }
 
 
