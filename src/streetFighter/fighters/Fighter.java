@@ -21,7 +21,6 @@ public class Fighter {
     private int corner = width + height;
 
 
-
     public Fighter(PlayerType playerType, Fighters fighter) {
 
         this.playerType = playerType;
@@ -80,10 +79,11 @@ public class Fighter {
     public void moveRight() {
         this.posX = posX + pixelMovement;
     }
-
     public void moveLeft() {
         this.posX = posX - pixelMovement;
     }
+    public void moveUp() { this.posY = posY - 15; }
+    public void moveDown() { this.posY = posY + 15; }
 
     public int getPixelMovement() {
         return pixelMovement;
@@ -110,8 +110,6 @@ public class Fighter {
         }
         return false;
     }
-
-
 
 
 }
