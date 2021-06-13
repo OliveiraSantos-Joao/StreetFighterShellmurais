@@ -17,36 +17,44 @@ import java.util.TimerTask;
 public class Arena implements ToDo {
 
     private Picture arenaPic;
+
     private Fighter player1;
     private Fighter player2;
+
     private Picture picPlayer1;
     private Picture picPlayer2;
+
     private Picture picPlayer1Punch;
     private Picture picPlayer2Punch;
 
-    private String arenaName;
     private HealthBar hb;
+    private String arenaName;
 
     private int jumpDistance;
 
     private boolean initialFacingPositions = true;
     private boolean fightOver = false;
+
     private boolean player1Jump = true;
     private boolean player2Jump = true;
+
     private boolean player1Kickback = false;
     private boolean player2Kickback = false;
 
     private boolean player1CanAct = true;
     private boolean player2CanAct = true;
+
     private boolean player1Loop = true;
     private boolean player2Loop = true;
+
     private boolean isGroundedP1 = false;
     private boolean isGroundedP2 = false;
 
+    private int player2MoveCooldown = 1;
+    private int player1MoveCooldown = 1;
+
     //private int player1PunchCooldown = 1;
     //private int player2PunchCooldown = 1;
-    private int player1MoveCooldown = 1;
-    private int player2MoveCooldown = 1;
 
     private Sound punch1 = new Sound("/Resources/Sounding/Movement and Fight/punch1.wav");
 
@@ -73,15 +81,6 @@ public class Arena implements ToDo {
     private int teste = 0;
     private final int FIGHTER_REACH = 20;
 
-    // Getters e Setters
-    public Picture getPicPlayer1() {
-        return picPlayer1;
-    }
-
-    public Picture getPicPlayer2() {
-        return picPlayer2;
-    }
-
 
     //constructor
     public Arena(Fighter player1, Fighter player2, String arenaName) {
@@ -94,14 +93,12 @@ public class Arena implements ToDo {
 
         timer.schedule(task, 50, 50);
         init();
-
-        player1ThreadJump.start();
-        player2ThreadJump.start();
-
     }
 
     public void init() {
         drawArena();
+        player1ThreadJump.start();
+        player2ThreadJump.start();
     }
 
     public void drawArena() {
@@ -109,7 +106,6 @@ public class Arena implements ToDo {
         arenaPic.draw();
         hb = new HealthBar(player1, player2);
         drawPlayers();
-
     }
 
     public void drawPlayers() {
@@ -138,7 +134,6 @@ public class Arena implements ToDo {
             case KeyboardEvent.KEY_W:
                 if (isGroundedP1) {
                     player1Jump = true;
-                    // player1JumpCooldown = 1;
                 }
                 break;
 
