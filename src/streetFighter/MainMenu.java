@@ -22,6 +22,11 @@ public class MainMenu implements ToDo {
     private Text textInstructions;
     private Text textExit;
 
+    private Picture saraPic;
+    private Picture pauloPic;
+    private Picture pedroPic;
+    private Picture igrejaPic;
+
     private int RECT_X_DEFAULT;
 
     private int currentlyPressedPosition = 1;
@@ -43,10 +48,22 @@ public class MainMenu implements ToDo {
 
         RECT_X_DEFAULT = mainMenuPic.getWidth() / 2;
 
+        saraPic = new Picture(350,350,"sara_punch_right.png");
+        pedroPic = new Picture(750,350,"pedro_punch_left.png");
+        pauloPic = new Picture(200,500,"paulo_punch_right.png");
+        igrejaPic = new Picture(900 , 500, "igreja_punch_left.png");
+
+        saraPic.draw();
+        pedroPic.draw();
+        pauloPic.grow(10,10);
+        pauloPic.draw();
+        igrejaPic.draw();
+
         currentlyPressedPosition = 1;
         drawMainMenu();
 
-        playSound();
+        //playSound();
+
 
     }
 
@@ -115,6 +132,10 @@ public class MainMenu implements ToDo {
         //Third Text Rectangle
         rectangleExit = new Rectangle(textInstructions.getX() - 50, textExit.getY() - 10, textStart.getWidth() + 100, textExit.getHeight() + 20);
         rectangleExit.setColor(Color.WHITE);
+
+
+
+
 
     }
 
