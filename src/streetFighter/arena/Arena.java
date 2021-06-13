@@ -31,7 +31,6 @@ public class Arena implements ToDo {
 
     private int jumpDistance;
 
-    //private boolean initialFacingPositions = true;
     private boolean facingInitialPosition = true;
     private boolean fightOver = false;
 
