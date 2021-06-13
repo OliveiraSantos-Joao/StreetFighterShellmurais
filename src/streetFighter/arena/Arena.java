@@ -161,19 +161,39 @@ public class Arena implements ToDo {
 
             case KeyboardEvent.KEY_A:
                 if (inBoundsLeft(player1) && player1CanAct && player1Loop && player1MoveCooldown == 0) {
-                    picPlayer1.translate(-player1.getPixelMovement(), 0);
-                    picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
-                    player1.moveLeft();
-                    player1MoveCooldown = 1;
+                    if(facingInitialPosition) {
+                        picPlayer1.translate(-player1.getPixelMovement(), 0);
+                        picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
+                        player1.moveLeft();
+                        player1MoveCooldown = 1;
+                    }
+
+                    if(!facingInitialPosition && !isCollided) {
+                        picPlayer1.translate(-player1.getPixelMovement(), 0);
+                        picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
+                        player1.moveLeft();
+                        player1MoveCooldown = 1;
+                    }
+
                 }
                 break;
 
             case KeyboardEvent.KEY_D:
                 if (inBoundsRight(player1) && player1CanAct && player1Loop && player1MoveCooldown == 0) {
-                    picPlayer1.translate(player1.getPixelMovement(), 0);
-                    picPlayer1Punch.translate(player1.getPixelMovement(), 0);
-                    player1.moveRight();
-                    player1MoveCooldown = 1;
+                    if(facingInitialPosition && !isCollided) {
+                        picPlayer1.translate(player1.getPixelMovement(), 0);
+                        picPlayer1Punch.translate(player1.getPixelMovement(), 0);
+                        player1.moveRight();
+                        player1MoveCooldown = 1;
+                    }
+
+                    if(!facingInitialPosition) {
+                        picPlayer1.translate(player1.getPixelMovement(), 0);
+                        picPlayer1Punch.translate(player1.getPixelMovement(), 0);
+                        player1.moveRight();
+                        player1MoveCooldown = 1;
+                    }
+
                 }
                 break;
 
@@ -187,20 +207,40 @@ public class Arena implements ToDo {
             case KeyboardEvent.KEY_LEFT:
 
                 if (inBoundsLeft(player2) && player2CanAct && player2Loop && player2MoveCooldown == 0) {
-                    picPlayer2.translate(-player2.getPixelMovement(), 0);
-                    picPlayer2Punch.translate(-player2.getPixelMovement(), 0);
-                    player2.moveLeft();
-                    player2MoveCooldown = 1;
+                    if(facingInitialPosition && !isCollided) {
+                        picPlayer2.translate(-player2.getPixelMovement(), 0);
+                        picPlayer2Punch.translate(-player2.getPixelMovement(), 0);
+                        player2.moveLeft();
+                        player2MoveCooldown = 1;
+                    }
+
+                    if(!facingInitialPosition) {
+                        picPlayer2.translate(-player2.getPixelMovement(), 0);
+                        picPlayer2Punch.translate(-player2.getPixelMovement(), 0);
+                        player2.moveLeft();
+                        player2MoveCooldown = 1;
+                    }
+
                 }
                 break;
 
             case KeyboardEvent.KEY_RIGHT:
 
                 if (inBoundsRight(player2) && player2CanAct && player2Loop && player2MoveCooldown == 0) {
-                    picPlayer2.translate(player2.getPixelMovement(), 0);
-                    picPlayer2Punch.translate(player2.getPixelMovement(), 0);
-                    player2.moveRight();
-                    player2MoveCooldown = 1;
+                    if(facingInitialPosition) {
+                        picPlayer2.translate(player2.getPixelMovement(), 0);
+                        picPlayer2Punch.translate(player2.getPixelMovement(), 0);
+                        player2.moveRight();
+                        player2MoveCooldown = 1;
+                    }
+
+                    if(!facingInitialPosition && !isCollided) {
+                        picPlayer2.translate(player2.getPixelMovement(), 0);
+                        picPlayer2Punch.translate(player2.getPixelMovement(), 0);
+                        player2.moveRight();
+                        player2MoveCooldown = 1;
+                    }
+
                 }
                 break;
 
@@ -361,13 +401,13 @@ public class Arena implements ToDo {
     private void hitInTheFace(Fighter playerPuncher, Fighter playerPuncherReceiver) {
         if (playerPuncher == player1) {
             if (facingInitialPosition) {
-                if (Math.abs(playerPuncher.getPosX() + playerPuncher.getWidth() - playerPuncherReceiver.getPosX()) < FIGHTER_REACH) {
+                if (isCollided/*Math.abs(playerPuncher.getPosX() + playerPuncher.getWidth() - playerPuncherReceiver.getPosX()) < FIGHTER_REACH*/) {
                     playerPuncherReceiver.hit(playerPuncher.getDamage());
                     punch1.play(true);
                     whoKicksback();
                 }
             } else {
-                if (Math.abs(playerPuncherReceiver.getPosX() + playerPuncherReceiver.getWidth() - playerPuncher.getPosX()) < FIGHTER_REACH) {
+                if (isCollided/*Math.abs(playerPuncherReceiver.getPosX() + playerPuncherReceiver.getWidth() - playerPuncher.getPosX()) < FIGHTER_REACH*/) {
                     playerPuncherReceiver.hit(playerPuncher.getDamage());
                     punch1.play(true);
                     whoKicksback();
@@ -375,13 +415,13 @@ public class Arena implements ToDo {
             }
         } else /* playerPuncher == player2 */ {
             if (facingInitialPosition) {
-                if (Math.abs(playerPuncherReceiver.getPosX() + playerPuncherReceiver.getWidth() - playerPuncher.getPosX()) < FIGHTER_REACH) {
+                if (isCollided/*Math.abs(playerPuncherReceiver.getPosX() + playerPuncherReceiver.getWidth() - playerPuncher.getPosX()) < FIGHTER_REACH*/) {
                     playerPuncherReceiver.hit(playerPuncher.getDamage());
                     punch1.play(true);
                     whoKicksback();
                 }
             } else {
-                if (Math.abs(playerPuncher.getPosX() + playerPuncher.getWidth() - playerPuncherReceiver.getPosX()) < FIGHTER_REACH) {
+                if (isCollided/*Math.abs(playerPuncher.getPosX() + playerPuncher.getWidth() - playerPuncherReceiver.getPosX()) < FIGHTER_REACH*/) {
                     playerPuncherReceiver.hit(playerPuncher.getDamage());
                     punch1.play(true);
                     whoKicksback();
@@ -464,10 +504,8 @@ public class Arena implements ToDo {
             picPlayer1.translate(0, jumpDistance);
             picPlayer1Punch.translate(0, jumpDistance);
             player1.moveDown();
-            player1CanAct = true;
             return;
         }
-        player1CanAct = true;
         isGroundedP1 = true;
     }
 
@@ -504,10 +542,8 @@ public class Arena implements ToDo {
             picPlayer2.translate(0, jumpDistance);
             picPlayer2Punch.translate(0, jumpDistance);
             player2.moveDown();
-            player2CanAct = true;
             return;
         }
-        player2CanAct = true;
         isGroundedP2 = true;
     }
 
@@ -590,6 +626,7 @@ public class Arena implements ToDo {
 
         void callGravity() {
             player1Gravity();
+            player1CanAct = true;
             try {
                 Thread.sleep(25);
             } catch (InterruptedException e) {
@@ -653,6 +690,7 @@ public class Arena implements ToDo {
 
         void callGravity() {
             player2Gravity();
+            player2CanAct = true;
             try {
                 Thread.sleep(25);
             } catch (InterruptedException e) {

@@ -32,13 +32,13 @@ public class Collider {
         int p2Corner = p2MaxX + player2.getHeight();
 
         if (arena.getFacingInitialPosition()) {
-            if (p1MaxX >= p2MinX - 10 && p1MinY < p2MaxY && p2MinY < p1MaxY) {
+            if (p1MaxX >= p2MinX - 10 && p1MinY < p2MaxY - 200 && p2MinY < p1MaxY - 200 ) {
                 return true;
             }
         }
 
         if (!arena.getFacingInitialPosition()){
-            if (p2MaxX >= p1MinX - 5 && p2MinY < p1MaxY && p1MinY < p2MaxY) {
+            if (p2MaxX >= p1MinX - 5 && p2MinY < p1MaxY - 200 && p1MinY < p2MaxY - 200) {
                 return true;
             }
         }
