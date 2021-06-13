@@ -22,6 +22,7 @@ public class MainMenu implements ToDo {
     private Text textInstructions;
     private Text textExit;
 
+    private Picture title;
     private Picture saraPic;
     private Picture pauloPic;
     private Picture pedroPic;
@@ -46,6 +47,9 @@ public class MainMenu implements ToDo {
         mainMenuPic = new Picture(10, 10, "elephantes_1280x720.jpeg");
         mainMenuPic.draw();
 
+        title = new Picture(mainMenuPic.getX() + 206, mainMenuPic.getY() + 70, "streetFighterMenuTitle.png");
+        title.draw();
+
         RECT_X_DEFAULT = mainMenuPic.getWidth() / 2;
 
         saraPic = new Picture(350,350,"sara_punch_right.png");
@@ -62,7 +66,7 @@ public class MainMenu implements ToDo {
         currentlyPressedPosition = 1;
         drawMainMenu();
 
-        //playSound();
+        playSound();
 
 
     }
@@ -151,6 +155,7 @@ public class MainMenu implements ToDo {
         pauloPic.delete();
         pedroPic.delete();
         igrejaPic.delete();
+        title.delete();
     }
 
 

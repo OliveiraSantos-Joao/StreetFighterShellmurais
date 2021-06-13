@@ -17,6 +17,7 @@ public class ChooseArena implements ToDo {
     private Picture arena2;
     private Picture arena3;
     private Picture arena4;
+    private Picture chooseTitle;
 
     private Picture arenaBackground;
 
@@ -58,6 +59,9 @@ public class ChooseArena implements ToDo {
 
         arenaBackground = new Picture(Game.PADDING, Game.PADDING, "Resources/arena1.png");
         arenaBackground.draw();
+
+        chooseTitle = new Picture();
+
 
         createArena();
 

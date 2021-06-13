@@ -19,30 +19,36 @@ public class Instructions implements ToDo {
 
     private Text exitText;
 
-    private Picture InstructionsMenuPic;
-    private Picture key1;
-    private Picture keySpace;
-    private Picture keyUp;
-    private Picture keyLeft;
-    private Picture keyRight;
-    private Picture keyW;
-    private Picture keyA;
-    private Picture keyD;
+    private Rectangle frame;
+    private Rectangle instructionsMenuPic;
+    private Picture keys;
+
 
     public Instructions() {
 
         Inputs.setInputScreen(this);
 
-        InstructionsMenuPic = new Picture(10, 10, "elephantes_1280x720.jpeg");
-        InstructionsMenuPic.draw();
+        frame = new Rectangle(10,10,Game.WIDTH+10,Game.HEIGHT+10);
+        frame.setColor(Color.BLACK);
+        frame.fill();
 
-        exitRect = new Rectangle(Game.WIDTH /2,Game.HEIGHT -Game.HEIGHT /5,100,50);
-        exitRect.setColor(Color.WHITE);
-        exitRect.draw();
+        instructionsMenuPic = new Rectangle(10+10, 10+10, Game.WIDTH-10,Game.HEIGHT-10);
+        instructionsMenuPic.setColor(Color.RED);
+        instructionsMenuPic.fill();
 
-        exitText = new Text(Game.WIDTH /2+8,Game.HEIGHT -Game.HEIGHT /5+18,"SPACE to exit");
+        exitRect = new Rectangle(Game.WIDTH /2-50,Game.HEIGHT -Game.HEIGHT /5 + 100,100,50);
+        exitRect.setColor(Color.BLACK);
+        exitRect.fill();
+
+        exitText = new Text(Game.WIDTH /2+8 - 50,Game.HEIGHT -Game.HEIGHT /5 + 18 + 100,"SPACE to exit");
         exitText.setColor(Color.WHITE);
+
         exitText.draw();
+
+        keys = new Picture(10,10,"INSTRUCTIONS.png");
+        keys.draw();
+
+
 
     //som 
     }
@@ -53,7 +59,7 @@ public class Instructions implements ToDo {
 
 
     public void deleteInstruction(){
-        InstructionsMenuPic.delete();
+        instructionsMenuPic.delete();
 
     }
 
