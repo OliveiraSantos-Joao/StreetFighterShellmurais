@@ -1,15 +1,13 @@
 package streetFighter;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 import streetFighter.arena.Arena;
 import streetFighter.inputs.Inputs;
 import streetFighter.inputs.ToDo;
-
-import java.awt.*;
 
 public class GameOverScreen implements ToDo {
 
@@ -19,6 +17,8 @@ public class GameOverScreen implements ToDo {
     private Text startAgainText;
     private Text winnerText;
     private Rectangle winnerRect;
+
+    private Picture winnerMessage;
 
     private Rectangle pauseRect;
 
@@ -44,22 +44,24 @@ public class GameOverScreen implements ToDo {
     private void init() {
 
         //winner text and rect
-        winnerText = new Text(halfWidth ,halfHeight - (halfHeight/2),"Player " + winner + " is the WINNER CARALHO!");
-        winnerText.grow(300,40);
+        //winnerText = new Text(halfWidth ,halfHeight - (halfHeight/2),"Player " + winner + " is the WINNER CARALHO!");
+        winnerMessage = new Picture(0,halfHeight/2,"P"+ winner+ "Wins.png");
+        winnerMessage.draw();
+        //winnerText.grow(300,40);
 
-        winnerRect = new Rectangle(winnerText.getX() - 15, winnerText.getY(), winnerText.getWidth() - 150, winnerText.getHeight() +10 );
-        winnerRect.setColor(Color.BLACK);
+        //winnerRect = new Rectangle(winnerText.getX() - 15, winnerText.getY(), winnerText.getWidth() - 150, winnerText.getHeight() +10 );
+        //winnerRect.setColor(Color.BLACK);
 
-        winnerRect.fill();
-        winnerText.setColor(Color.ORANGE);
-        winnerText.draw();
+        //winnerRect.fill();
+        //winnerText.setColor(Color.ORANGE);
+        //winnerText.draw();
 
         //pause rectangle
-        pauseRect = new Rectangle(Game.WIDTH/3 + Game.PADDING, Game.HEIGHT/3 + Game.PADDING, Game.WIDTH/3, Game.HEIGHT/3 + 100);
-        pauseRect.fill();
+        pauseRect = new Rectangle(Game.WIDTH/3 + Game.PADDING, Game.HEIGHT/3 + Game.PADDING + 100, Game.WIDTH/3, Game.HEIGHT/3 + 100);
+        //pauseRect.fill();
 
         //text creation
-        mainMenuText = new Text(halfWidth, halfHeight, "Main Menu");
+        mainMenuText = new Text(halfWidth, halfHeight+ 200, "Main Menu");
         mainMenuText.grow(100, 20);
 
         startAgainText = new Text(halfWidth, halfHeight + 100, "Start again");
@@ -152,12 +154,13 @@ public class GameOverScreen implements ToDo {
 
     }
     private void choiceMainMenu(){
-        startAgainRect.setColor(Color.BLACK);
+        //startAgainRect.setColor(Color.BLACK);
         startAgainText.setColor(Color.WHITE);
         mainMenuRect.setColor(Color.WHITE);
         mainMenuText.setColor(Color.BLACK);
 
-        startAgainRect.fill();
+        startAgainRect.delete();
+        //startAgainRect.fill();
         mainMenuRect.fill();
         startAgainText.draw();
         mainMenuText.draw();
@@ -169,7 +172,8 @@ public class GameOverScreen implements ToDo {
         mainMenuRect.setColor(Color.BLACK);
         mainMenuText.setColor(Color.WHITE);
         startAgainRect.fill();
-        mainMenuRect.fill();
+        mainMenuRect.delete();
+       // mainMenuRect.fill();
         startAgainText.draw();
         mainMenuText.draw();
 
@@ -180,7 +184,6 @@ public class GameOverScreen implements ToDo {
         startAgainText.delete();
         mainMenuText.delete();
         pauseRect.delete();
-        winnerText.delete();
-        winnerRect.delete();
+        winnerMessage.delete();
     }
 }

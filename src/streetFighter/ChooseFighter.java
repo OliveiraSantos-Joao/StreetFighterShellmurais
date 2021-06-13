@@ -28,6 +28,8 @@ public class ChooseFighter implements ToDo {
     private Picture pauloBigPicLeft;
     private Picture pedroBigPicLeft;
     private Picture fighter1BigPicLeft;
+    private Picture versus;
+
 
     private Picture mainMenu;
 
@@ -107,7 +109,7 @@ public class ChooseFighter implements ToDo {
         championFrame[3] = fighter1Pic;
 
         rect1 = new Rectangle(saraPic.getX() - RECT_X_START, saraPic.getY() - RECT_X_START, saraPic.getWidth() + RECT_Y_START, pauloPic.getHeight() + RECT_Y_START);
-        rect1.setColor(Color.BLUE);
+        rect1.setColor(Color.RED);
         rect1.fill();
         photoFrame[0] = rect1;
 
@@ -118,7 +120,7 @@ public class ChooseFighter implements ToDo {
         photoFrame[2] = rect3;
 
         rect4 = new Rectangle(fighter1Pic.getX() - RECT_X_START, fighter1Pic.getY() - RECT_X_START, fighter1Pic.getWidth() + RECT_Y_START, fighter1Pic.getHeight() + RECT_Y_START);
-        rect4.setColor(Color.RED);
+        rect4.setColor(Color.BLUE);
         rect4.fill();
         photoFrame[3] = rect4;
 
@@ -155,6 +157,10 @@ public class ChooseFighter implements ToDo {
 
         fighter1BigPicLeft.draw();
 
+// VERSUS
+       // versus = new Picture(Game.PADDING,Game.PADDING,"versus.png");
+       // versus.draw();
+
     }
 
     public int getMaxChampions() {
@@ -172,6 +178,8 @@ public class ChooseFighter implements ToDo {
         rect2.delete();
         rect3.delete();
         rect4.delete();
+
+       // versus.delete();
 
         saraBigPicRight.delete();
         pauloBigPicRight.delete();
@@ -372,6 +380,8 @@ public class ChooseFighter implements ToDo {
         }
         if (!p1Ready || !p2Ready) {
             update();
+          //  versus.delete();
+           // versus.draw();
         }
     }
 

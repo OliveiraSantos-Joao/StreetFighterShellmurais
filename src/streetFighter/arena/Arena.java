@@ -26,6 +26,7 @@ public class Arena implements ToDo {
     private Picture picPlayer1Punch;
     private Picture picPlayer2Punch;
 
+
     private HealthBar hb;
     private String arenaName;
 
@@ -121,7 +122,7 @@ public class Arena implements ToDo {
 
         player1.setPosX(70);
         player1.setPosY(arenaPic.getHeight() - 200);
-        player2.setPosX(arenaPic.getX() + arenaPic.getWidth() - 191);
+        player2.setPosX(arenaPic.getX() + arenaPic.getWidth() - 250);
         player2.setPosY(arenaPic.getHeight() - 200);
 
         picPlayer1 = new Picture(player1.getPosX(), player1.getPosY(), player1.getFighter().getPhotoName(player1.getFighter()) + "_" + "stand" + "_" + "right.png");

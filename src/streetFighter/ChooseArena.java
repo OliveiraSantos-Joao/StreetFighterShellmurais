@@ -60,7 +60,8 @@ public class ChooseArena implements ToDo {
         arenaBackground = new Picture(Game.PADDING, Game.PADDING, "Resources/arena1.png");
         arenaBackground.draw();
 
-        chooseTitle = new Picture();
+        chooseTitle = new Picture(Game.PADDING + 150,Game.PADDING,"ChooseArena.png");
+        chooseTitle.draw();
 
 
         createArena();
@@ -114,6 +115,8 @@ public class ChooseArena implements ToDo {
     }
 
     public void deleteAll() {
+
+        chooseTitle.delete();
         arena1.delete();
         arena2.delete();
         arena3.delete();
@@ -182,26 +185,31 @@ public class ChooseArena implements ToDo {
                 switch (pressedArena) {
                     case 1:
                         deleteAll();
+                        chooseTitle.delete();
                         new Arena(player1, player2, "Resources/arena1.png");
                         break;
 
                     case 2:
                         deleteAll();
+                        chooseTitle.delete();
                         new Arena(player1, player2, "Resources/arena2.png");
                         break;
 
                     case 3:
                         deleteAll();
+                        chooseTitle.delete();
                         new Arena(player1, player2, "Resources/arena3.png");
                         break;
 
                     case 4:
                         deleteAll();
+                        chooseTitle.delete();
                         new Arena(player1, player2, "Resources/elephantes_1280x720.jpeg");
                         break;
                 }
 
         }
+
 
 
 
@@ -232,6 +240,8 @@ public class ChooseArena implements ToDo {
             }
             getPhotoFrame()[i].delete();
         }
+        chooseTitle.delete();
+        chooseTitle.draw();
     }
 }
 

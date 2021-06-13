@@ -12,10 +12,6 @@ public class Instructions implements ToDo {
 
 
     private Rectangle exitRect;
-    private Rectangle player1Background;
-    private Rectangle player1Background2;
-    private Rectangle player2Background;
-    private Rectangle player2Background2;
 
     private Text exitText;
 
@@ -54,13 +50,12 @@ public class Instructions implements ToDo {
     }
 
 
-
-
-
-
-    public void deleteInstruction(){
+    public void deleteInstruction() {
         instructionsMenuPic.delete();
-
+        exitRect.delete();
+        exitText.delete();
+        frame.delete();
+        keys.delete();
     }
 
     @Override
