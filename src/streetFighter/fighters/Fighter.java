@@ -94,9 +94,6 @@ public class Fighter {
     }
     // methods
 
-    public void jump() {
-        this.posY = posY + jump;
-    }
 
     public void hit(int hit) {
         this.health -= hit;
