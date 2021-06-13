@@ -26,8 +26,8 @@ public class Arena implements ToDo {
 
     private String arenaName;
     private HealthBar hb;
-    private float[] player1HitBox = new float[400];
-    private float[] player2HitBox = new float[400];
+    private String[] player1HitBox = new String[40000];
+    private String[] player2HitBox = new String [40000];
 
     private int jumpDistance;
 
@@ -144,12 +144,14 @@ public class Arena implements ToDo {
 
         picPlayer1.draw();
         picPlayer2.draw();
-
+   /*     boxPos1();
+        boxPos2();*/
     }
 
     ////////////////Keys action PRESSED
     @Override
     public void actionPressed(int key) {
+
         switch (key) {
             case KeyboardEvent.KEY_W:
                 if (isGroundedP1) {
@@ -158,13 +160,16 @@ public class Arena implements ToDo {
                 }
                 break;
 
-            //case KeyboardEvent.KEY_P:
-            //   break;
+            case KeyboardEvent.KEY_P:
+                Runtime.getRuntime().exit(0);
+              break;
 
             case KeyboardEvent.KEY_A:
 
 
                 if (inBoundsLeft(player1) && player1CanAct && player1Loop && player1MoveCooldown == 0) {
+
+
                     picPlayer1.translate(-player1.getPixelMovement(), 0);
                     picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
                     player1.moveLeft();
@@ -175,10 +180,10 @@ public class Arena implements ToDo {
             case KeyboardEvent.KEY_D:
 
                 if (inBoundsRight(player1) && player1CanAct && player1Loop && player1MoveCooldown == 0) {
-                        picPlayer1.translate(player1.getPixelMovement(), 0);
-                        picPlayer1Punch.translate(player1.getPixelMovement(), 0);
-                        player1.moveRight();
-                        player1MoveCooldown = 1;
+                    picPlayer1.translate(player1.getPixelMovement(), 0);
+                    picPlayer1Punch.translate(player1.getPixelMovement(), 0);
+                    player1.moveRight();
+                    player1MoveCooldown = 1;
                 }
 
                 break;
@@ -191,16 +196,18 @@ public class Arena implements ToDo {
                 break;
 
             case KeyboardEvent.KEY_LEFT:
-                if (inBoundsLeft(player2) && player2CanAct && player2Loop && player2MoveCooldown == 0) {
-                        picPlayer2.translate(-player2.getPixelMovement(), 0);
-                        picPlayer2Punch.translate(-player2.getPixelMovement(), 0);
-                        player2.moveLeft();
 
-                        player2MoveCooldown = 1;
+                if (inBoundsLeft(player2) && player2CanAct && player2Loop && player2MoveCooldown == 0) {
+                    picPlayer2.translate(-player2.getPixelMovement(), 0);
+                    picPlayer2Punch.translate(-player2.getPixelMovement(), 0);
+                    player2.moveLeft();
+
+                    player2MoveCooldown = 1;
                 }
                 break;
 
             case KeyboardEvent.KEY_RIGHT:
+
                 if (inBoundsRight(player2) && player2CanAct && player2Loop && player2MoveCooldown == 0) {
                     picPlayer2.translate(player2.getPixelMovement(), 0);
                     picPlayer2Punch.translate(player2.getPixelMovement(), 0);
@@ -228,6 +235,11 @@ public class Arena implements ToDo {
                 }
                 break;
         }
+
+   /*     boxPos1();
+        boxPos2();
+        System.out.println(collider());
+*/
         setFacingInitialPosition();
         reverse();
     }
@@ -273,34 +285,50 @@ public class Arena implements ToDo {
     }
 
 
-   /* private void boxPos1() {
+  /*  private void boxPos1() {
+        //System.out.println(player1.getPosX() + " " + player1.getWidth() + " ----- " + player1.getPosY() + " " + player1.getHeight());
+
         int counter = 0;
-        for (int row = player1.getPosY(); row <= player1.getHeight(); row++)
-            for (int col = player1.getPosX(); col <= player1.getWidth(); col++) {
-                player1HitBox[counter] = + (row) + ","+ (col) ;
+        for (int row = player1.getPosY() ; row < (player1.getPosY() + player1.getHeight())-1; row++)
+            for (int col = player1.getPosX(); col <  (player1.getPosX() + player1.getWidth())-1; col++) {
+                player1HitBox[counter] = row + "," + col;
                 counter++;
             }
 
     }
+
     private void boxPos2() {
-        int counter = 0;
-        for (int row = player2.getPosY(); row <= player2.getHeight(); row++)
-            for (int col = player2.getPosX(); col <= player2.getWidth(); col++) {
-                player2HitBox[counter] = "x: " + (row) + " y: " + (col) + "";
-                counter++;
+        int counter = -1;
+        for (int row = player2.getPosY(); row > player2.getHeight(); row++)
+            for (int col = player2.getPosX(); col < player2.getWidth(); col++) {
+                player2HitBox[++counter] = row +","+ col ;
             }
 
-    }*/
+    }
+    private boolean collider(){
 
-   /* private boolean collider(){
-       int d1x = (player1.getPosX() + player1.getWidth() +FIGHTER_REACH) - (player2.getPosX());
+        for(int i = 0; i<40000 ; i++){
+            for(int j = 0; j<40000 ; j++){
 
-       //reversos
-       int d2x = (player2.getPosX() + player2.getWidth() + FIGHTER_REACH) - player1.getPosX();
+                if(player1HitBox[i].equals(player2HitBox[j])){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+*/
+
+   /* private boolean collider() {
+        int d1x = (player1.getPosX() + player1.getWidth() + FIGHTER_REACH) - (player2.getPosX());
+
+        //reversos
+        int d2x = (player2.getPosX() + player2.getWidth() + FIGHTER_REACH) - player1.getPosX();
 
 
-       int d1y = (player1.getPosY() + player1.getHeight() + headJumpDistance) - player2.getHeight();
-       int d2y = (player2.getPosY() + player2.getHeight() +headJumpDistance) - player1.getHeight();
+        int d1y = (player1.getPosY() + player1.getHeight() + headJumpDistance) - player2.getHeight();
+        int d2y = (player2.getPosY() + player2.getHeight() + headJumpDistance) - player1.getHeight();
 
 
         if (d1x > 0 && d1y < 0) {
@@ -311,13 +339,13 @@ public class Arena implements ToDo {
         }
 
 
-
-
-       if(d2x>0 || d2y > 0){
-           return false;
-       }
+        if (d2x > 0 || d2y > 0) {
+            return false;
+        }
         return true;
-    }*/
+    }
+*/
+
 
 
     public void deleteAll() {
