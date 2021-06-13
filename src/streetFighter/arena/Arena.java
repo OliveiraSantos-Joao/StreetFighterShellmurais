@@ -45,7 +45,7 @@ public class Arena implements ToDo {
 
 
 
-    private Sound punch1 = new Sound("/Resources/Sounding/Movement and Fight/punch1.wav");
+    private Sound punch1 = new Sound("/Resources/Sounding/MovementandFight/punch1.wav");
 
     private Timer timer = new Timer();
     private TimerTask task = new TimerTask() {
@@ -73,6 +73,7 @@ public class Arena implements ToDo {
 
     //constructor
     public Arena(Fighter player1, Fighter player2, String arenaName) {
+
 
         this.arenaName = arenaName;
         Inputs.setInputScreen(this);
@@ -395,14 +396,22 @@ public class Arena implements ToDo {
         player1CanAct = false;
 
         if (facingInitialPosition) {
+            try{
             picPlayer1.translate(-player1.getPixelMovement(), 0);
-            picPlayer1Punch.translate(-player1.getPixelMovement(), 0);
+            picPlayer1Punch.translate(-player1.getPixelMovement(), 0);}
+            catch (java.util.ConcurrentModificationException e) {
+                System.out.println("CMExc");
+            }
             player1.moveLeft();
         }
 
         if (!facingInitialPosition) {
+            try{
             picPlayer1.translate(player2.getPixelMovement(), 0);
-            picPlayer1Punch.translate(player2.getPixelMovement(), 0);
+            picPlayer1Punch.translate(player2.getPixelMovement(), 0);}
+            catch (java.util.ConcurrentModificationException e) {
+                System.out.println("CMExc");
+            }
             player1.moveRight();
         }
 
@@ -441,14 +450,22 @@ public class Arena implements ToDo {
     public void player2Kickback() {
         player2CanAct = false;
         if (facingInitialPosition) {
+            try{
             picPlayer2.translate(player2.getPixelMovement(), 0);
-            picPlayer2Punch.translate(player2.getPixelMovement(), 0);
+            picPlayer2Punch.translate(player2.getPixelMovement(), 0);}
+            catch (java.util.ConcurrentModificationException e) {
+                System.out.println("CMExc");
+            }
             player2.moveRight();
         }
 
         if (!facingInitialPosition) {
+            try{
             picPlayer2.translate(-player1.getPixelMovement(), 0);
-            picPlayer2Punch.translate(-player1.getPixelMovement(), 0);
+            picPlayer2Punch.translate(-player1.getPixelMovement(), 0);}
+            catch (java.util.ConcurrentModificationException e) {
+                System.out.println("CMExc");
+            }
             player2.moveLeft();
         }
 

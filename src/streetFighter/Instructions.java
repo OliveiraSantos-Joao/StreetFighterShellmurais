@@ -16,7 +16,7 @@ public class Instructions implements ToDo {
     private Rectangle frame;
     private Rectangle instructionsMenuPic;
     private Picture keys;
-    private Sound enterClick = new Sound("/Resources/Sounding/Select Options/select3.wav");
+    private Sound enterClick = new Sound("/Resources/Sounding/SelectOptions/select3.wav");
 
 
     public Instructions() {

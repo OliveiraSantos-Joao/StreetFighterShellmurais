@@ -59,12 +59,12 @@ public class ChooseFighter implements ToDo {
     private Picture[] bigChampSelectFrameRight = new Picture[maxchampions];
     private Picture[] bigChampSelectFrameLeft = new Picture[maxchampions];
 
-    private Sound optionSound = new Sound("/Resources/Sounding/Select Options/select2.wav");
-    private Sound enterClick = new Sound("/Resources/Sounding/Select Options/select3.wav");
-    private Sound saraSound = new Sound("/Resources/Sounding/Choosing Fighters/Sara.wav");
-    private Sound pauloSound = new Sound("/Resources/Sounding/Choosing Fighters/Paulo.wav");
-    private Sound pedroSound = new Sound("/Resources/Sounding/Choosing Fighters/Pedrito.wav");
-    private Sound igrejaSound = new Sound("/Resources/Sounding/Choosing Fighters/Igreja.wav");
+    private Sound optionSound = new Sound("/Resources/Sounding/SelectOptions/select2.wav");
+    private Sound enterClick = new Sound("/Resources/Sounding/SelectOptions/select3.wav");
+    private Sound saraSound = new Sound("/Resources/Sounding/ChoosingFighters/Sara.wav");
+    private Sound pauloSound = new Sound("/Resources/Sounding/ChoosingFighters/Paulo.wav");
+    private Sound pedroSound = new Sound("/Resources/Sounding/ChoosingFighters/Pedrito.wav");
+    private Sound igrejaSound = new Sound("/Resources/Sounding/ChoosingFighters/Igreja.wav");
 
     public ChooseFighter() {
         Inputs.setInputScreen(this);
@@ -392,8 +392,7 @@ public class ChooseFighter implements ToDo {
         }
         if (!p1Ready || !p2Ready) {
             update();
-          //  versus.delete();
-           // versus.draw();
+
         }
     }
 
@@ -413,6 +412,7 @@ public class ChooseFighter implements ToDo {
 
                 getBigChampSelectFrameLeft()[i].delete();
                 getBigChampSelectFrameRight()[i].delete();
+
                 getBigChampSelectFrameRight()[i].draw();
                 getBigChampSelectFrameLeft()[i].draw();
                 continue;
@@ -425,7 +425,6 @@ public class ChooseFighter implements ToDo {
                 getChampionFrame()[i].draw();
                 getBigChampSelectFrameRight()[i].delete();
                 getBigChampSelectFrameRight()[i].draw();
-
                 continue;
             }
 

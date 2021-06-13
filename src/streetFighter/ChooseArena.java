@@ -43,8 +43,8 @@ public class ChooseArena implements ToDo {
 
     private Rectangle[] photoFrame = new Rectangle[maxArena];
 
-    private Sound optionSound = new Sound("/Resources/Sounding/Select Options/select2.wav");
-    private Sound enterClick = new Sound("/Resources/Sounding/Select Options/select3.wav");
+    private Sound optionSound = new Sound("/Resources/Sounding/SelectOptions/select2.wav");
+    private Sound enterClick = new Sound("/Resources/Sounding/SelectOptions/select3.wav");
 
 
     public ChooseArena(Fighter player1, Fighter player2) {

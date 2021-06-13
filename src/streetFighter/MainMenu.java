@@ -33,10 +33,10 @@ public class MainMenu implements ToDo {
     private int currentlyPressedPosition = 1;
 
     private static boolean isSoundPlaying;
-    private Sound enterClick = new Sound("/Resources/Sounding/Select Options/select3.wav");
+    private Sound enterClick = new Sound("/Resources/Sounding/SelectOptions/select3.wav");
     private static Sound sound = new Sound("/Resources/Sounding/MainMenu/MainMenu(loop).wav");
-    private static Sound clickOptions = new Sound("/Resources/Sounding/Select Options/select2.wav");
-    private Sound welcomeSound = new Sound("/Resources/Sounding/Welcome to street.wav");
+    private static Sound clickOptions = new Sound("/Resources/Sounding/SelectOptions/select2.wav");
+    private Sound welcomeSound = new Sound("/Resources/Sounding/Welcometostreet.wav");
 
 
     //Contructor MainMenu

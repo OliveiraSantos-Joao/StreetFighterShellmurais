@@ -26,8 +26,8 @@ public class GameOverScreen implements ToDo {
     private int keyPressed = 1;
     private int maxChoices = 2;
 
-    private Sound p1Wins = new Sound("/Resources/Sounding/P1, P2 Wins/P1Wins.wav");
-    private Sound p2Wins = new Sound("/Resources/Sounding/P1, P2 Wins/Player2Wins.wav");
+    private Sound p1Wins = new Sound("/Resources/Sounding/P1P2Wins/P1Wins.wav");
+    private Sound p2Wins = new Sound("/Resources/Sounding/P1P2Wins/Player2Wins.wav");
 
 
 
